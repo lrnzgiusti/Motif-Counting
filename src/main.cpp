@@ -6,12 +6,12 @@
 //  Copyright © 2019 Lorenzo Giusti. All rights reserved.
 //
 
-#include <stdio.h>
-#include <iostream>
+#include "Graph.cpp"
 
+#define MAX_NUM_NODES 10
 int main(int argc, char* argv[])
 {
-    std::cout << "Hello Motif-Counter\n";
-    return 0;
-    
+    srand((int)time(NULL));
+    Graph g;
+    g.printGraph();
 }
