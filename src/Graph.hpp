@@ -14,7 +14,8 @@
 #include <unordered_map>
 #include <list>
 #include <iostream>
-#include <list>
+//#include <list>
+#include <unordered_set>
 #include <numeric>
 #include <random>
 #include <vector>
@@ -29,14 +30,13 @@ public:
     Graph();
     ~Graph();
     bool isBipartite();
-    void bfs();
-    std::unordered_map<int, std::list<int>> get_repr();
+    std::unordered_map<int, std::unordered_set<int>> get_repr();
     void printGraph();
     
 private:
     void generate_random_graph();
     void generate_random_non_bipartite_graph();
-    std::unordered_map<int, std::list<int>> repr;
+    std::unordered_map<int, std::unordered_set<int>> repr;
     uint8_t num_of_nodes;
     uint32_t num_of_edges;
     

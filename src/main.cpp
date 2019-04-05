@@ -7,11 +7,13 @@
 //
 
 #include "Graph.cpp"
-
+#include <unordered_set>
 #define MAX_NUM_NODES 10
 int main(int argc, char* argv[])
 {
+    
     srand((int)time(NULL));
-    Graph g;
+    Graph g; //G dev'essere undirected, fare un check
     g.printGraph();
+    
 }
