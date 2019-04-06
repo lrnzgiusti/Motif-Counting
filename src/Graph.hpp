@@ -12,13 +12,10 @@
 
 #include <vector>
 #include <unordered_map>
-#include <list>
 #include <iostream>
-//#include <list>
 #include <unordered_set>
 #include <numeric>
 #include <random>
-#include <vector>
 #include <algorithm>
 #include <queue>
 
@@ -35,6 +32,7 @@ public:
     
 private:
     void generate_random_graph();
+    void random_undirected_edge_placement();
     void generate_random_non_bipartite_graph();
     std::unordered_map<int, std::unordered_set<int>> repr;
     uint8_t num_of_nodes;

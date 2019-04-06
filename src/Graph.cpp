@@ -43,13 +43,35 @@ void fix_undirection(std::unordered_map<int, std::unordered_set<int>> &G){
         std::unordered_set<int>::iterator set_iter;
         for (set_iter = it->second.begin(); set_iter != it->second.end(); ++set_iter) {
             G[*set_iter].insert(it->first);
-            this->num_of_edges+=G[*set_iter].size();
+            //G.num_of_edges+=G[*set_iter].size(); non ho accesso al metodo privato
         }
     }
     return;
 }
-void Graph::generate_random_graph(){
 
+
+void Graph::random_undirected_edge_placement(){
+    std::unordered_map<int, std::unordered_set<int>> G;
+    for (int i = 1; i < MAX_NUM_NODES+1; ++i) {
+        int edges = rand()%MAX_NUM_NODES/2+1;
+        for (int j = 1; j < edges; ++j) {
+            int k = rand()%MAX_NUM_NODES+1;
+            while (k == i) {
+                k = rand()%MAX_NUM_NODES+1;
+            }
+            G[i].insert(k);
+            G[k].insert(i);
+            this->num_of_edges++;
+            this->num_of_nodes++;
+        }
+    }
+    this->repr = G;
+    return;
+}
+
+
+
+void Graph::generate_random_graph(){
     std::unordered_map<int, std::unordered_set<int>> G;
     for(int i = 1; i < MAX_NUM_NODES+1; ++i){
         G[i] = random_neighbourhood(i);
@@ -63,12 +85,14 @@ void Graph::generate_random_graph(){
 }
 
 void Graph::generate_random_non_bipartite_graph(){
-    this->generate_random_graph();
+    this->random_undirected_edge_placement();
     while (this->isBipartite()) {
-        this->generate_random_graph();
+        this->random_undirected_edge_placement();
     }
     return;
 }
+
+
 
 std::unordered_map<int, std::unordered_set<int>> Graph::get_repr(){
     return this->repr;
@@ -128,7 +152,6 @@ bool Graph::isBipartite(){
             // An edge from u to v exists and destination
             // v is colored with same color as u
             else if (colorArr[*it] == colorArr[u]){
-                std::cout << "Crossing on: (" <<*it << "," << u << ")\n";
                 return false;
             }
         }

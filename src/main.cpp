@@ -6,14 +6,13 @@
 //  Copyright © 2019 Lorenzo Giusti. All rights reserved.
 //
 
+
+// TODO: random edge placement
+// TODO: read edgelist
 #include "Graph.cpp"
-#include <unordered_set>
-#define MAX_NUM_NODES 10
 int main(int argc, char* argv[])
 {
-    
     srand((int)time(NULL));
-    Graph g; //G dev'essere undirected, fare un check
+    Graph g;
     g.printGraph();
-    
 }
