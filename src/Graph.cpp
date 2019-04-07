@@ -11,7 +11,8 @@
 Graph::Graph(){
     num_of_nodes = 0;
     num_of_edges = 0;
-    generate_random_non_bipartite_graph();
+    read_edgelist("edgelist.csv");
+    //generate_random_non_bipartite_graph();
 }
 
 Graph::~Graph(){}
@@ -70,6 +71,32 @@ void Graph::random_undirected_edge_placement(){
 }
 
 
+void Graph::read_edgelist(std::string filename){
+    std::ifstream fptr;
+    std::unordered_map<int, std::unordered_set<int>> G;
+    fptr.open(filename);
+    
+    if(!fptr){
+        std::cerr << "Unable to open edgelist!\tTry Again!\n";
+        return;
+    }
+    
+    std::string edgelist_row;
+    std::vector<std::string> tokens;
+    while(fptr >> edgelist_row){
+        boost::split(tokens, edgelist_row, [](char c){return c == ',';});
+        int tok1 = std::stoi(tokens[0]);
+        int tok2 = std::stoi(tokens[1]);
+        
+        G[tok1].insert(tok2);
+        G[tok2].insert(tok1);
+        tokens.clear();
+        this->num_of_edges++;
+    }
+    fptr.close();
+    this->repr = G;
+    return;
+}
 
 void Graph::generate_random_graph(){
     std::unordered_map<int, std::unordered_set<int>> G;

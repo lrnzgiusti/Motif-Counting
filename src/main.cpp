@@ -10,9 +10,17 @@
 // TODO: random edge placement
 // TODO: read edgelist
 #include "Graph.cpp"
+
+#include <unordered_map>
+#include <unordered_set>
+
 int main(int argc, char* argv[])
 {
     srand((int)time(NULL));
     Graph g;
     g.printGraph();
+    std::cout << "Test Bipartition: " << (g.isBipartite() ? "Positive\n" : "Negative\n");
 }
+
+
+

@@ -18,6 +18,10 @@
 #include <random>
 #include <algorithm>
 #include <queue>
+#include <fstream>
+#include <string>
+#include <boost/algorithm/string.hpp>
+
 
 #define MAX_NUM_NODES 10
 
@@ -34,6 +38,7 @@ private:
     void generate_random_graph();
     void random_undirected_edge_placement();
     void generate_random_non_bipartite_graph();
+    void read_edgelist(std::string);
     std::unordered_map<int, std::unordered_set<int>> repr;
     uint8_t num_of_nodes;
     uint32_t num_of_edges;
