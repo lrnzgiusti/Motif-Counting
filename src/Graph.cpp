@@ -12,7 +12,10 @@ Graph::Graph(){
     num_of_nodes = 0;
     num_of_edges = 0;
     read_edgelist("edgelist.csv");
-    //generate_random_non_bipartite_graph();
+}
+
+Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
+    this->repr = repr;
 }
 
 Graph::~Graph(){}
@@ -160,14 +163,11 @@ bool Graph::isBipartite(){
         // Dequeue a vertex from queue
         int u = q.front();
         q.pop();
-
-        
         // Find all non-colored adjacent vertices
         std::unordered_set<int>::iterator it = this->repr[u].begin();
         
         for (; it != (this->repr[u].end()); ++it)
         {
-            
             // An edge from u to v exists and
             // destination v is not colored
             if (colorArr[*it] == -1)

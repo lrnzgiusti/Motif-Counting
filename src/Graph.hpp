@@ -29,6 +29,7 @@ class Graph
 {
 public:
     Graph();
+    Graph(std::unordered_map<int, std::unordered_set<int>>);
     ~Graph();
     bool isBipartite();
     std::unordered_map<int, std::unordered_set<int>> get_repr();

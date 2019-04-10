@@ -10,6 +10,8 @@
 		A3153B372259EFC700042048 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D4F225786B500EA3296 /* main.cpp */; };
 		A3153B39225A224F00042048 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D51225787FA00EA3296 /* Graph.cpp */; };
 		A38F3D6A2257892C00EA3296 /* Graph.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D52225787FA00EA3296 /* Graph.hpp */; };
+		A3961F5E225D075C0006FE55 /* Graphlet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A337EEF7225C985A00AF49CC /* Graphlet.cpp */; };
+		A3B963BF225B285400592841 /* Graplets_sampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3B963BD225B285400592841 /* Graplets_sampler.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,11 +36,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A337EEF7225C985A00AF49CC /* Graphlet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graphlet.cpp; sourceTree = "<group>"; };
+		A337EEF8225C985A00AF49CC /* Graphlet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graphlet.hpp; sourceTree = "<group>"; };
 		A38F3D44225785DC00EA3296 /* src */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = src; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38F3D4F225786B500EA3296 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A38F3D51225787FA00EA3296 /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
 		A38F3D52225787FA00EA3296 /* Graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
 		A38F3D62225788F600EA3296 /* dummy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = dummy; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B963BD225B285400592841 /* Graplets_sampler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graplets_sampler.cpp; sourceTree = "<group>"; };
+		A3B963BE225B285400592841 /* Graplets_sampler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graplets_sampler.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 		A38F3D3B225785DC00EA3296 = {
 			isa = PBXGroup;
 			children = (
+				A337EEF7225C985A00AF49CC /* Graphlet.cpp */,
+				A337EEF8225C985A00AF49CC /* Graphlet.hpp */,
+				A3B963BD225B285400592841 /* Graplets_sampler.cpp */,
+				A3B963BE225B285400592841 /* Graplets_sampler.hpp */,
 				A38F3D51225787FA00EA3296 /* Graph.cpp */,
 				A38F3D52225787FA00EA3296 /* Graph.hpp */,
 				A38F3D4F225786B500EA3296 /* main.cpp */,
@@ -165,7 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3961F5E225D075C0006FE55 /* Graphlet.cpp in Sources */,
 				A3153B39225A224F00042048 /* Graph.cpp in Sources */,
+				A3B963BF225B285400592841 /* Graplets_sampler.cpp in Sources */,
 				A38F3D6A2257892C00EA3296 /* Graph.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
