@@ -9,10 +9,12 @@
 #ifndef Graphlet_hpp
 #define Graphlet_hpp
 
-#include <stdio.h>
+
+#include "Graph.cpp"
 #include <unordered_map>
 #include <unordered_set>
-class Graphlet{
+
+class Graphlet: public Graph {
 public:
     Graphlet(); //default constructor --probably useless
     Graphlet(std::unordered_map<int, std::unordered_set<int>>); //get the graphlet from an adjacency list

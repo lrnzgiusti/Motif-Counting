@@ -32,6 +32,7 @@ public:
     Graph(std::unordered_map<int, std::unordered_set<int>>);
     ~Graph();
     bool isBipartite();
+    bool isConnected();
     std::unordered_map<int, std::unordered_set<int>> get_repr();
     void printGraph();
     

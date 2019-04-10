@@ -9,7 +9,6 @@
 
 // TODO: random edge placement
 // TODO: read edgelist
-#include "Graph.cpp"
 #include "Graphlet.cpp"
 
 #include <unordered_map>
@@ -19,7 +18,7 @@
 int main(int argc, char* argv[])
 {
     srand((int)time(NULL));
-    Graph g;
+    Graph g = *new Graph();
     g.printGraph();
     std::cout << "Test Bipartition: " << (g.isBipartite() ? "Positive\n" : "Negative\n");
     
@@ -28,6 +27,9 @@ int main(int argc, char* argv[])
     Graphlet gg(g1);
     Graphlet gz(g2);
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> mapp ({{gg, {gz}}, {gz, {gg}}});
+    
+    
+    std::cout << "Test Bipartition: " << (gg.isBipartite() ? "Positive\n" : "Negative\n");
     //TODO: test if the behaviour of this map is good for our purposes.
     //TODO: introduce a class that provides us utility fuction <isBipartite, isConnected>(const Graph& g)const;
 }

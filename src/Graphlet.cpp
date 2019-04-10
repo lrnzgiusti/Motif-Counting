@@ -8,6 +8,9 @@
 
 #include "Graphlet.hpp"
 #include <string>
+
+Graphlet::Graphlet(){}
+
 Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
 }

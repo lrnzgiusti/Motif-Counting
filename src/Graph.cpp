@@ -187,3 +187,10 @@ bool Graph::isBipartite(){
     // vertices can be colored with alternate color
     return true;
 }
+
+
+bool Graph::isConnected(){
+    
+    
+    
+}
