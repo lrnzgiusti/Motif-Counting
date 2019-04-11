@@ -33,7 +33,6 @@ int main(int argc, char* argv[])
 	Graphlet gb(g2);
 	Graphlet gc(g3);
 	Graphlet gd(g4);
-	
 	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> mg
 	(
 		{ 	{ga, {gb,gc, gd}},
@@ -42,6 +41,16 @@ int main(int argc, char* argv[])
 			{gd, {ga, gb, gc}}
 		}
 	);
+	
+	for(std::pair<Graphlet, std::unordered_set<Graphlet>> x : mg){
+		x.first.printGraph(); 
+		std::cout << "\n";
+		for(Graphlet g : x.second){
+			g.printGraph();
+			std::cout << "--------------------\n";
+		}
+		std::cout << "\n\n";
+	}
 }
 
 
