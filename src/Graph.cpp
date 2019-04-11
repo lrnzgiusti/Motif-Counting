@@ -8,10 +8,12 @@
 
 #include "Graph.hpp"
 
-Graph::Graph(){
+Graph::Graph(){}
+
+Graph::Graph(std::string filename){
     num_of_nodes = 0;
     num_of_edges = 0;
-    read_edgelist("edgelist.csv");
+    read_edgelist(filename);
 }
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
@@ -19,60 +21,6 @@ Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
 }
 
 Graph::~Graph(){}
-
-//the graph becomes std::unordered_map<int, std::unordered_set<int>>
-std::unordered_set<int> random_neighbourhood(int avoid){
-    //the pool you pick randomly the connected edges.
-    std::vector<int> pool (MAX_NUM_NODES);
-    //fill the pool with increasing numbers until you reach the end of the vector
-    std::iota(pool.begin(), pool.end(), 1);
-    //remove self loops
-    pool.erase(std::remove(pool.begin(), pool.end(), avoid), pool.end());
-    std::unordered_set<int> rng_set;
-    int k; //the random index you pick from the pool
-    int max_neighbours = rand()%(MAX_NUM_NODES/2)+2;
-    for(int i = 0; i < max_neighbours; ++i){
-        if(pool.size() == 0) return rng_set; //if you don't have element to pick return the list, maybe obsolete
-        k = rand()%pool.size();
-        rng_set.insert(pool[k]);
-        pool.erase(pool.begin()+k);
-    }
-    
-    return rng_set;
-}
-
-void fix_undirection(std::unordered_map<int, std::unordered_set<int>> &G){
-    std::unordered_map<int, std::unordered_set<int>>::iterator it;
-    for(it = G.begin(); it != G.end(); ++it){
-        std::unordered_set<int>::iterator set_iter;
-        for (set_iter = it->second.begin(); set_iter != it->second.end(); ++set_iter) {
-            G[*set_iter].insert(it->first);
-            //G.num_of_edges+=G[*set_iter].size(); non ho accesso al metodo privato
-        }
-    }
-    return;
-}
-
-
-void Graph::random_undirected_edge_placement(){
-    std::unordered_map<int, std::unordered_set<int>> G;
-    for (int i = 1; i < MAX_NUM_NODES+1; ++i) {
-        int edges = rand()%MAX_NUM_NODES/2+1;
-        for (int j = 1; j < edges; ++j) {
-            int k = rand()%MAX_NUM_NODES+1;
-            while (k == i) {
-                k = rand()%MAX_NUM_NODES+1;
-            }
-            G[i].insert(k);
-            G[k].insert(i);
-            this->num_of_edges++;
-            this->num_of_nodes++;
-        }
-    }
-    this->repr = G;
-    return;
-}
-
 
 void Graph::read_edgelist(std::string filename){
     std::ifstream fptr;
@@ -97,34 +45,15 @@ void Graph::read_edgelist(std::string filename){
         this->num_of_edges++;
     }
     fptr.close();
+    this->num_of_nodes = G.size();
     this->repr = G;
     return;
 }
 
-void Graph::generate_random_graph(){
-    std::unordered_map<int, std::unordered_set<int>> G;
-    for(int i = 1; i < MAX_NUM_NODES+1; ++i){
-        G[i] = random_neighbourhood(i);
-        this->num_of_nodes++;
-    }
-    //since after the previous procedure the graph is directed,
-    //we have to fix by inserting the respective couter-edge
-    fix_undirection(G);
-    this->repr = G;
-    return;
-}
-
-void Graph::generate_random_non_bipartite_graph(){
-    this->random_undirected_edge_placement();
-    while (this->isBipartite()) {
-        this->random_undirected_edge_placement();
-    }
-    return;
-}
 
 
 
-std::unordered_map<int, std::unordered_set<int>> Graph::get_repr(){
+std::unordered_map<int, std::unordered_set<int>> Graph::get_repr() const{
     return this->repr;
 }
 
@@ -143,10 +72,10 @@ void Graph::printGraph(){
 }
 
 
-bool Graph::isBipartite(){
-    int source = 1;
-    int colorArr[MAX_NUM_NODES+1];
-    for (int i = 1; i < MAX_NUM_NODES+1; ++i)
+bool Graph::isBipartite(int source){
+    size_t n_of_verteces = this->repr.size();
+    int colorArr[n_of_verteces+1];
+    for (int i = 1; i < n_of_verteces+1; ++i)
         colorArr[i] = -1;
     
     // Assign first color to source
@@ -179,6 +108,7 @@ bool Graph::isBipartite(){
             // An edge from u to v exists and destination
             // v is colored with same color as u
             else if (colorArr[*it] == colorArr[u]){
+                std::cout << "crossing on (" << *it << ", " << u << ")" << std::endl;
                 return false;
             }
         }
@@ -189,8 +119,51 @@ bool Graph::isBipartite(){
 }
 
 
-bool Graph::isConnected(){
+bool Graph::isConnected(int source){
+    size_t n_of_verteces = this->repr.size();
+    std::unordered_set<int> expected_veteces;
+    expected_veteces.reserve(n_of_verteces);
+    for(auto x: this->repr){
+        expected_veteces.insert(x.first);
+    }
+    //reserve expected_verteces, this->repr.size()
+    //calculate expected_verteced
+    std::unordered_set<int> real_veteces;
+    //reserve expected_verteces, this->repr.size()
     
     
+    int colorArr[n_of_verteces+1]; //instead of max_num_nodes we have to insert the dimension of the graph
+    for (int i = 1; i < n_of_verteces+1; ++i)
+        colorArr[i] = -1;
+    
+    // Assign first color to source
+    colorArr[source] = 1;
+    std::queue <int> q;
+    q.push(source);
+    real_veteces.insert(source);
+    // Run while there are vertices
+    // in queue (Similar to BFS)
+    while (!q.empty())
+    {
+        // Dequeue a vertex from queue
+        int u = q.front();
+        q.pop();
+        // Find all non-colored adjacent vertices
+        std::unordered_set<int>::iterator it = this->repr[u].begin();
+        
+        for (; it != (this->repr[u].end()); ++it)
+        {
+            // An edge from u to v exists and
+            // destination v is not colored
+            if (colorArr[*it] == -1)
+            {
+                // Assign alternate color to this adjacent v of u
+                colorArr[*it] = 1 - colorArr[u];
+                q.push(*it);
+                real_veteces.insert(*it);
+            }
+        }
+    }
+    return expected_veteces == real_veteces;
     
 }

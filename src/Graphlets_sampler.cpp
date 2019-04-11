@@ -6,5 +6,5 @@
 //  Copyright © 2019 Lorenzo Giusti. All rights reserved.
 //
 
-#include "Graplets_sampler.hpp"
+#include "Graphlets_sampler.hpp"
 

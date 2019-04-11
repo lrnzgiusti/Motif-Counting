@@ -13,18 +13,17 @@
 #include "Graph.cpp"
 #include <unordered_map>
 #include <unordered_set>
+#include <string>
 
 class Graphlet: public Graph {
 public:
     Graphlet(); //default constructor --probably useless
     Graphlet(std::unordered_map<int, std::unordered_set<int>>); //get the graphlet from an adjacency list
     ~Graphlet();
-    std::unordered_map<int, std::unordered_set<int>> get_repr() const;
     bool operator == (const Graphlet &other) const; //comparison, for make graphlet collections
     
 private:
     int k;
-    std::unordered_map<int, std::unordered_set<int>> repr;
 };
 
 #endif /* Graphlet_hpp */

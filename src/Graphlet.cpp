@@ -7,21 +7,12 @@
 //
 
 #include "Graphlet.hpp"
-#include <string>
 
 Graphlet::Graphlet(){}
 
-Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr){
-    this->repr = repr;
-}
+Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
 
 Graphlet::~Graphlet(){}
-
-
-std::unordered_map<int, std::unordered_set<int>> Graphlet::get_repr() const {
-    return this->repr;
-}
-
 
 bool Graphlet::operator ==(const Graphlet &g) const{
     std::unordered_map<int, std::unordered_set<int>> repr = g.get_repr();

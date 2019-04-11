@@ -17,22 +17,26 @@
 
 int main(int argc, char* argv[])
 {
-    srand((int)time(NULL));
-    Graph g = *new Graph();
+	
+    Graph g = *new Graph("edgelist.csv");
     g.printGraph();
-    std::cout << "Test Bipartition: " << (g.isBipartite() ? "Positive\n" : "Negative\n");
-    
-    std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {2,3}}, {2, {3}}, {3, {}}} );
-    std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3,4}}, {2, {3}}, {3, {}}} );
-    Graphlet gg(g1);
-    Graphlet gz(g2);
-    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> mapp ({{gg, {gz}}, {gz, {gg}}});
-    
-    
-    std::cout << "Test Bipartition: " << (gg.isBipartite() ? "Positive\n" : "Negative\n");
-    //TODO: test if the behaviour of this map is good for our purposes.
-    //TODO: introduce a class that provides us utility fuction <isBipartite, isConnected>(const Graph& g)const;
+	std::cout << "Test Bipartition: " << (g.isBipartite(1) ? "Positive\n" : "Negative\n");
+	std::cout << "Test Connection: " << (g.isConnected(1) ? "Positive\n" : "Negative\n");
+	std::cout << "\n";
+	
+	
+	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
+	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
+	std::unordered_map<int, std::unordered_set<int>> g3 ( {{3, {2,4}}, {2, {3}}, {4, {3}}} );
+	std::unordered_map<int, std::unordered_set<int>> g4 ( { {1, {2,4}}, {2, {1}}, {4, {1}}} );
+    Graphlet ga(g1);
+	Graphlet gb(g2);
+	Graphlet gc(g3);
+	Graphlet gd(g4);
+	
+	std::unordered_set<Graphlet> sa({ga,gb,gc,gd}); //si innervosisce quando inserisco gd
 }
+
 
 
 
