@@ -18,6 +18,8 @@ Graph::Graph(std::string filename){
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
+    this->num_of_nodes = this->repr.size();
+    
 }
 
 Graph::~Graph(){}

@@ -34,7 +34,14 @@ int main(int argc, char* argv[])
 	Graphlet gc(g3);
 	Graphlet gd(g4);
 	
-	std::unordered_set<Graphlet> sa({ga,gb,gc,gd}); //si innervosisce quando inserisco gd
+	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> mg
+	(
+		{ 	{ga, {gb,gc, gd}},
+			{gb, {ga,gc,gd}},
+			{gc, {ga,gb, gd}},
+			{gd, {ga, gb, gc}}
+		}
+	);
 }
 
 

@@ -15,10 +15,13 @@ Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Grap
 Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{
-    std::unordered_map<int, std::unordered_set<int>> repr = g.get_repr();
-    std::unordered_map<int, std::unordered_set<int>>::iterator g_it = repr.begin();
-    for (; g_it != repr.end(); ++g_it) {
-        if (this->repr.at(g_it->first) != repr.at(g_it->first)) {
+    std::unordered_map<int, std::unordered_set<int>> other_graph_representation = g.get_repr();
+    if (num_of_edges != g.num_of_edges) return false;
+    if (num_of_nodes != g.num_of_nodes) return false;
+    for (std::pair<int, std::unordered_set<int>> p : other_graph_representation) {
+        try {
+            if (repr.at(p.first) != other_graph_representation.at(p.first)) return false;
+        } catch (...) {
             return false;
         }
     }
