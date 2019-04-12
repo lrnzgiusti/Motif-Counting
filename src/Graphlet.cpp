@@ -12,6 +12,8 @@ Graphlet::Graphlet(){}
 
 Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
 
+Graphlet::Graphlet(std::set<std::pair<int, int>> edges) : Graph(edges){}
+
 Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{

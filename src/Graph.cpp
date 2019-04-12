@@ -22,6 +22,13 @@ Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     
 }
 
+Graph::Graph(std::set<std::pair<int, int>> edges){
+    for(auto edge : edges){
+        repr[edge.first].insert(edge.second);
+        repr[edge.second].insert(edge.first);
+    }
+}
+
 Graph::~Graph(){}
 
 void Graph::read_edgelist(std::string filename){
@@ -168,4 +175,9 @@ bool Graph::isConnected(int source){
     }
     return expected_veteces == real_veteces;
     
+}
+
+
+std::unordered_set<int> Graph::operator[](int idx) const {
+    return repr.at(idx);
 }

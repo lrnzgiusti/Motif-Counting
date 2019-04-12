@@ -29,11 +29,13 @@ public:
     Graph();
     Graph(std::string);
     Graph(std::unordered_map<int, std::unordered_set<int>>);
+    Graph(std::set<std::pair<int, int>>);
     ~Graph();
     bool isBipartite(int); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(int); //same as isBipartite
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
     void printGraph();
+    std::unordered_set<int> operator[](int) const;
     
 private:
     void read_edgelist(std::string);

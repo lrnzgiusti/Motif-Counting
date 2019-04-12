@@ -9,7 +9,8 @@
 
 // TODO: random edge placement
 // TODO: read edgelist
-#include "Graphlet.cpp"
+#include "Estimator.cpp"
+
 
 #include <unordered_map>
 #include <unordered_set>
@@ -19,19 +20,16 @@
 int main(int argc, char* argv[])
 {
 	
-    Graph g = *new Graph("edgelist.csv");
+    Graph g = *new Graph("/Users/ince/Desktop/edgelist.csv");
     g.printGraph();
 	std::cout << "Test Bipartition: " << (g.isBipartite(1) ? "Positive\n" : "Negative\n");
 	std::cout << "Test Connection: " << (g.isConnected(1) ? "Positive\n" : "Negative\n");
-	std::cout << "\n";
+	std::cout << "\n" <<"\n";
 	
-	std::set<int> s1 = {5, 10, 15, 20, 25};
-	std::set<int> s2 = {50, 40, 30, 20, 10};
-	std::vector<int> s3(10);
+
 	
-	
-	std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), s3.begin());
-	for(int x : s3) std::cout << x << " " ;
+ 	Graphlet osbirro = Estimator().pick_the_first(g, 4, 5);
+	osbirro.printGraph();
 	/*
 	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
 	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
