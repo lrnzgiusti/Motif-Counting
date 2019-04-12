@@ -13,6 +13,7 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <algorithm>
 
 
 int main(int argc, char* argv[])
@@ -24,7 +25,14 @@ int main(int argc, char* argv[])
 	std::cout << "Test Connection: " << (g.isConnected(1) ? "Positive\n" : "Negative\n");
 	std::cout << "\n";
 	
+	std::set<int> s1 = {5, 10, 15, 20, 25};
+	std::set<int> s2 = {50, 40, 30, 20, 10};
+	std::vector<int> s3(10);
 	
+	
+	std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), s3.begin());
+	for(int x : s3) std::cout << x << " " ;
+	/*
 	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
 	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
 	std::unordered_map<int, std::unordered_set<int>> g3 ( {{3, {2,4}}, {2, {3}}, {4, {3}}} );
@@ -51,6 +59,9 @@ int main(int argc, char* argv[])
 		}
 		std::cout << "\n\n";
 	}
+	 */
+	
+	
 }
 
 
