@@ -19,18 +19,27 @@
 
 int main(int argc, char* argv[])
 {
-	
+	/*
     Graph g = *new Graph("/Users/ince/Desktop/edgelist.csv");
     g.printGraph();
 	std::cout << "Test Bipartition: " << (g.isBipartite(1) ? "Positive\n" : "Negative\n");
 	std::cout << "Test Connection: " << (g.isConnected(1) ? "Positive\n" : "Negative\n");
 	std::cout << "\n" <<"\n";
+	*/
 	
-
 	
- 	Graphlet osbirro = Estimator().pick_the_first(g, 4, 5);
-	osbirro.printGraph();
+	
+	
+	Graph random_graph(4,10,512);
+	
+	
+	
 	/*
+	
+	 random_graph.printGraph();
+	 std::cout << "Test Bipartition: " << (random_graph.isBipartite(1) ? "Positive\n" : "Negative\n");
+	 std::cout << "Test Connection: " << (random_graph.isConnected(1) ? "Positive\n" : "Negative\n");
+	 std::cout << "\n" <<"\n";
 	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
 	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
 	std::unordered_map<int, std::unordered_set<int>> g3 ( {{3, {2,4}}, {2, {3}}, {4, {3}}} );

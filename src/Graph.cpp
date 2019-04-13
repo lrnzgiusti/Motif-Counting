@@ -29,6 +29,10 @@ Graph::Graph(std::set<std::pair<int, int>> edges){
     }
 }
 
+Graph::Graph(int min_degree, int max_degree, int num_of_verteces){
+    random_bipartite_generator(min_degree, max_degree, num_of_verteces);
+}
+
 Graph::~Graph(){}
 
 void Graph::read_edgelist(std::string filename){
@@ -180,4 +184,45 @@ bool Graph::isConnected(int source){
 
 std::unordered_set<int> Graph::operator[](int idx) const {
     return repr.at(idx);
+}
+
+
+float get_density(int n_edges, int n_verteces){
+    return (2.0*n_edges)/(n_verteces*(n_verteces-1));
+}
+
+void Graph::random_bipartite_generator(int min_degree, int max_degree, int number_of_verteces){
+    int current = 1;
+    int sub_current = 2;
+    std::unordered_map<int, std::unordered_set<int>> G;
+    int current_number_of_edges = 0;
+    int color[number_of_verteces];
+    color[current-1] = 0;
+    int n_of_neigh;
+    int first_random_vertex, second_random_vertex;
+    
+    while (G.size() <= number_of_verteces) {
+        n_of_neigh = rand()%max_degree+min_degree;
+        for (int i = 0; i < n_of_neigh; ++i, ++sub_current) {
+            G[current].insert(sub_current);
+            G[sub_current].insert(current);
+            current_number_of_edges++;
+            color[sub_current-1] = !color[current-1];
+            
+            while ( (G.size() > 2) and get_density(current_number_of_edges, (int)G.size()) < .3) {
+                first_random_vertex = rand()%sub_current+1;
+                second_random_vertex = rand()%sub_current+1;
+                while (color[second_random_vertex-1] == color[first_random_vertex-1]){
+                    first_random_vertex = rand()%sub_current+1;
+                    second_random_vertex = rand()%sub_current+1;
+                }
+                G[first_random_vertex].insert(second_random_vertex);
+                G[second_random_vertex].insert(first_random_vertex);
+                current_number_of_edges++;
+            }
+            current = sub_current;
+        }
+    }
+    this->repr = G;
+    return;
 }
