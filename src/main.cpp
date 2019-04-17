@@ -28,18 +28,19 @@ int main(int argc, char* argv[])
 	*/
 	
 	
-	
-	
-	Graph random_graph(4,10,512);
-	
-	
+	srand(time(NULL));
+	Graph random_graph(1,3,6);
+	random_graph.printGraph();
+	std::cout << "Test Bipartition: " << (random_graph.isBipartite(1) ? "Positive\n" : "Negative\n");
+	std::cout << "Test Connection: " << (random_graph.isConnected(1) ? "Positive\n" : "Negative\n");
+	std::cout << "\n" <<"\n";
+	int k,s;
+	std::cin >> s;
+	std::cin >> k;
+	Estimator().pick_the_first(random_graph, s, k).printGraph();
 	
 	/*
 	
-	 random_graph.printGraph();
-	 std::cout << "Test Bipartition: " << (random_graph.isBipartite(1) ? "Positive\n" : "Negative\n");
-	 std::cout << "Test Connection: " << (random_graph.isConnected(1) ? "Positive\n" : "Negative\n");
-	 std::cout << "\n" <<"\n";
 	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
 	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
 	std::unordered_map<int, std::unordered_set<int>> g3 ( {{3, {2,4}}, {2, {3}}, {4, {3}}} );

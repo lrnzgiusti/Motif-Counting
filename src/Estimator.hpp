@@ -17,6 +17,7 @@ public:
     Estimator(Graph);
     ~Estimator();
     Graphlet pick_the_first(Graph, int, int); // this will be called at the start of the random walk so it's private. Public function only for the tests.
+    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> random_walk();
     
 private:
     int k;

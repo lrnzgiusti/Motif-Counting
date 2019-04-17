@@ -80,3 +80,14 @@ Graphlet Estimator::pick_the_first(Graph G, int source, int k){
     
     return *new Graphlet(Ek);
 }
+
+/**
+ * This function implements the Markov Chain
+ * param:
+ * return:
+ */
+std::unordered_map<Graphlet, std::unordered_set<Graphlet>> random_walk(){
+    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> G;
+    return G;
+    
+}

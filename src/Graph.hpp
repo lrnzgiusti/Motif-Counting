@@ -49,6 +49,7 @@ protected:
     uint32_t max_degree;
     uint32_t min_degree;
     void random_bipartite_generator(int, int, int);
+    void random_non_bipartite_generator(int, int, int);
 };
 
 #endif /* Graph_hpp */
