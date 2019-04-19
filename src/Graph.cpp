@@ -23,14 +23,21 @@ Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
 }
 
 Graph::Graph(std::set<std::pair<int, int>> edges){
+    num_of_edges = 0;
+    num_of_nodes = 0;
     for(auto edge : edges){
         repr[edge.first].insert(edge.second);
         repr[edge.second].insert(edge.first);
+        num_of_edges++;
     }
+    num_of_nodes = repr.size();
 }
 
 Graph::Graph(int min_degree, int max_degree, int num_of_verteces){
+    num_of_edges = 0;
+    num_of_nodes = 0;
     random_non_bipartite_generator(min_degree, max_degree, num_of_verteces);
+    
 }
 
 Graph::~Graph(){}
@@ -47,6 +54,8 @@ void Graph::read_edgelist(std::string filename){
     
     std::string edgelist_row;
     std::vector<std::string> tokens;
+    num_of_edges = 0;
+    num_of_nodes = 0;
     while(fptr >> edgelist_row){
         boost::split(tokens, edgelist_row, [](char c){return c == ',';});
         int tok1 = std::stoi(tokens[0]);
@@ -62,8 +71,6 @@ void Graph::read_edgelist(std::string filename){
     this->repr = G;
     return;
 }
-
-
 
 
 std::unordered_map<int, std::unordered_set<int>> Graph::get_repr() const{
@@ -187,6 +194,14 @@ std::unordered_set<int> Graph::operator[](int idx) const {
 }
 
 
+uint8_t Graph::get_num_of_nodes(){
+    return num_of_nodes;
+}
+
+uint32_t Graph::get_num_of_edges(){
+    return num_of_edges;
+}
+
 float get_density(int n_edges, int n_verteces){
     return (2.0*n_edges)/(n_verteces*(n_verteces-1));
 }
@@ -200,18 +215,53 @@ void Graph::random_non_bipartite_generator(int min_degree, int max_degree, int n
     
     std::unordered_map<int, std::unordered_set<int>> G;
     int random_number_of_neighbours;
-    int test;
+    int random_neighbor;
     for(int i = 1; i < number_of_verteces; i++){
         random_number_of_neighbours = rand()%max_degree+min_degree;
         for(int j = 0; j < random_number_of_neighbours; j++){
-            test = rand()%number_of_verteces+1;
-            G[i].insert(test);
-            G[test].insert(i);
+            random_neighbor = rand()%number_of_verteces+1;
+            while(random_neighbor == i) random_neighbor = rand()%number_of_verteces+1;
+            if (G[i].count(random_neighbor) == 0) {
+                G[i].insert(random_neighbor);
+                G[random_neighbor].insert(i);
+                num_of_edges++;
+            }
         }
+        
     }
     this->repr = G;
+    this->num_of_nodes = G.size();
     return;
 }
+
+
+
+std::vector<float> Graph::random_walk(){
+    std::vector<float> distro_t(num_of_nodes+1);
+    std::vector<float> distro_tprec(num_of_nodes+1);
+    float epsilon = 1e-6;
+    int t = 1;
+    distro_t[1] = 1;
+    int current_vertex = 1;
+    auto it = std::next(repr[current_vertex].begin(), rand()%repr[current_vertex].size()) ;
+    do{
+        t++;
+        distro_tprec = distro_t;
+        it = std::next(repr[current_vertex].begin(), rand()%repr[current_vertex].size());
+        current_vertex = *it;
+        distro_t[current_vertex]++;
+    }while (l1_diff(distro_t, distro_tprec,t) > epsilon);
+    
+
+    for(int i = 0; i < distro_t.size(); i++){
+        distro_t[i] /= t;
+    }
+    
+    std::cout << t << "\n";
+    return distro_t;
+}
+
+
 
 void Graph::random_bipartite_generator(int min_degree, int max_degree, int number_of_verteces){
     

@@ -46,5 +46,4 @@ namespace std {
             return hash<string>()(s);
         }
     };
-    
 }

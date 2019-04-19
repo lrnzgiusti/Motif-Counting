@@ -21,6 +21,7 @@
 #include <fstream>
 #include <string>
 #include <boost/algorithm/string.hpp>
+#include "Utility.cpp"
 
 
 class Graph
@@ -35,7 +36,11 @@ public:
     bool isBipartite(int); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(int); //same as isBipartite
     bool isUndirected(int);
+    uint8_t get_num_of_nodes();
+    uint32_t get_num_of_edges();
+    
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
+    std::vector<float> random_walk();
     void printGraph();
     std::unordered_set<int> operator[](int) const;
     

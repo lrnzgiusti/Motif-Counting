@@ -86,8 +86,18 @@ Graphlet Estimator::pick_the_first(Graph G, int source, int k){
  * param:
  * return:
  */
-std::unordered_map<Graphlet, std::unordered_set<Graphlet>> random_walk(){
-    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> G;
-    return G;
+std::unordered_map<Graphlet, std::unordered_set<Graphlet>> random_walk(Graph G, int start, int k){
+    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk;
+    std::vector<float> distro_t;
+    std::vector<float> distro_tprime;
+    int t = 1;
+    float epsilon = 1e-5;
+    Graphlet gk = Estimator().pick_the_first(G, 1, 3);
+    do{
+        t++;
+        
+    }while(l1_diff(distro_t, distro_tprime, t) > epsilon);
+    
+    return Gk;
     
 }
