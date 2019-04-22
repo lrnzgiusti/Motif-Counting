@@ -18,6 +18,7 @@ Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{
     std::unordered_map<int, std::unordered_set<int>> other_graph_representation = g.get_repr();
+    //Better handle this, avoidable but...
     /*if (num_of_edges != g.num_of_edges) {
         std:: cout << "edges: " << num_of_edges << " : " << g.num_of_edges;
         return false;
@@ -44,15 +45,22 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
     return repr.end();
 }
 
-//Maybe I can avoid this
-Graphlet Graphlet::exclude_include_vertex(int excl, std::pair<int, int> incl){
+//TODO: improve this, we have to exclude <excl> from all the neighbors and include all possible edges of incl
+//TO Make this works well, we have to create a graphlet based on the original graph
+//Pass a set of vertex in the constructor and then return the associated graph
+Graphlet Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
     Graphlet g_prime = *new Graphlet(this->repr);
     g_prime.repr.erase(excl);
-    g_prime.repr[incl.first].insert(incl.second);
-    g_prime.repr[incl.second].insert(incl.first);
-    std::cout << "\n";
-    g_prime.printGraph();
-    std::cout << "\n";
+    for(std::pair<int, std::unordered_set<int>> check_edges : g_prime){
+        g_prime.repr[check_edges.first].erase(excl);
+    }
+    
+    for (int vertex : G[incl]) {
+        if(g_prime.repr.find(vertex) != g_prime.repr.end()){
+            g_prime.repr[incl].insert(vertex);
+            g_prime.repr[vertex].insert(incl);
+        }
+    }
     return g_prime;
 }
 

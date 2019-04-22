@@ -19,12 +19,13 @@ Graph::Graph(std::string filename){
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
+    /*
     this->num_of_nodes = this->repr.size();
     this->num_of_edges = 0;
     for(auto vertex : repr){
         this->num_of_edges += vertex.second.size();
     }
-    this->num_of_edges /= 2;
+    this->num_of_edges /= 2;*/
 }
 
 Graph::Graph(std::set<std::pair<int, int>> edges){

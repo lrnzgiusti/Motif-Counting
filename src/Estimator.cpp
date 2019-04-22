@@ -87,7 +87,7 @@ std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_wal
     std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
     
     int t = 1; //current time
-    float epsilon = 1e-2; //precision to declare convergence
+    float epsilon = 1e-4; //precision to declare convergence
     Graphlet gk = Estimator().pick_the_first(G, 1, 3); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
@@ -98,10 +98,13 @@ std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_wal
             for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
                 if(vk == wk) continue; //this implies that in this inner iteration you exclude vk
                 for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
-                    uk = gk.exclude_include_vertex(vk.first, std::make_pair(wk.first, nk));
-                    Gk[uk].insert(gk);
-                    Gk[gk].insert(uk);
-    
+                    if((vk.first != nk) and (gk.get_repr().find(nk) == gk.end())){
+                        uk = gk.exclude_include_vertex(G, vk.first, nk);
+                        if (uk.isConnected(uk.begin()->first)) {
+                            Gk[uk].insert(gk);
+                            Gk[gk].insert(uk);
+                        }
+                    }
                 }
             }
         }
