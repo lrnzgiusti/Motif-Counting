@@ -30,12 +30,13 @@ int main(int argc, char* argv[])
 	
 	
 	srand(time(NULL));
+	/*
 	Graph random_graph(1,2,8);
 	random_graph.printGraph();
 	std::cout << "Test Bipartition: " << (random_graph.isBipartite(1) ? "Positive\n" : "Negative\n");
 	std::cout << "Test Connection: " << (random_graph.isConnected(1) ? "Positive\n" : "Negative\n");
 	std::cout << "\n" <<"\n";
-	
+	*/
 	
 	/*
 	std::vector<float> vec = random_graph.random_walk();
@@ -44,53 +45,20 @@ int main(int argc, char* argv[])
 	std::cout << "Number of edges: " << random_graph.get_num_of_edges() << "\n";
 	*/
 	
-	Estimator est;
-	Graphlet g1 = est.pick_the_first(random_graph, 3, 4);
-	Graphlet g2 = est.pick_the_first(random_graph, 1, 4);
-	Graphlet g3 = est.pick_the_first(random_graph, 2, 4);
-	std::unordered_map<Graphlet, float> m1 ({ {g1, 3}, {g2,5}, {g3, 10} });
-	std::unordered_map<Graphlet, float> m2 ({ {g1, 4}, {g2, 4}, {g3, 10} });
+	Graph G("/Users/ince/Desktop/edgelist.csv");
+	G.printGraph();
 	
-	g1.printGraph();
-	for(std::pair<int, std::unordered_set<int>> x: g1) {
-		std::cout << x.first << "\t";
-		for(auto y : g1[x.first]){
-			std::cout << y << " ";
-		}
-		std::cout << "\n";
-	}
-	
-	/*
-	
-	std::unordered_map<int, std::unordered_set<int>> g1 ( {{1, {3,4}}, {3, {4,1}}, {4, {1,3}}} );
-	std::unordered_map<int, std::unordered_set<int>> g2 ( {{1, {2,3}}, {2, {3,1}}, {3, {1,2}}} );
-	std::unordered_map<int, std::unordered_set<int>> g3 ( {{3, {2,4}}, {2, {3}}, {4, {3}}} );
-	std::unordered_map<int, std::unordered_set<int>> g4 ( { {1, {2,4}}, {2, {1}}, {4, {1}}} );
-    Graphlet ga(g1);
-	Graphlet gb(g2);
-	Graphlet gc(g3);
-	Graphlet gd(g4);
-	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> mg
-	(
-		{ 	{ga, {gb,gc, gd}},
-			{gb, {ga,gc,gd}},
-			{gc, {ga,gb, gd}},
-			{gd, {ga, gb, gc}}
-		}
-	);
-	
-	for(std::pair<Graphlet, std::unordered_set<Graphlet>> x : mg){
-		x.first.printGraph(); 
-		std::cout << "\n";
-		for(Graphlet g : x.second){
+	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk = Estimator().random_walk_test(G, 1, 3);
+	for(std::pair<Graphlet, std::unordered_set<Graphlet>> g_p : Gk){
+		g_p.first.printGraph();
+		std::cout << "-----##---##--##--##\n";
+		for(Graphlet g : g_p.second){
+			std::cout << "\n";
 			g.printGraph();
-			std::cout << "--------------------\n";
+			std::cout << "\n";
 		}
-		std::cout << "\n\n";
+		std::cout << "---------------\n";
 	}
-	 */
-	
-	
 }
 
 

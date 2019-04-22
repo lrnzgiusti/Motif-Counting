@@ -43,14 +43,16 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
 }
 
 //Maybe I can avoid this
-Graphlet Graphlet::exclude_vertex(int v){
-    Graphlet g_prime = *new Graphlet(this);
-    g_prime.repr.erase(v);
+Graphlet Graphlet::exclude_include_vertex(int excl, std::pair<int, int> incl){
+    Graphlet g_prime = *new Graphlet(*this);
+    g_prime.repr.erase(excl);
+    g_prime.insert_edge(incl);
     return g_prime;
 }
 
-void Graphlet::attach_neighbor(Graph g, int v){
-    
+void Graphlet::insert_edge(std::pair<int, int> incl){
+    repr[incl.first].insert(incl.second);
+    repr[incl.second].insert(incl.first);
 }
 
 namespace std {

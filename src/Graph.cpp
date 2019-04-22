@@ -8,7 +8,8 @@
 
 #include "Graph.hpp"
 
-Graph::Graph(){}
+Graph::Graph(){
+}
 
 Graph::Graph(std::string filename){
     num_of_nodes = 0;
