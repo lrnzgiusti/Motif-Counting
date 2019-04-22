@@ -22,6 +22,7 @@ template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_
     double sum = 0;
     
     for(std::pair<T, float> p : v1){
+        //p.first.printGraph();
         v1.at(p.first) /= t;
         v2.at(p.first) /= t;
     }
@@ -29,6 +30,8 @@ template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_
     for(std::pair<T, float> p : v1){
         sum += abs(v1.at(p.first) - v2.at(p.first));
     }
+    std::cout << "\n" << sum ;
+    std::cout << "\n";
     return sum;
 }
 
@@ -47,7 +50,8 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
     for(int i = 0; i < v1.size(); i++){
         sum += abs(v1[i] - v2[i]);
     }
-    
+    std::cout << "\n" << sum ;
+    std::cout << "\n";
     return sum;
 }
 

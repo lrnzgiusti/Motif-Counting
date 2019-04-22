@@ -12,15 +12,19 @@ Graph::Graph(){
 }
 
 Graph::Graph(std::string filename){
-    num_of_nodes = 0;
-    num_of_edges = 0;
+    this->num_of_nodes = 0;
+    this->num_of_edges = 0;
     read_edgelist(filename);
 }
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
     this->num_of_nodes = this->repr.size();
-    
+    this->num_of_edges = 0;
+    for(auto vertex : repr){
+        this->num_of_edges += vertex.second.size();
+    }
+    this->num_of_edges /= 2;
 }
 
 Graph::Graph(std::set<std::pair<int, int>> edges){
@@ -196,11 +200,11 @@ std::unordered_set<int> Graph::operator[](int idx) const {
 
 
 uint8_t Graph::get_num_of_nodes(){
-    return num_of_nodes;
+    return this->num_of_nodes;
 }
 
 uint32_t Graph::get_num_of_edges(){
-    return num_of_edges;
+    return this->num_of_edges;
 }
 
 float get_density(int n_edges, int n_verteces){

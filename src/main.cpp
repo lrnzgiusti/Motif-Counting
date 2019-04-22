@@ -49,6 +49,7 @@ int main(int argc, char* argv[])
 	G.printGraph();
 	
 	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk = Estimator().random_walk_test(G, 1, 3);
+	/*
 	for(std::pair<Graphlet, std::unordered_set<Graphlet>> g_p : Gk){
 		g_p.first.printGraph();
 		std::cout << "-----##---##--##--##\n";
@@ -58,7 +59,9 @@ int main(int argc, char* argv[])
 			std::cout << "\n";
 		}
 		std::cout << "---------------\n";
-	}
+		std::cout << "---------------\n";
+		std::cout << "---------------\n";
+	}*/
 }
 
 

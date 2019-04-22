@@ -21,7 +21,6 @@ public:
     Graphlet(); //default constructor --probably useless
     Graphlet(std::unordered_map<int, std::unordered_set<int>>); //get the graphlet from an adjacency list
     Graphlet(std::set<std::pair<int, int>>); //get the graphlet from edgelist
-    Graphlet(Graphlet const & );
     ~Graphlet();
     void insert_edge(std::pair<int, int>); //attach a neighbor of the <int> vertex in the <Graph> G
     Graphlet exclude_include_vertex(int, std::pair<int, int>); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
