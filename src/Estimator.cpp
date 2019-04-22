@@ -7,6 +7,7 @@
 //
 
 #include "Estimator.hpp"
+#include "Utility.hpp"
 #include <boost/container/set.hpp>
 
 Estimator::Estimator(){}
@@ -87,16 +88,29 @@ Graphlet Estimator::pick_the_first(Graph G, int source, int k){
  * return:
  */
 std::unordered_map<Graphlet, std::unordered_set<Graphlet>> random_walk(Graph G, int start, int k){
-    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk;
-    std::vector<float> distro_t;
-    std::vector<float> distro_tprime;
-    int t = 1;
-    float epsilon = 1e-5;
-    Graphlet gk = Estimator().pick_the_first(G, 1, 3);
+    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
+    std::unordered_map<Graphlet, float> distro_t; //the current distribution
+    std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
+    int t = 1; //current time
+    float epsilon = 1e-5; //precision to declare convergence
+    Graphlet gk = Estimator().pick_the_first(G, 1, 3); //first graphlet i pick from G, the variable is used to point to the current graphlet
+    Graphlet uk; //Graphlet I add to the final result
+    distro_t[gk] = 1; //init of the distribution
+    //auto it = std::next(Gk[gk].begin(), rand()%Gk[gk].size()) ;
     do{
         t++;
-        
-    }while(l1_diff(distro_t, distro_tprime, t) > epsilon);
+        distro_t = distro_tprec; //alignment
+        for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
+            for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
+                if(vk == wk) continue; //this implies that in this inner iteration you exclude vk
+                for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
+                 
+                    
+                    
+                }
+            }
+        }
+    }while(l1_diff(distro_t, distro_tprec, t) > epsilon); //convergence condition
     
     return Gk;
     

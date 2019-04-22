@@ -14,6 +14,10 @@ Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Grap
 
 Graphlet::Graphlet(std::set<std::pair<int, int>> edges) : Graph(edges){}
 
+Graphlet::Graphlet(Graphlet const &g){
+    repr = g.get_repr();
+}
+
 Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{
@@ -28,6 +32,25 @@ bool Graphlet::operator ==(const Graphlet &g) const{
         }
     }
     return true;
+}
+
+std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::begin(){
+    return repr.begin();
+}
+
+std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
+    return repr.end();
+}
+
+//Maybe I can avoid this
+Graphlet Graphlet::exclude_vertex(int v){
+    Graphlet g_prime = *new Graphlet(this);
+    g_prime.repr.erase(v);
+    return g_prime;
+}
+
+void Graphlet::attach_neighbor(Graph g, int v){
+    
 }
 
 namespace std {

@@ -21,7 +21,7 @@
 #include <fstream>
 #include <string>
 #include <boost/algorithm/string.hpp>
-#include "Utility.cpp"
+#include "Utility.hpp"
 
 
 class Graph
