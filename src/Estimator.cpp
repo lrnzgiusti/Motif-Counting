@@ -93,16 +93,17 @@ std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_wal
     distro_t[gk] = 1; //init of the distribution
     do{
         t++;
-         distro_tprec = distro_t; //alignment
+        distro_tprec = distro_t; //alignment
         for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
             for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
+                    for(const auto& nk : G[wk.first]){ //for-each neighbor of wk in the original graph
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
+                        
                         if((vk.first != nk) and (gk.get_repr().find(nk) == gk.end())){
                             uk = gk.exclude_include_vertex(G, vk.first, nk);
-                            if (uk.isConnected(uk.begin()->first)) {
+                            if (uk.isConnected()) {
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
                             }
@@ -111,8 +112,8 @@ std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_wal
                 }
             }
         }
-
-        gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
+        if (Gk[gk].size() > 0 )
+            gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
         distro_t[gk] += 1;
         distro_tprec[gk] += 0;
     }while(t < 1000);//(l1_diff(distro_t, distro_tprec, t) > epsilon); //convergence condition

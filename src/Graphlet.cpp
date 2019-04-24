@@ -72,6 +72,54 @@ void Graphlet::insert_edge(std::pair<int, int> incl){
 }
 
 
+bool Graphlet::isConnected(){
+    int source = this->repr.begin()->first;
+    size_t n_of_verteces = this->repr.size();
+    std::unordered_set<int> expected_veteces;
+    std::unordered_map<int, int>colorArr;
+    expected_veteces.reserve(n_of_verteces);
+    for(auto x: this->repr){
+        expected_veteces.insert(x.first);
+        colorArr[x.first] = -1;
+    }
+    //reserve expected_verteces, this->repr.size()
+    //calculate expected_verteced
+    std::unordered_set<int> real_veteces;
+    //reserve expected_verteces, this->repr.size()
+    
+  
+    
+    // Assign first color to source
+    colorArr[source] = 1;
+    std::queue <int> q;
+    q.push(source);
+    real_veteces.insert(source);
+    // Run while there are vertices
+    // in queue (Similar to BFS)
+    while (!q.empty())
+    {
+        // Dequeue a vertex from queue
+        int u = q.front();
+        q.pop();
+        // Find all non-colored adjacent vertices
+        std::unordered_set<int>::iterator it = this->repr[u].begin();
+        
+        for (; it != (this->repr[u].end()); it++)
+        {
+            // An edge from u to v exists and
+            // destination v is not colored
+            if (colorArr[*it] == -1)
+            {
+                // Assign alternate color to this adjacent v of u
+                colorArr[*it] = 1 - colorArr[u];
+                q.push(*it);
+                real_veteces.insert(*it);
+            }
+        }
+    }
+    return expected_veteces == real_veteces;
+    
+}
 
 
 namespace std {

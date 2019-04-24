@@ -12,7 +12,7 @@
 
 #include <vector>
 #include <unordered_map>
-
+#include <iostream>
 
 template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_map<T, float> v2, int t){
     if(v1.size() != v2.size()){
@@ -52,6 +52,5 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
     std::cout << "\n";
     return sum;
 }
-
 
 #endif /* Utility_hpp */

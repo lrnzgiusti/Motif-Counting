@@ -57,4 +57,13 @@ protected:
     void random_non_bipartite_generator(int, int, int);
 };
 
+std::ostream& operator<<(std::ostream& os, const Graph& G)
+{
+    for(std::pair<int, std::unordered_set<int>> p : G.get_repr()){
+        os << p.first << "-" ;
+    }
+    os << "><";
+    return os;
+}
+
 #endif /* Graph_hpp */

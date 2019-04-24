@@ -15,6 +15,8 @@
 #include <unordered_set>
 #include <string>
 #include <set>
+#include <iostream>
+
 
 class Graphlet: public Graph {
 public:
@@ -24,9 +26,11 @@ public:
     ~Graphlet();
     void insert_edge(std::pair<int, int>); //attach a neighbor of the <int> vertex in the <Graph> G
     Graphlet exclude_include_vertex(Graph, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
+    bool isConnected();
     std::unordered_map<int, std::unordered_set<int>>::iterator begin();
     std::unordered_map<int, std::unordered_set<int>>::iterator end();
     bool operator == (const Graphlet &other) const; //comparison, for make graphlet collections
+    
     
 private:
     int k;
