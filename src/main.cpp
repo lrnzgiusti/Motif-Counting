@@ -34,9 +34,9 @@ int main(int argc, char* argv[])
 	
 	Graph G("/Users/ince/Desktop/edgelist.csv");
 	G.printGraph();
-	
-	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk = Estimator().random_walk_test(G, 1, 3);
-	
+	std::cout << "\n";
+	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk = Estimator().random_walk(G, 1, 4);
+
 	//TODO: Fare un toString del graphlet e vedere se i nodi mancanti vengono presi in considerazione almeno una volta
 	
 	for(std::pair<Graphlet, std::unordered_set<Graphlet>> g_p : Gk){

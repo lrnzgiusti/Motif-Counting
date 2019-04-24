@@ -33,8 +33,8 @@ public:
     Graph(std::set<std::pair<int, int>>);
     Graph(int, int, int);
     ~Graph();
-    bool isBipartite(int); //the formal parameter is the source vertex in which you start the traversal
-    bool isConnected(int); //same as isBipartite
+    bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
+    bool isConnected(); //same as isBipartite
     bool isUndirected(int);
     uint8_t get_num_of_nodes();
     uint32_t get_num_of_edges();

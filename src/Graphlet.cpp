@@ -8,6 +8,7 @@
 
 #include "Graphlet.hpp"
 #include <math.h>
+#include <chrono>
 Graphlet::Graphlet(){}
 
 Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
@@ -15,8 +16,6 @@ Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Grap
 Graphlet::Graphlet(std::set<std::pair<int, int>> edges) : Graph(edges){}
 
 Graphlet::~Graphlet(){}
-
-
 
 bool Graphlet::operator ==(const Graphlet &g) const{
     std::unordered_map<int, std::unordered_set<int>> other_graph_representation = g.get_repr();
@@ -47,23 +46,28 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
     return repr.end();
 }
 
-//TODO: improve this, we have to exclude <excl> from all the neighbors and include all possible edges of incl
-//TO Make this works well, we have to create a graphlet based on the original graph
-//Pass a set of vertex in the constructor and then return the associated graph
-Graphlet Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
-    Graphlet g_prime = *new Graphlet(this->repr);
-    g_prime.repr.erase(excl);
-    for(std::pair<int, std::unordered_set<int>> check_edges : g_prime){
-        g_prime.repr[check_edges.first].erase(excl);
+
+/**
+ Vanilla: Create a new graph by copying the reference to this, exclude the vertex <excl> and include the vertex <incl>
+ Gamma1: since the constructor take very long time, i perform the operation on <this> and <this> is a reference to the graphlet i have to exclude-include
+ */
+void Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
+    //erase <excl> from the nodes of the graph
+    this->repr.erase(excl);
+    
+    //erase <excl> from the neighbors
+    for(std::pair<int, std::unordered_set<int>> check_edges : *this){
+        this->repr[check_edges.first].erase(excl);
     }
     
+    //place <incl> in the vertex and in the neighbords
     for (int vertex : G[incl]) {
-        if(g_prime.repr.find(vertex) != g_prime.repr.end()){
-            g_prime.repr[incl].insert(vertex);
-            g_prime.repr[vertex].insert(incl);
+        if(this->repr.find(vertex) != this->repr.end()){
+            this->repr[incl].insert(vertex);
+            this->repr[vertex].insert(incl);
         }
     }
-    return g_prime;
+    return;
 }
 
 void Graphlet::insert_edge(std::pair<int, int> incl){
@@ -71,55 +75,6 @@ void Graphlet::insert_edge(std::pair<int, int> incl){
     repr[incl.second].insert(incl.first);
 }
 
-
-bool Graphlet::isConnected(){
-    int source = this->repr.begin()->first;
-    size_t n_of_verteces = this->repr.size();
-    std::unordered_set<int> expected_veteces;
-    std::unordered_map<int, int>colorArr;
-    expected_veteces.reserve(n_of_verteces);
-    for(auto x: this->repr){
-        expected_veteces.insert(x.first);
-        colorArr[x.first] = -1;
-    }
-    //reserve expected_verteces, this->repr.size()
-    //calculate expected_verteced
-    std::unordered_set<int> real_veteces;
-    //reserve expected_verteces, this->repr.size()
-    
-  
-    
-    // Assign first color to source
-    colorArr[source] = 1;
-    std::queue <int> q;
-    q.push(source);
-    real_veteces.insert(source);
-    // Run while there are vertices
-    // in queue (Similar to BFS)
-    while (!q.empty())
-    {
-        // Dequeue a vertex from queue
-        int u = q.front();
-        q.pop();
-        // Find all non-colored adjacent vertices
-        std::unordered_set<int>::iterator it = this->repr[u].begin();
-        
-        for (; it != (this->repr[u].end()); it++)
-        {
-            // An edge from u to v exists and
-            // destination v is not colored
-            if (colorArr[*it] == -1)
-            {
-                // Assign alternate color to this adjacent v of u
-                colorArr[*it] = 1 - colorArr[u];
-                q.push(*it);
-                real_veteces.insert(*it);
-            }
-        }
-    }
-    return expected_veteces == real_veteces;
-    
-}
 
 
 namespace std {

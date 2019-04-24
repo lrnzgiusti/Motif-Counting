@@ -19,13 +19,6 @@ Graph::Graph(std::string filename){
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
-    /*
-    this->num_of_nodes = this->repr.size();
-    this->num_of_edges = 0;
-    for(auto vertex : repr){
-        this->num_of_edges += vertex.second.size();
-    }
-    this->num_of_edges /= 2;*/
 }
 
 Graph::Graph(std::set<std::pair<int, int>> edges){
@@ -98,7 +91,9 @@ void Graph::printGraph(){
 }
 
 
-bool Graph::isBipartite(int source){
+bool Graph::isBipartite(){
+    
+    int source = this->repr.begin()->first;
     size_t n_of_verteces = this->repr.size();
     int colorArr[n_of_verteces+1];
     for (int i = 1; i < n_of_verteces+1; ++i)
@@ -145,12 +140,16 @@ bool Graph::isBipartite(int source){
 }
 
 
-bool Graph::isConnected(int source){
+bool Graph::isConnected(){
+    
+    int source = this->repr.begin()->first;
     size_t n_of_verteces = this->repr.size();
     std::unordered_set<int> expected_veteces;
+    std::unordered_map<int, int>colorArr;
     expected_veteces.reserve(n_of_verteces);
     for(auto x: this->repr){
         expected_veteces.insert(x.first);
+        colorArr[x.first] = -1;
     }
     //reserve expected_verteces, this->repr.size()
     //calculate expected_verteced
@@ -158,9 +157,6 @@ bool Graph::isConnected(int source){
     //reserve expected_verteces, this->repr.size()
     
     
-    int colorArr[n_of_verteces+1]; //instead of max_num_nodes we have to insert the dimension of the graph
-    for (int i = 1; i < n_of_verteces+1; ++i)
-        colorArr[i] = -1;
     
     // Assign first color to source
     colorArr[source] = 1;
@@ -177,7 +173,7 @@ bool Graph::isConnected(int source){
         // Find all non-colored adjacent vertices
         std::unordered_set<int>::iterator it = this->repr[u].begin();
         
-        for (; it != (this->repr[u].end()); ++it)
+        for (; it != (this->repr[u].end()); it++)
         {
             // An edge from u to v exists and
             // destination v is not colored
