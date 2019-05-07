@@ -80,7 +80,7 @@ Graphlet Estimator::pick_the_first(Graph G, int source, int k){
     
     return *new Graphlet(Ek);
 }
-
+//std::unordered_map<Graphlet, std::unordered_set<Graphlet>>
 std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_walk(Graph G, int start, int k){
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
@@ -117,7 +117,6 @@ std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Estimator::random_wal
             gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
         distro_t[gk] += 1;
         distro_tprec[gk] += 0;
-    }while(t < 1000);//(l1_diff(distro_t, distro_tprec, t) > epsilon); //convergence condition
+    }while(l1_diff(distro_t, distro_tprec, t) > epsilon);
     return Gk;
-    
 }
