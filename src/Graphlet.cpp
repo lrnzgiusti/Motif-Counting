@@ -15,6 +15,16 @@ Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Grap
 
 Graphlet::Graphlet(std::set<std::pair<int, int>> edges) : Graph(edges){}
 
+Graphlet::Graphlet(std::string s){
+    //string has the format [ v1 v2 v3 ] we want a graph that has no edges but the nodes, in order to hash it.
+    
+    std::vector<std::string> tokens;
+    boost::split(tokens, s, [](char c){return c == ' ';});
+    for(int i = 1; i < tokens.size()-1; i++){
+        this->repr[std::stoi(tokens[i])] = {};
+    }
+}
+
 Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{
@@ -90,9 +100,9 @@ namespace std {
             std::unordered_map<int, std::unordered_set<int>> repr = g.get_repr();
             std::unordered_map<int, std::unordered_set<int>>::iterator g_it = repr.begin();
             for (; g_it != repr.end(); ++g_it) {
-                val = val ^ (int)((g_it->first)+(std::pow(33,3)));
+                val = val  ^ (unsigned long)(g_it->first * (unsigned long) (7*std::pow(37,7)-27) << 2) ;
+                
             }
-            
             return val;
         }
     };

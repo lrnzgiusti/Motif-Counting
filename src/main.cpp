@@ -20,14 +20,6 @@
 
 int main(int argc, char* argv[])
 {
-	/*
-    Graph g = *new Graph("/Users/ince/Desktop/edgelist.csv");
-    g.printGraph();
-	std::cout << "Test Bipartition: " << (g.isBipartite(1) ? "Positive\n" : "Negative\n");
-	std::cout << "Test Connection: " << (g.isConnected(1) ? "Positive\n" : "Negative\n");
-	std::cout << "\n" <<"\n";
-	*/
-	
 	
 	srand(time(NULL));
 	
@@ -36,22 +28,16 @@ int main(int argc, char* argv[])
 	//Graph G(2,5,7);
 	G.printGraph();
 	std::cout << "\n";
-	std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk = Estimator().random_walk(G, 1, 3);
-	//std::unordered_map<Graphlet, float> distro = Estimator().random_walk(G, 1, 4);
+	Estimator e;
 	
-	for(std::pair<Graphlet, std::unordered_set<Graphlet>> g_p : Gk){
-		g_p.first.printGraph();
-		std::cout << "-----##---##--##--##\n";
-		for(Graphlet g : g_p.second){
-			std::cout << "\n";
-			g.printGraph();
-			std::cout << "\n";
-		}
-		std::cout << "---------------\n";
-		std::cout << "---------------\n";
-		std::cout << "---------------\n";
+	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);//e.random_walk(G, 1, 4);
+	//save_distribution(Gk_distro, "/Users/ince/Desktop/distro_3.dat");
+	std::unordered_map<Graphlet, float> Gk_distro = e.random_walk(G, 1, 3);
+	
+	
+	for(std::pair<Graphlet, float> p : Gk_distro){
+		std::cout << p.first << "," <<  p.second << "\n";
 	}
-	 
 }
 
 

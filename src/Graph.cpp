@@ -55,7 +55,7 @@ void Graph::read_edgelist(std::string filename){
     std::vector<std::string> tokens;
     num_of_edges = 0;
     num_of_nodes = 0;
-    while(fptr >> edgelist_row){
+    while(std::getline(fptr, edgelist_row)){
         boost::split(tokens, edgelist_row, [](char c){return c == ',';});
         int tok1 = std::stoi(tokens[0]);
         int tok2 = std::stoi(tokens[1]);

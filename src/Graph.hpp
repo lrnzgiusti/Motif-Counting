@@ -59,10 +59,11 @@ protected:
 
 std::ostream& operator<<(std::ostream& os, const Graph& G)
 {
+    os << "[ ";
     for(std::pair<int, std::unordered_set<int>> p : G.get_repr()){
-        os << p.first << "-" ;
+        os << p.first << " " ;
     }
-    os << "><";
+    os << "]";
     return os;
 }
 

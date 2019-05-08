@@ -23,6 +23,7 @@ public:
     Graphlet(); //default constructor --probably useless
     Graphlet(std::unordered_map<int, std::unordered_set<int>>); //get the graphlet from an adjacency list
     Graphlet(std::set<std::pair<int, int>>); //get the graphlet from edgelist
+    Graphlet(std::string); //workaround for compare the theoretical distro to the estimated one
     ~Graphlet();
     void insert_edge(std::pair<int, int>); //attach a neighbor of the <int> vertex in the <Graph> G
     void exclude_include_vertex(Graph, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
