@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3227EAC22B78E9C009210D5 /* Occurrence.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A37F0A3E22B64F9000A871AA /* Occurrence.hpp */; };
+		A3227EAD22B78E9E009210D5 /* Graphlet.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A337EEF8225C985A00AF49CC /* Graphlet.hpp */; };
+		A322817B22B798F2009210D5 /* nauty.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A322814E22B78EF4009210D5 /* nauty.a */; };
 		A32F2E44225E4C7900E77810 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D4F225786B500EA3296 /* main.cpp */; };
 		A37F0A3F22B64F9000A871AA /* Occurrence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A37F0A3D22B64F9000A871AA /* Occurrence.cpp */; };
 		A3880A95226DAAB700570876 /* Estimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3A5AF7222604D46009A7C79 /* Estimator.cpp */; };
@@ -37,6 +40,717 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A3227EB122B78ECB009210D5 /* copyg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = copyg.c; sourceTree = "<group>"; };
+		A3227EB222B78ECB009210D5 /* watercluster2 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = watercluster2; sourceTree = "<group>"; };
+		A3227EB322B78ECB009210D5 /* pickg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pickg; sourceTree = "<group>"; };
+		A3227EB422B78ECB009210D5 /* planarg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarg.c; sourceTree = "<group>"; };
+		A3227EB522B78ECB009210D5 /* linegraphg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = linegraphg; sourceTree = "<group>"; };
+		A3227EB622B78ECB009210D5 /* nautinv.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautinv.c; sourceTree = "<group>"; };
+		A3227EB722B78ECB009210D5 /* genspecialg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genspecialg.c; sourceTree = "<group>"; };
+		A3227EB822B78ECB009210D5 /* naututilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL.o; sourceTree = "<group>"; };
+		A3227EB922B78ECB009210D5 /* gutil1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil1.c; sourceTree = "<group>"; };
+		A3227EBA22B78ECB009210D5 /* naugraph.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph.o; sourceTree = "<group>"; };
+		A3227EBB22B78ECB009210D5 /* schreierL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierL.o; sourceTree = "<group>"; };
+		A3227EBC22B78ECB009210D5 /* ranlabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ranlabg.c; sourceTree = "<group>"; };
+		A3227EBD22B78ECB009210D5 /* naugraphL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL1.o; sourceTree = "<group>"; };
+		A3227EBE22B78ECB009210D5 /* naututil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naututil.c; sourceTree = "<group>"; };
+		A3227EBF22B78ECB009210D5 /* testg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testg.c; sourceTree = "<group>"; };
+		A3227EC022B78ECB009210D5 /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "install-sh"; sourceTree = "<group>"; };
+		A3227EC122B78ECB009210D5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		A3227EC222B78ECB009210D5 /* copyg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = copyg; sourceTree = "<group>"; };
+		A3227EC322B78ECB009210D5 /* nauty-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "nauty-h.in"; sourceTree = "<group>"; };
+		A3227EC422B78ECB009210D5 /* listg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = listg; sourceTree = "<group>"; };
+		A3227EC522B78ECB009210D5 /* planarg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = planarg; sourceTree = "<group>"; };
+		A3227EC622B78ECB009210D5 /* catg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = catg.c; sourceTree = "<group>"; };
+		A3227EC722B78ECB009210D5 /* newedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = newedgeg; sourceTree = "<group>"; };
+		A3227EC822B78ECB009210D5 /* nautyex10.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex10.c; sourceTree = "<group>"; };
+		A3227EC922B78ECB009210D5 /* gutil1W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W1.o; sourceTree = "<group>"; };
+		A3227ECA22B78ECB009210D5 /* gtoolsL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsL.o; sourceTree = "<group>"; };
+		A3227ECB22B78ECB009210D5 /* nautinvL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL1.o; sourceTree = "<group>"; };
+		A3227ECC22B78ECB009210D5 /* twohamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = twohamg.c; sourceTree = "<group>"; };
+		A3227ECD22B78ECB009210D5 /* linegraphg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = linegraphg.c; sourceTree = "<group>"; };
+		A3227ECE22B78ECB009210D5 /* gentourng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentourng; sourceTree = "<group>"; };
+		A3227ECF22B78ECB009210D5 /* naugraph1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph1.o; sourceTree = "<group>"; };
+		A3227ED022B78ECB009210D5 /* nautyex4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex4.c; sourceTree = "<group>"; };
+		A3227ED122B78ECB009210D5 /* nautaux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautaux.c; sourceTree = "<group>"; };
+		A3227ED222B78ECB009210D5 /* naugstrings.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugstrings.c; sourceTree = "<group>"; };
+		A3227ED322B78ECB009210D5 /* multig.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = multig.c; sourceTree = "<group>"; };
+		A3227ED422B78ECB009210D5 /* config.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.txt; sourceTree = "<group>"; };
+		A3227ED522B78ECB009210D5 /* gutil1W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W.o; sourceTree = "<group>"; };
+		A3227ED622B78ECB009210D5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		A3227ED722B78ECB009210D5 /* catg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = catg; sourceTree = "<group>"; };
+		A3227ED822B78ECB009210D5 /* gutil2W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W1.o; sourceTree = "<group>"; };
+		A3227ED922B78ECB009210D5 /* gtnautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW1.o; sourceTree = "<group>"; };
+		A3227EDA22B78ECB009210D5 /* dreadnaut.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dreadnaut.c; sourceTree = "<group>"; };
+		A3227EDB22B78ECB009210D5 /* gentreeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentreeg; sourceTree = "<group>"; };
+		A3227EDC22B78ECB009210D5 /* nautinvL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL.o; sourceTree = "<group>"; };
+		A3227EDD22B78ECB009210D5 /* gtools.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtools.o; sourceTree = "<group>"; };
+		A3227EDE22B78ECB009210D5 /* naugraphW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW.o; sourceTree = "<group>"; };
+		A3227EDF22B78ECB009210D5 /* biplabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = biplabg; sourceTree = "<group>"; };
+		A3227EE022B78ECB009210D5 /* gtools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gtools.h; sourceTree = "<group>"; };
+		A3227EE122B78ECB009210D5 /* listg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = listg.c; sourceTree = "<group>"; };
+		A3227EE222B78ECB009210D5 /* nautest2b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2b.ans; sourceTree = "<group>"; };
+		A3227EE322B78ECB009210D5 /* nautestc.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestc.ans; sourceTree = "<group>"; };
+		A3227EE422B78ECB009210D5 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		A3227EE522B78ECB009210D5 /* dretog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretog; sourceTree = "<group>"; };
+		A3227EE622B78ECB009210D5 /* nautestb.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestb.ans; sourceTree = "<group>"; };
+		A3227EE722B78ECB009210D5 /* nautyW1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW1.a; sourceTree = "<group>"; };
+		A3227EE822B78ECB009210D5 /* nauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauty.c; sourceTree = "<group>"; };
+		A3227EE922B78ECB009210D5 /* gtoolsW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsW.o; sourceTree = "<group>"; };
+		A3227EEA22B78ECB009210D5 /* nautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW1.o; sourceTree = "<group>"; };
+		A3227EEB22B78ECB009210D5 /* nautest2c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2c.ans; sourceTree = "<group>"; };
+		A3227EEC22B78ECB009210D5 /* nautest2a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2a.ans; sourceTree = "<group>"; };
+		A3227EED22B78ECB009210D5 /* gutil1L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L.o; sourceTree = "<group>"; };
+		A3227EEE22B78ECB009210D5 /* planarity.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarity.c; sourceTree = "<group>"; };
+		A3227EEF22B78ECB009210D5 /* genbg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genbg.c; sourceTree = "<group>"; };
+		A3227EF022B78ECB009210D5 /* nautinv1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv1.o; sourceTree = "<group>"; };
+		A3227EF122B78ECB009210D5 /* traces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = traces.h; sourceTree = "<group>"; };
+		A3227EF222B78ECB009210D5 /* genquarticg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genquarticg; sourceTree = "<group>"; };
+		A3227EF322B78ECB009210D5 /* nautinvW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW.o; sourceTree = "<group>"; };
+		A3227EF422B78ECB009210D5 /* subdivideg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = subdivideg.c; sourceTree = "<group>"; };
+		A3227EF522B78ECB009210D5 /* nautesta.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautesta.ans; sourceTree = "<group>"; };
+		A3227EF622B78ECB009210D5 /* gtnauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtnauty.c; sourceTree = "<group>"; };
+		A3227EF722B78ECB009210D5 /* geng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geng.c; sourceTree = "<group>"; };
+		A3227EF822B78ECB009210D5 /* delptg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = delptg.c; sourceTree = "<group>"; };
+		A3227EF922B78ECB009210D5 /* gutil2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil2.c; sourceTree = "<group>"; };
+		A3227EFA22B78ECB009210D5 /* traces.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = traces.o; sourceTree = "<group>"; };
+		A3227EFB22B78ECB009210D5 /* naugraphL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL.o; sourceTree = "<group>"; };
+		A3227EFC22B78ECB009210D5 /* naututilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW1.o; sourceTree = "<group>"; };
+		A3227EFD22B78ECB009210D5 /* sumlines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sumlines.c; sourceTree = "<group>"; };
+		A3227EFE22B78ECB009210D5 /* nautest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautest.c; sourceTree = "<group>"; };
+		A3227EFF22B78ECB009210D5 /* nautyex9.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex9.c; sourceTree = "<group>"; };
+		A3227F0022B78ECB009210D5 /* directg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = directg; sourceTree = "<group>"; };
+		A3227F0122B78ECB009210D5 /* deledgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = deledgeg.c; sourceTree = "<group>"; };
+		A3227F0222B78ECB009210D5 /* naucompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naucompare.c; sourceTree = "<group>"; };
+		A3227F0322B78ECB009210D5 /* nautyex3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex3.c; sourceTree = "<group>"; };
+		A3227F0422B78ECB009210D5 /* nauteste.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nauteste.ans; sourceTree = "<group>"; };
+		A3227F0522B78ECB009210D5 /* nautest1.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1.dre; sourceTree = "<group>"; };
+		A3227F0622B78ECB009210D5 /* nautil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil.o; sourceTree = "<group>"; };
+		A3227F0722B78ECB009210D5 /* README_24 */ = {isa = PBXFileReference; lastKnownFileType = text; path = README_24; sourceTree = "<group>"; };
+		A3227F0822B78ECB009210D5 /* nautestd.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestd.ans; sourceTree = "<group>"; };
+		A3227F0922B78ECB009210D5 /* nausparse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nausparse.c; sourceTree = "<group>"; };
+		A3227F0A22B78ECB009210D5 /* schreier.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = schreier.c; sourceTree = "<group>"; };
+		A3227F0B22B78ECB009210D5 /* complg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = complg; sourceTree = "<group>"; };
+		A3227F0C22B78ECB009210D5 /* naugroup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugroup.c; sourceTree = "<group>"; };
+		A3227F0D22B78ECB009210D5 /* rng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rng.h; sourceTree = "<group>"; };
+		A3227F0E22B78ECB009210D5 /* converseg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = converseg; sourceTree = "<group>"; };
+		A3227F0F22B78ECB009210D5 /* config.guess */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.guess; sourceTree = "<group>"; };
+		A3227F1022B78ECB009210D5 /* complg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = complg.c; sourceTree = "<group>"; };
+		A3227F1122B78ECB009210D5 /* quarticirred28.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quarticirred28.h; sourceTree = "<group>"; };
+		A3227F1222B78ECB009210D5 /* schreierW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierW.o; sourceTree = "<group>"; };
+		A3227F1322B78ECB009210D5 /* naututilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW.o; sourceTree = "<group>"; };
+		A3227F1422B78ECB009210D5 /* runalltests */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runalltests; sourceTree = "<group>"; };
+		A3227F1522B78ECB009210D5 /* nautestf.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestf.ans; sourceTree = "<group>"; };
+		A3227F1622B78ECB009210D5 /* poptest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = poptest.c; sourceTree = "<group>"; };
+		A3227F1722B78ECB009210D5 /* nautest2.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2.dre; sourceTree = "<group>"; };
+		A3227F1822B78ECB009210D5 /* labelg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = labelg; sourceTree = "<group>"; };
+		A3227F1922B78ECB009210D5 /* nautyex7.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex7.c; sourceTree = "<group>"; };
+		A3227F1A22B78ECB009210D5 /* naurng.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naurng.o; sourceTree = "<group>"; };
+		A3227F1B22B78ECB009210D5 /* nautilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW1.o; sourceTree = "<group>"; };
+		A3227F1C22B78ECB009210D5 /* nautestg.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestg.ans; sourceTree = "<group>"; };
+		A3227F1D22B78ECB009210D5 /* showg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = showg.c; sourceTree = "<group>"; };
+		A3227F1E22B78ECB009210D5 /* naututil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil1.o; sourceTree = "<group>"; };
+		A3227F1F22B78ECB009210D5 /* naurng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naurng.h; sourceTree = "<group>"; };
+		A3227F2022B78ECB009210D5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A3227F2122B78ECB009210D5 /* cubhamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cubhamg; sourceTree = "<group>"; };
+		A3227F2222B78ECB009210D5 /* naututil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil.o; sourceTree = "<group>"; };
+		A3227F2322B78ECB009210D5 /* nautilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW.o; sourceTree = "<group>"; };
+		A3227F2422B78ECB009210D5 /* naututil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naututil.h; sourceTree = "<group>"; };
+		A3227F2522B78ECB009210D5 /* shortg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = shortg; sourceTree = "<group>"; };
+		A3227F2622B78ECB009210D5 /* addedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = addedgeg; sourceTree = "<group>"; };
+		A3227F2722B78ECB009210D5 /* vcolg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vcolg.c; sourceTree = "<group>"; };
+		A3227F2822B78ECB009210D5 /* genrang.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genrang.c; sourceTree = "<group>"; };
+		A3227F2922B78ECB009210D5 /* gutil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1.o; sourceTree = "<group>"; };
+		A3227F2A22B78ECB009210D5 /* nausparseW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseW.o; sourceTree = "<group>"; };
+		A3227F2B22B78ECB009210D5 /* naugraph.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugraph.c; sourceTree = "<group>"; };
+		A3227F2C22B78ECB009210D5 /* naututil-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "naututil-h.in"; sourceTree = "<group>"; };
+		A3227F2D22B78ECB009210D5 /* nauthread1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread1.c; sourceTree = "<group>"; };
+		A3227F2E22B78ECB009210D5 /* genbgL */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbgL; sourceTree = "<group>"; };
+		A3227F2F22B78ECB009210D5 /* nautil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil1.o; sourceTree = "<group>"; };
+		A3227F3022B78ECB009210D5 /* config.status */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.status; sourceTree = "<group>"; };
+		A3227F3122B78ECB009210D5 /* config.sub */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.sub; sourceTree = "<group>"; };
+		A3227F3222B78ECB009210D5 /* nautyW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW.a; sourceTree = "<group>"; };
+		A3227F3322B78ECB009210D5 /* genspecialg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genspecialg; sourceTree = "<group>"; };
+		A3227F3422B78ECB009210D5 /* nautinv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautinv.h; sourceTree = "<group>"; };
+		A3227F3522B78ECB009210D5 /* nautilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL1.o; sourceTree = "<group>"; };
+		A3227F3622B78ECB009210D5 /* nautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW.o; sourceTree = "<group>"; };
+		A3227F3722B78ECB009210D5 /* nautinv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv.o; sourceTree = "<group>"; };
+		A3227F3822B78ECB009210D5 /* nauty1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty1.o; sourceTree = "<group>"; };
+		A3227F3922B78ECB009210D5 /* gutils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gutils.h; sourceTree = "<group>"; };
+		A3227F3A22B78ECB009210D5 /* gtnautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW.o; sourceTree = "<group>"; };
+		A3227F3B22B78ECB009210D5 /* vcolg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = vcolg; sourceTree = "<group>"; };
+		A3227F3C22B78ECB009210D5 /* nauty1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty1.a; sourceTree = "<group>"; };
+		A3227F3D22B78ECB009210D5 /* nautest1c.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.dre; sourceTree = "<group>"; };
+		A3227F3E22B78ECB009210D5 /* watercluster2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = watercluster2.c; sourceTree = "<group>"; };
+		A3227F3F22B78ECB009210D5 /* bliss2dre.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bliss2dre.c; sourceTree = "<group>"; };
+		A3227F4022B78ECB009210D5 /* converseg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = converseg.c; sourceTree = "<group>"; };
+		A3227F4122B78ECB009210D5 /* nautest1a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.ans; sourceTree = "<group>"; };
+		A3227F4222B78ECB009210D5 /* nautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL1.o; sourceTree = "<group>"; };
+		A3227F4322B78ECB009210D5 /* nautyex2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex2.c; sourceTree = "<group>"; };
+		A3227F4422B78ECB009210D5 /* gtools-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gtools-h.in"; sourceTree = "<group>"; };
+		A3227F4522B78ECB009210D5 /* nautyL1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL1.a; sourceTree = "<group>"; };
+		A3227F4622B78ECB009210D5 /* gtools.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtools.c; sourceTree = "<group>"; };
+		A3227F4722B78ECB009210D5 /* nautyex8.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex8.c; sourceTree = "<group>"; };
+		A3227F4822B78ECB009210D5 /* directg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = directg.c; sourceTree = "<group>"; };
+		A3227F4922B78ECB009210D5 /* deledgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = deledgeg; sourceTree = "<group>"; };
+		A3227F4A22B78ECB009210D5 /* NRswitchg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = NRswitchg; sourceTree = "<group>"; };
+		A3227F4B22B78ECB009210D5 /* naugstrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugstrings.h; sourceTree = "<group>"; };
+		A3227F4C22B78ECB009210D5 /* nautaux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautaux.h; sourceTree = "<group>"; };
+		A3227F4D22B78ECB009210D5 /* This_is_nauty26r11. */ = {isa = PBXFileReference; lastKnownFileType = text; path = This_is_nauty26r11.; sourceTree = "<group>"; };
+		A3227F4E22B78ECB009210D5 /* splay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = splay.c; sourceTree = "<group>"; };
+		A3227F4F22B78ECB009210D5 /* nautest1b.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.dre; sourceTree = "<group>"; };
+		A3227F5022B78ECB009210D5 /* sorttemplates.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sorttemplates.c; sourceTree = "<group>"; };
+		A3227F5122B78ECB009210D5 /* twohamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = twohamg; sourceTree = "<group>"; };
+		A3227F5222B78ECB009210D5 /* nautest1b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.ans; sourceTree = "<group>"; };
+		A3227F5322B78ECB009210D5 /* naututilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL1.o; sourceTree = "<group>"; };
+		A3227F5422B78ECB009210D5 /* gutil2L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L.o; sourceTree = "<group>"; };
+		A3227F5522B78ECB009210D5 /* NRswitchg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NRswitchg.c; sourceTree = "<group>"; };
+		A3227F5622B78ECB009210D5 /* hamheuristic */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = hamheuristic; sourceTree = "<group>"; };
+		A3227F5722B78ECB009210D5 /* nug26.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nug26.pdf; sourceTree = "<group>"; };
+		A3227F5822B78ECB009210D5 /* amtog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = amtog.c; sourceTree = "<group>"; };
+		A3227F5922B78ECB009210D5 /* naugroupL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupL.o; sourceTree = "<group>"; };
+		A3227F5A22B78ECB009210D5 /* formats.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = formats.txt; sourceTree = "<group>"; };
+		A3227F5B22B78ECB009210D5 /* shortg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = shortg.c; sourceTree = "<group>"; };
+		A3227F5C22B78ECB009210D5 /* amtog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amtog; sourceTree = "<group>"; };
+		A3227F5D22B78ECB009210D5 /* dreadnaut */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dreadnaut; sourceTree = "<group>"; };
+		A3227F5E22B78ECB009210D5 /* nautest1c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.ans; sourceTree = "<group>"; };
+		A3227F5F22B78ECB009210D5 /* nautest1a.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.dre; sourceTree = "<group>"; };
+		A3227F6022B78ECB009210D5 /* config.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
+		A3227F6122B78ECB009210D5 /* nautyex6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex6.c; sourceTree = "<group>"; };
+		A3227F6222B78ECB009210D5 /* gtnauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnauty.o; sourceTree = "<group>"; };
+		A3227F6322B78ECB009210D5 /* checks6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = checks6.c; sourceTree = "<group>"; };
+		A3227F6422B78ECB009210D5 /* callgeng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = callgeng.c; sourceTree = "<group>"; };
+		A3227F6522B78ECB009210D5 /* genbg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbg; sourceTree = "<group>"; };
+		A3227F6622B78ECB009210D5 /* gutil2.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2.o; sourceTree = "<group>"; };
+		A3227F6722B78ECB009210D5 /* traces.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = traces.c; sourceTree = "<group>"; };
+		A3227F6822B78ECB009210D5 /* labelg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = labelg.c; sourceTree = "<group>"; };
+		A3227F6922B78ECB009210D5 /* gutil1L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L1.o; sourceTree = "<group>"; };
+		A3227F6A22B78ECB009210D5 /* nauthread2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread2.c; sourceTree = "<group>"; };
+		A3227F6B22B78ECB009210D5 /* dretog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretog.c; sourceTree = "<group>"; };
+		A3227F6C22B78ECB009210D5 /* genquarticg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genquarticg.c; sourceTree = "<group>"; };
+		A3227F6D22B78ECB009210D5 /* COPYRIGHT */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYRIGHT; sourceTree = "<group>"; };
+		A3227F6E22B78ECB009210D5 /* nautinvW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW1.o; sourceTree = "<group>"; };
+		A3227F6F22B78ECB009210D5 /* changes24-26.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "changes24-26.txt"; sourceTree = "<group>"; };
+		A3227F7022B78ECB009210D5 /* planarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = planarity.h; sourceTree = "<group>"; };
+		A3227F7122B78ECB009210D5 /* hamheuristic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hamheuristic.c; sourceTree = "<group>"; };
+		A3227F7222B78ECB009210D5 /* nauty.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty.a; sourceTree = "<group>"; };
+		A3227F7322B78ECB009210D5 /* subdivideg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = subdivideg; sourceTree = "<group>"; };
+		A3227F7422B78ECB009210D5 /* gtnautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL1.o; sourceTree = "<group>"; };
+		A3227F7522B78ECB009210D5 /* gutil2L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L1.o; sourceTree = "<group>"; };
+		A3227F7622B78ECB009210D5 /* nauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty.o; sourceTree = "<group>"; };
+		A3227F7722B78ECB009210D5 /* newedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = newedgeg.c; sourceTree = "<group>"; };
+		A3227F7822B78ECB009210D5 /* gutil2W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W.o; sourceTree = "<group>"; };
+		A3227F7922B78ECB009210D5 /* genrang */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genrang; sourceTree = "<group>"; };
+		A3227F7A22B78ECB009210D5 /* delptg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = delptg; sourceTree = "<group>"; };
+		A3227F7B22B78ECB009210D5 /* nauty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nauty.h; sourceTree = "<group>"; };
+		A3227F7C22B78ECB009210D5 /* cubhamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cubhamg.c; sourceTree = "<group>"; };
+		A3227F7D22B78ECB009210D5 /* naugroupW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupW.o; sourceTree = "<group>"; };
+		A3227F7E22B78ECB009210D5 /* schreier.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = schreier.txt; sourceTree = "<group>"; };
+		A3227F7F22B78ECB009210D5 /* gentreeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentreeg.c; sourceTree = "<group>"; };
+		A3227F8022B78ECB009210D5 /* naurng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naurng.c; sourceTree = "<group>"; };
+		A3227F8122B78ECB009210D5 /* geng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = geng; sourceTree = "<group>"; };
+		A3227F8222B78ECB009210D5 /* makefile.basic */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.basic; sourceTree = "<group>"; };
+		A3227F8322B78ECB009210D5 /* makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.in; sourceTree = "<group>"; };
+		A3227F8422B78ECB009210D5 /* nautilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL.o; sourceTree = "<group>"; };
+		A3227F8522B78ECB009210D5 /* multig */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = multig; sourceTree = "<group>"; };
+		A3227F8622B78ECB009210D5 /* addedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = addedgeg.c; sourceTree = "<group>"; };
+		A3227F8722B78ECB009210D5 /* nausparseL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseL.o; sourceTree = "<group>"; };
+		A3227F8822B78ECB009210D5 /* countg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = countg; sourceTree = "<group>"; };
+		A3227F8922B78ECB009210D5 /* nautyex1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex1.c; sourceTree = "<group>"; };
+		A3227F8A22B78ECB009210D5 /* gentourng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentourng.c; sourceTree = "<group>"; };
+		A3227F8B22B78ECB009210D5 /* dretodot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretodot.c; sourceTree = "<group>"; };
+		A3227F8C22B78ECB009210D5 /* dretodot */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretodot; sourceTree = "<group>"; };
+		A3227F8D22B78ECB009210D5 /* biplabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = biplabg.c; sourceTree = "<group>"; };
+		A3227F8E22B78ECB009210D5 /* nautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL.o; sourceTree = "<group>"; };
+		A3227F8F22B78ECB009210D5 /* nautil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautil.c; sourceTree = "<group>"; };
+		A3227F9022B78ECB009210D5 /* nausparse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nausparse.h; sourceTree = "<group>"; };
+		A3227F9122B78ECB009210D5 /* blisstog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = blisstog.c; sourceTree = "<group>"; };
+		A3227F9222B78ECB009210D5 /* nausparse.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparse.o; sourceTree = "<group>"; };
+		A3227F9322B78ECB009210D5 /* naugroup.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroup.o; sourceTree = "<group>"; };
+		A3227F9422B78ECB009210D5 /* nautyL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL.a; sourceTree = "<group>"; };
+		A3227F9522B78ECB009210D5 /* schreier.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreier.o; sourceTree = "<group>"; };
+		A3227F9622B78ECB009210D5 /* naugraphW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW1.o; sourceTree = "<group>"; };
+		A3227F9722B78ECB009210D5 /* nautyex5.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex5.c; sourceTree = "<group>"; };
+		A3227F9822B78ECB009210D5 /* rng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = rng.c; sourceTree = "<group>"; };
+		A3227F9922B78ECB009210D5 /* naugroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugroup.h; sourceTree = "<group>"; };
+		A3227F9A22B78ECB009210D5 /* schreier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = schreier.h; sourceTree = "<group>"; };
+		A3227F9B22B78ECB009210D5 /* gtnautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL.o; sourceTree = "<group>"; };
+		A3227F9C22B78ECB009210D5 /* ranlabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ranlabg; sourceTree = "<group>"; };
+		A3227F9D22B78ECB009210D5 /* showg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = showg; sourceTree = "<group>"; };
+		A3227F9F22B78EDE009210D5 /* copyg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = copyg.c; sourceTree = "<group>"; };
+		A3227FA022B78EDE009210D5 /* watercluster2 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = watercluster2; sourceTree = "<group>"; };
+		A3227FA122B78EDE009210D5 /* pickg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pickg; sourceTree = "<group>"; };
+		A3227FA222B78EDE009210D5 /* planarg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarg.c; sourceTree = "<group>"; };
+		A3227FA322B78EDE009210D5 /* linegraphg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = linegraphg; sourceTree = "<group>"; };
+		A3227FA422B78EDE009210D5 /* nautinv.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautinv.c; sourceTree = "<group>"; };
+		A3227FA522B78EDE009210D5 /* genspecialg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genspecialg.c; sourceTree = "<group>"; };
+		A3227FA622B78EDE009210D5 /* naututilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL.o; sourceTree = "<group>"; };
+		A3227FA722B78EDE009210D5 /* gutil1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil1.c; sourceTree = "<group>"; };
+		A3227FA822B78EDE009210D5 /* naugraph.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph.o; sourceTree = "<group>"; };
+		A3227FA922B78EDE009210D5 /* schreierL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierL.o; sourceTree = "<group>"; };
+		A3227FAA22B78EDE009210D5 /* ranlabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ranlabg.c; sourceTree = "<group>"; };
+		A3227FAB22B78EDE009210D5 /* naugraphL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL1.o; sourceTree = "<group>"; };
+		A3227FAC22B78EDE009210D5 /* naututil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naututil.c; sourceTree = "<group>"; };
+		A3227FAD22B78EDE009210D5 /* testg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testg.c; sourceTree = "<group>"; };
+		A3227FAE22B78EDE009210D5 /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "install-sh"; sourceTree = "<group>"; };
+		A3227FAF22B78EDE009210D5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		A3227FB022B78EDE009210D5 /* copyg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = copyg; sourceTree = "<group>"; };
+		A3227FB122B78EDE009210D5 /* nauty-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "nauty-h.in"; sourceTree = "<group>"; };
+		A3227FB222B78EDE009210D5 /* listg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = listg; sourceTree = "<group>"; };
+		A3227FB322B78EDE009210D5 /* planarg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = planarg; sourceTree = "<group>"; };
+		A3227FB422B78EDE009210D5 /* catg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = catg.c; sourceTree = "<group>"; };
+		A3227FB522B78EDE009210D5 /* newedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = newedgeg; sourceTree = "<group>"; };
+		A3227FB622B78EDE009210D5 /* nautyex10.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex10.c; sourceTree = "<group>"; };
+		A3227FB722B78EDE009210D5 /* gutil1W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W1.o; sourceTree = "<group>"; };
+		A3227FB822B78EDE009210D5 /* gtoolsL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsL.o; sourceTree = "<group>"; };
+		A3227FB922B78EDE009210D5 /* nautinvL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL1.o; sourceTree = "<group>"; };
+		A3227FBA22B78EDE009210D5 /* twohamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = twohamg.c; sourceTree = "<group>"; };
+		A3227FBB22B78EDE009210D5 /* linegraphg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = linegraphg.c; sourceTree = "<group>"; };
+		A3227FBC22B78EDE009210D5 /* gentourng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentourng; sourceTree = "<group>"; };
+		A3227FBD22B78EDE009210D5 /* naugraph1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph1.o; sourceTree = "<group>"; };
+		A3227FBE22B78EDE009210D5 /* nautyex4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex4.c; sourceTree = "<group>"; };
+		A3227FBF22B78EDE009210D5 /* nautaux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautaux.c; sourceTree = "<group>"; };
+		A3227FC022B78EDE009210D5 /* naugstrings.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugstrings.c; sourceTree = "<group>"; };
+		A3227FC122B78EDE009210D5 /* multig.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = multig.c; sourceTree = "<group>"; };
+		A3227FC222B78EDE009210D5 /* config.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.txt; sourceTree = "<group>"; };
+		A3227FC322B78EDE009210D5 /* gutil1W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W.o; sourceTree = "<group>"; };
+		A3227FC422B78EDE009210D5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		A3227FC522B78EDE009210D5 /* catg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = catg; sourceTree = "<group>"; };
+		A3227FC622B78EDE009210D5 /* gutil2W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W1.o; sourceTree = "<group>"; };
+		A3227FC722B78EDE009210D5 /* gtnautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW1.o; sourceTree = "<group>"; };
+		A3227FC822B78EDE009210D5 /* dreadnaut.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dreadnaut.c; sourceTree = "<group>"; };
+		A3227FC922B78EDE009210D5 /* gentreeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentreeg; sourceTree = "<group>"; };
+		A3227FCA22B78EDE009210D5 /* nautinvL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL.o; sourceTree = "<group>"; };
+		A3227FCB22B78EDE009210D5 /* gtools.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtools.o; sourceTree = "<group>"; };
+		A3227FCC22B78EDE009210D5 /* naugraphW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW.o; sourceTree = "<group>"; };
+		A3227FCD22B78EDE009210D5 /* biplabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = biplabg; sourceTree = "<group>"; };
+		A3227FCE22B78EDE009210D5 /* gtools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gtools.h; sourceTree = "<group>"; };
+		A3227FCF22B78EDE009210D5 /* listg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = listg.c; sourceTree = "<group>"; };
+		A3227FD022B78EDE009210D5 /* nautest2b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2b.ans; sourceTree = "<group>"; };
+		A3227FD122B78EDE009210D5 /* nautestc.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestc.ans; sourceTree = "<group>"; };
+		A3227FD222B78EDE009210D5 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		A3227FD322B78EDE009210D5 /* dretog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretog; sourceTree = "<group>"; };
+		A3227FD422B78EDE009210D5 /* nautestb.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestb.ans; sourceTree = "<group>"; };
+		A3227FD522B78EDE009210D5 /* nautyW1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW1.a; sourceTree = "<group>"; };
+		A3227FD622B78EDE009210D5 /* nauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauty.c; sourceTree = "<group>"; };
+		A3227FD722B78EDE009210D5 /* gtoolsW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsW.o; sourceTree = "<group>"; };
+		A3227FD822B78EDE009210D5 /* nautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW1.o; sourceTree = "<group>"; };
+		A3227FD922B78EDE009210D5 /* nautest2c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2c.ans; sourceTree = "<group>"; };
+		A3227FDA22B78EDE009210D5 /* nautest2a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2a.ans; sourceTree = "<group>"; };
+		A3227FDB22B78EDE009210D5 /* gutil1L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L.o; sourceTree = "<group>"; };
+		A3227FDC22B78EDE009210D5 /* planarity.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarity.c; sourceTree = "<group>"; };
+		A3227FDD22B78EDE009210D5 /* genbg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genbg.c; sourceTree = "<group>"; };
+		A3227FDE22B78EDE009210D5 /* nautinv1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv1.o; sourceTree = "<group>"; };
+		A3227FDF22B78EDE009210D5 /* traces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = traces.h; sourceTree = "<group>"; };
+		A3227FE022B78EDE009210D5 /* genquarticg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genquarticg; sourceTree = "<group>"; };
+		A3227FE122B78EDE009210D5 /* nautinvW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW.o; sourceTree = "<group>"; };
+		A3227FE222B78EDE009210D5 /* subdivideg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = subdivideg.c; sourceTree = "<group>"; };
+		A3227FE322B78EDE009210D5 /* nautesta.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautesta.ans; sourceTree = "<group>"; };
+		A3227FE422B78EDE009210D5 /* gtnauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtnauty.c; sourceTree = "<group>"; };
+		A3227FE522B78EDE009210D5 /* geng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geng.c; sourceTree = "<group>"; };
+		A3227FE622B78EDE009210D5 /* delptg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = delptg.c; sourceTree = "<group>"; };
+		A3227FE722B78EDE009210D5 /* gutil2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil2.c; sourceTree = "<group>"; };
+		A3227FE822B78EDE009210D5 /* traces.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = traces.o; sourceTree = "<group>"; };
+		A3227FE922B78EDE009210D5 /* naugraphL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL.o; sourceTree = "<group>"; };
+		A3227FEA22B78EDE009210D5 /* naututilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW1.o; sourceTree = "<group>"; };
+		A3227FEB22B78EDE009210D5 /* sumlines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sumlines.c; sourceTree = "<group>"; };
+		A3227FEC22B78EDE009210D5 /* nautest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautest.c; sourceTree = "<group>"; };
+		A3227FED22B78EDE009210D5 /* nautyex9.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex9.c; sourceTree = "<group>"; };
+		A3227FEE22B78EDE009210D5 /* directg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = directg; sourceTree = "<group>"; };
+		A3227FEF22B78EDE009210D5 /* deledgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = deledgeg.c; sourceTree = "<group>"; };
+		A3227FF022B78EDE009210D5 /* naucompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naucompare.c; sourceTree = "<group>"; };
+		A3227FF122B78EDE009210D5 /* nautyex3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex3.c; sourceTree = "<group>"; };
+		A3227FF222B78EDE009210D5 /* nauteste.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nauteste.ans; sourceTree = "<group>"; };
+		A3227FF322B78EDE009210D5 /* nautest1.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1.dre; sourceTree = "<group>"; };
+		A3227FF422B78EDE009210D5 /* nautil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil.o; sourceTree = "<group>"; };
+		A3227FF522B78EDE009210D5 /* README_24 */ = {isa = PBXFileReference; lastKnownFileType = text; path = README_24; sourceTree = "<group>"; };
+		A3227FF622B78EDE009210D5 /* nautestd.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestd.ans; sourceTree = "<group>"; };
+		A3227FF722B78EDE009210D5 /* nausparse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nausparse.c; sourceTree = "<group>"; };
+		A3227FF822B78EDE009210D5 /* schreier.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = schreier.c; sourceTree = "<group>"; };
+		A3227FF922B78EDE009210D5 /* complg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = complg; sourceTree = "<group>"; };
+		A3227FFA22B78EDE009210D5 /* naugroup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugroup.c; sourceTree = "<group>"; };
+		A3227FFB22B78EDE009210D5 /* rng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rng.h; sourceTree = "<group>"; };
+		A3227FFC22B78EDE009210D5 /* converseg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = converseg; sourceTree = "<group>"; };
+		A3227FFD22B78EDF009210D5 /* config.guess */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.guess; sourceTree = "<group>"; };
+		A3227FFE22B78EDF009210D5 /* complg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = complg.c; sourceTree = "<group>"; };
+		A3227FFF22B78EDF009210D5 /* quarticirred28.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quarticirred28.h; sourceTree = "<group>"; };
+		A322800022B78EDF009210D5 /* schreierW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierW.o; sourceTree = "<group>"; };
+		A322800122B78EDF009210D5 /* naututilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW.o; sourceTree = "<group>"; };
+		A322800222B78EDF009210D5 /* runalltests */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runalltests; sourceTree = "<group>"; };
+		A322800322B78EDF009210D5 /* nautestf.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestf.ans; sourceTree = "<group>"; };
+		A322800422B78EDF009210D5 /* poptest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = poptest.c; sourceTree = "<group>"; };
+		A322800522B78EDF009210D5 /* nautest2.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2.dre; sourceTree = "<group>"; };
+		A322800622B78EDF009210D5 /* labelg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = labelg; sourceTree = "<group>"; };
+		A322800722B78EDF009210D5 /* nautyex7.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex7.c; sourceTree = "<group>"; };
+		A322800822B78EDF009210D5 /* naurng.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naurng.o; sourceTree = "<group>"; };
+		A322800922B78EDF009210D5 /* nautilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW1.o; sourceTree = "<group>"; };
+		A322800A22B78EDF009210D5 /* nautestg.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestg.ans; sourceTree = "<group>"; };
+		A322800B22B78EDF009210D5 /* showg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = showg.c; sourceTree = "<group>"; };
+		A322800C22B78EDF009210D5 /* naututil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil1.o; sourceTree = "<group>"; };
+		A322800D22B78EDF009210D5 /* naurng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naurng.h; sourceTree = "<group>"; };
+		A322800E22B78EDF009210D5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A322800F22B78EDF009210D5 /* cubhamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cubhamg; sourceTree = "<group>"; };
+		A322801022B78EDF009210D5 /* naututil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil.o; sourceTree = "<group>"; };
+		A322801122B78EDF009210D5 /* nautilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW.o; sourceTree = "<group>"; };
+		A322801222B78EDF009210D5 /* naututil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naututil.h; sourceTree = "<group>"; };
+		A322801322B78EDF009210D5 /* shortg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = shortg; sourceTree = "<group>"; };
+		A322801422B78EDF009210D5 /* addedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = addedgeg; sourceTree = "<group>"; };
+		A322801522B78EDF009210D5 /* vcolg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vcolg.c; sourceTree = "<group>"; };
+		A322801622B78EDF009210D5 /* genrang.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genrang.c; sourceTree = "<group>"; };
+		A322801722B78EDF009210D5 /* gutil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1.o; sourceTree = "<group>"; };
+		A322801822B78EDF009210D5 /* nausparseW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseW.o; sourceTree = "<group>"; };
+		A322801922B78EDF009210D5 /* naugraph.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugraph.c; sourceTree = "<group>"; };
+		A322801A22B78EDF009210D5 /* naututil-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "naututil-h.in"; sourceTree = "<group>"; };
+		A322801B22B78EDF009210D5 /* nauthread1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread1.c; sourceTree = "<group>"; };
+		A322801C22B78EDF009210D5 /* genbgL */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbgL; sourceTree = "<group>"; };
+		A322801D22B78EDF009210D5 /* nautil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil1.o; sourceTree = "<group>"; };
+		A322801E22B78EDF009210D5 /* config.status */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.status; sourceTree = "<group>"; };
+		A322801F22B78EDF009210D5 /* config.sub */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.sub; sourceTree = "<group>"; };
+		A322802022B78EDF009210D5 /* nautyW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW.a; sourceTree = "<group>"; };
+		A322802122B78EDF009210D5 /* genspecialg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genspecialg; sourceTree = "<group>"; };
+		A322802222B78EDF009210D5 /* nautinv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautinv.h; sourceTree = "<group>"; };
+		A322802322B78EDF009210D5 /* nautilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL1.o; sourceTree = "<group>"; };
+		A322802422B78EDF009210D5 /* nautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW.o; sourceTree = "<group>"; };
+		A322802522B78EDF009210D5 /* nautinv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv.o; sourceTree = "<group>"; };
+		A322802622B78EDF009210D5 /* nauty1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty1.o; sourceTree = "<group>"; };
+		A322802722B78EDF009210D5 /* gutils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gutils.h; sourceTree = "<group>"; };
+		A322802822B78EDF009210D5 /* gtnautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW.o; sourceTree = "<group>"; };
+		A322802922B78EDF009210D5 /* vcolg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = vcolg; sourceTree = "<group>"; };
+		A322802A22B78EDF009210D5 /* nauty1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty1.a; sourceTree = "<group>"; };
+		A322802B22B78EDF009210D5 /* nautest1c.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.dre; sourceTree = "<group>"; };
+		A322802C22B78EDF009210D5 /* watercluster2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = watercluster2.c; sourceTree = "<group>"; };
+		A322802D22B78EDF009210D5 /* bliss2dre.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bliss2dre.c; sourceTree = "<group>"; };
+		A322802E22B78EDF009210D5 /* converseg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = converseg.c; sourceTree = "<group>"; };
+		A322802F22B78EDF009210D5 /* nautest1a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.ans; sourceTree = "<group>"; };
+		A322803022B78EDF009210D5 /* nautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL1.o; sourceTree = "<group>"; };
+		A322803122B78EDF009210D5 /* nautyex2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex2.c; sourceTree = "<group>"; };
+		A322803222B78EDF009210D5 /* gtools-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gtools-h.in"; sourceTree = "<group>"; };
+		A322803322B78EDF009210D5 /* nautyL1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL1.a; sourceTree = "<group>"; };
+		A322803422B78EDF009210D5 /* gtools.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtools.c; sourceTree = "<group>"; };
+		A322803522B78EDF009210D5 /* nautyex8.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex8.c; sourceTree = "<group>"; };
+		A322803622B78EDF009210D5 /* directg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = directg.c; sourceTree = "<group>"; };
+		A322803722B78EDF009210D5 /* deledgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = deledgeg; sourceTree = "<group>"; };
+		A322803822B78EDF009210D5 /* NRswitchg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = NRswitchg; sourceTree = "<group>"; };
+		A322803922B78EDF009210D5 /* naugstrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugstrings.h; sourceTree = "<group>"; };
+		A322803A22B78EDF009210D5 /* nautaux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautaux.h; sourceTree = "<group>"; };
+		A322803B22B78EDF009210D5 /* This_is_nauty26r11. */ = {isa = PBXFileReference; lastKnownFileType = text; path = This_is_nauty26r11.; sourceTree = "<group>"; };
+		A322803C22B78EDF009210D5 /* splay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = splay.c; sourceTree = "<group>"; };
+		A322803D22B78EDF009210D5 /* nautest1b.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.dre; sourceTree = "<group>"; };
+		A322803E22B78EDF009210D5 /* sorttemplates.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sorttemplates.c; sourceTree = "<group>"; };
+		A322803F22B78EDF009210D5 /* twohamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = twohamg; sourceTree = "<group>"; };
+		A322804022B78EDF009210D5 /* nautest1b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.ans; sourceTree = "<group>"; };
+		A322804122B78EDF009210D5 /* naututilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL1.o; sourceTree = "<group>"; };
+		A322804222B78EDF009210D5 /* gutil2L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L.o; sourceTree = "<group>"; };
+		A322804322B78EDF009210D5 /* NRswitchg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NRswitchg.c; sourceTree = "<group>"; };
+		A322804422B78EDF009210D5 /* hamheuristic */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = hamheuristic; sourceTree = "<group>"; };
+		A322804522B78EDF009210D5 /* nug26.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nug26.pdf; sourceTree = "<group>"; };
+		A322804622B78EDF009210D5 /* amtog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = amtog.c; sourceTree = "<group>"; };
+		A322804722B78EDF009210D5 /* naugroupL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupL.o; sourceTree = "<group>"; };
+		A322804822B78EDF009210D5 /* formats.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = formats.txt; sourceTree = "<group>"; };
+		A322804922B78EDF009210D5 /* shortg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = shortg.c; sourceTree = "<group>"; };
+		A322804A22B78EDF009210D5 /* amtog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amtog; sourceTree = "<group>"; };
+		A322804B22B78EDF009210D5 /* dreadnaut */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dreadnaut; sourceTree = "<group>"; };
+		A322804C22B78EDF009210D5 /* nautest1c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.ans; sourceTree = "<group>"; };
+		A322804D22B78EDF009210D5 /* nautest1a.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.dre; sourceTree = "<group>"; };
+		A322804E22B78EDF009210D5 /* config.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
+		A322804F22B78EDF009210D5 /* nautyex6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex6.c; sourceTree = "<group>"; };
+		A322805022B78EDF009210D5 /* gtnauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnauty.o; sourceTree = "<group>"; };
+		A322805122B78EDF009210D5 /* checks6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = checks6.c; sourceTree = "<group>"; };
+		A322805222B78EDF009210D5 /* callgeng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = callgeng.c; sourceTree = "<group>"; };
+		A322805322B78EDF009210D5 /* genbg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbg; sourceTree = "<group>"; };
+		A322805422B78EDF009210D5 /* gutil2.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2.o; sourceTree = "<group>"; };
+		A322805522B78EDF009210D5 /* traces.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = traces.c; sourceTree = "<group>"; };
+		A322805622B78EDF009210D5 /* labelg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = labelg.c; sourceTree = "<group>"; };
+		A322805722B78EDF009210D5 /* gutil1L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L1.o; sourceTree = "<group>"; };
+		A322805822B78EDF009210D5 /* nauthread2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread2.c; sourceTree = "<group>"; };
+		A322805922B78EDF009210D5 /* dretog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretog.c; sourceTree = "<group>"; };
+		A322805A22B78EDF009210D5 /* genquarticg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genquarticg.c; sourceTree = "<group>"; };
+		A322805B22B78EDF009210D5 /* COPYRIGHT */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYRIGHT; sourceTree = "<group>"; };
+		A322805C22B78EDF009210D5 /* nautinvW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW1.o; sourceTree = "<group>"; };
+		A322805D22B78EDF009210D5 /* changes24-26.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "changes24-26.txt"; sourceTree = "<group>"; };
+		A322805E22B78EDF009210D5 /* planarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = planarity.h; sourceTree = "<group>"; };
+		A322805F22B78EDF009210D5 /* hamheuristic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hamheuristic.c; sourceTree = "<group>"; };
+		A322806022B78EDF009210D5 /* nauty.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty.a; sourceTree = "<group>"; };
+		A322806122B78EDF009210D5 /* subdivideg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = subdivideg; sourceTree = "<group>"; };
+		A322806222B78EDF009210D5 /* gtnautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL1.o; sourceTree = "<group>"; };
+		A322806322B78EDF009210D5 /* gutil2L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L1.o; sourceTree = "<group>"; };
+		A322806422B78EDF009210D5 /* nauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty.o; sourceTree = "<group>"; };
+		A322806522B78EDF009210D5 /* newedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = newedgeg.c; sourceTree = "<group>"; };
+		A322806622B78EDF009210D5 /* gutil2W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W.o; sourceTree = "<group>"; };
+		A322806722B78EDF009210D5 /* genrang */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genrang; sourceTree = "<group>"; };
+		A322806822B78EDF009210D5 /* delptg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = delptg; sourceTree = "<group>"; };
+		A322806922B78EDF009210D5 /* nauty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nauty.h; sourceTree = "<group>"; };
+		A322806A22B78EDF009210D5 /* cubhamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cubhamg.c; sourceTree = "<group>"; };
+		A322806B22B78EDF009210D5 /* naugroupW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupW.o; sourceTree = "<group>"; };
+		A322806C22B78EDF009210D5 /* schreier.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = schreier.txt; sourceTree = "<group>"; };
+		A322806D22B78EDF009210D5 /* gentreeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentreeg.c; sourceTree = "<group>"; };
+		A322806E22B78EDF009210D5 /* naurng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naurng.c; sourceTree = "<group>"; };
+		A322806F22B78EDF009210D5 /* geng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = geng; sourceTree = "<group>"; };
+		A322807022B78EDF009210D5 /* makefile.basic */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.basic; sourceTree = "<group>"; };
+		A322807122B78EDF009210D5 /* makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.in; sourceTree = "<group>"; };
+		A322807222B78EDF009210D5 /* nautilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL.o; sourceTree = "<group>"; };
+		A322807322B78EDF009210D5 /* multig */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = multig; sourceTree = "<group>"; };
+		A322807422B78EDF009210D5 /* addedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = addedgeg.c; sourceTree = "<group>"; };
+		A322807522B78EDF009210D5 /* nausparseL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseL.o; sourceTree = "<group>"; };
+		A322807622B78EDF009210D5 /* countg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = countg; sourceTree = "<group>"; };
+		A322807722B78EDF009210D5 /* nautyex1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex1.c; sourceTree = "<group>"; };
+		A322807822B78EDF009210D5 /* gentourng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentourng.c; sourceTree = "<group>"; };
+		A322807922B78EDF009210D5 /* dretodot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretodot.c; sourceTree = "<group>"; };
+		A322807A22B78EDF009210D5 /* dretodot */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretodot; sourceTree = "<group>"; };
+		A322807B22B78EDF009210D5 /* biplabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = biplabg.c; sourceTree = "<group>"; };
+		A322807C22B78EDF009210D5 /* nautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL.o; sourceTree = "<group>"; };
+		A322807D22B78EDF009210D5 /* nautil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautil.c; sourceTree = "<group>"; };
+		A322807E22B78EDF009210D5 /* nausparse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nausparse.h; sourceTree = "<group>"; };
+		A322807F22B78EDF009210D5 /* blisstog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = blisstog.c; sourceTree = "<group>"; };
+		A322808022B78EDF009210D5 /* nausparse.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparse.o; sourceTree = "<group>"; };
+		A322808122B78EDF009210D5 /* naugroup.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroup.o; sourceTree = "<group>"; };
+		A322808222B78EDF009210D5 /* nautyL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL.a; sourceTree = "<group>"; };
+		A322808322B78EDF009210D5 /* schreier.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreier.o; sourceTree = "<group>"; };
+		A322808422B78EDF009210D5 /* naugraphW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW1.o; sourceTree = "<group>"; };
+		A322808522B78EDF009210D5 /* nautyex5.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex5.c; sourceTree = "<group>"; };
+		A322808622B78EDF009210D5 /* rng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = rng.c; sourceTree = "<group>"; };
+		A322808722B78EDF009210D5 /* naugroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugroup.h; sourceTree = "<group>"; };
+		A322808822B78EDF009210D5 /* schreier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = schreier.h; sourceTree = "<group>"; };
+		A322808922B78EDF009210D5 /* gtnautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL.o; sourceTree = "<group>"; };
+		A322808A22B78EDF009210D5 /* ranlabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ranlabg; sourceTree = "<group>"; };
+		A322808B22B78EDF009210D5 /* showg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = showg; sourceTree = "<group>"; };
+		A322808D22B78EF4009210D5 /* copyg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = copyg.c; sourceTree = "<group>"; };
+		A322808E22B78EF4009210D5 /* watercluster2 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = watercluster2; sourceTree = "<group>"; };
+		A322808F22B78EF4009210D5 /* pickg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = pickg; sourceTree = "<group>"; };
+		A322809022B78EF4009210D5 /* planarg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarg.c; sourceTree = "<group>"; };
+		A322809122B78EF4009210D5 /* linegraphg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = linegraphg; sourceTree = "<group>"; };
+		A322809222B78EF4009210D5 /* nautinv.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautinv.c; sourceTree = "<group>"; };
+		A322809322B78EF4009210D5 /* genspecialg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genspecialg.c; sourceTree = "<group>"; };
+		A322809422B78EF4009210D5 /* naututilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL.o; sourceTree = "<group>"; };
+		A322809522B78EF4009210D5 /* gutil1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil1.c; sourceTree = "<group>"; };
+		A322809622B78EF4009210D5 /* naugraph.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph.o; sourceTree = "<group>"; };
+		A322809722B78EF4009210D5 /* schreierL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierL.o; sourceTree = "<group>"; };
+		A322809822B78EF4009210D5 /* ranlabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ranlabg.c; sourceTree = "<group>"; };
+		A322809922B78EF4009210D5 /* naugraphL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL1.o; sourceTree = "<group>"; };
+		A322809A22B78EF4009210D5 /* naututil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naututil.c; sourceTree = "<group>"; };
+		A322809B22B78EF4009210D5 /* testg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = testg.c; sourceTree = "<group>"; };
+		A322809C22B78EF4009210D5 /* install-sh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "install-sh"; sourceTree = "<group>"; };
+		A322809D22B78EF4009210D5 /* configure.ac */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		A322809E22B78EF4009210D5 /* copyg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = copyg; sourceTree = "<group>"; };
+		A322809F22B78EF4009210D5 /* nauty-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "nauty-h.in"; sourceTree = "<group>"; };
+		A32280A022B78EF4009210D5 /* listg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = listg; sourceTree = "<group>"; };
+		A32280A122B78EF4009210D5 /* planarg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = planarg; sourceTree = "<group>"; };
+		A32280A222B78EF4009210D5 /* catg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = catg.c; sourceTree = "<group>"; };
+		A32280A322B78EF4009210D5 /* newedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = newedgeg; sourceTree = "<group>"; };
+		A32280A422B78EF4009210D5 /* nautyex10.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex10.c; sourceTree = "<group>"; };
+		A32280A522B78EF4009210D5 /* gutil1W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W1.o; sourceTree = "<group>"; };
+		A32280A622B78EF4009210D5 /* gtoolsL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsL.o; sourceTree = "<group>"; };
+		A32280A722B78EF4009210D5 /* nautinvL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL1.o; sourceTree = "<group>"; };
+		A32280A822B78EF4009210D5 /* twohamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = twohamg.c; sourceTree = "<group>"; };
+		A32280A922B78EF4009210D5 /* linegraphg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = linegraphg.c; sourceTree = "<group>"; };
+		A32280AA22B78EF4009210D5 /* gentourng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentourng; sourceTree = "<group>"; };
+		A32280AB22B78EF4009210D5 /* naugraph1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraph1.o; sourceTree = "<group>"; };
+		A32280AC22B78EF4009210D5 /* nautyex4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex4.c; sourceTree = "<group>"; };
+		A32280AD22B78EF4009210D5 /* nautaux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautaux.c; sourceTree = "<group>"; };
+		A32280AE22B78EF4009210D5 /* naugstrings.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugstrings.c; sourceTree = "<group>"; };
+		A32280AF22B78EF4009210D5 /* multig.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = multig.c; sourceTree = "<group>"; };
+		A32280B022B78EF4009210D5 /* config.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.txt; sourceTree = "<group>"; };
+		A32280B122B78EF4009210D5 /* gutil1W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1W.o; sourceTree = "<group>"; };
+		A32280B222B78EF4009210D5 /* configure */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = configure; sourceTree = "<group>"; };
+		A32280B322B78EF4009210D5 /* catg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = catg; sourceTree = "<group>"; };
+		A32280B422B78EF4009210D5 /* gutil2W1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W1.o; sourceTree = "<group>"; };
+		A32280B522B78EF4009210D5 /* gtnautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW1.o; sourceTree = "<group>"; };
+		A32280B622B78EF4009210D5 /* dreadnaut.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dreadnaut.c; sourceTree = "<group>"; };
+		A32280B722B78EF4009210D5 /* gentreeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gentreeg; sourceTree = "<group>"; };
+		A32280B822B78EF4009210D5 /* nautinvL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvL.o; sourceTree = "<group>"; };
+		A32280B922B78EF4009210D5 /* gtools.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtools.o; sourceTree = "<group>"; };
+		A32280BA22B78EF4009210D5 /* naugraphW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW.o; sourceTree = "<group>"; };
+		A32280BB22B78EF4009210D5 /* biplabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = biplabg; sourceTree = "<group>"; };
+		A32280BC22B78EF4009210D5 /* gtools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gtools.h; sourceTree = "<group>"; };
+		A32280BD22B78EF4009210D5 /* listg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = listg.c; sourceTree = "<group>"; };
+		A32280BE22B78EF4009210D5 /* nautest2b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2b.ans; sourceTree = "<group>"; };
+		A32280BF22B78EF4009210D5 /* nautestc.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestc.ans; sourceTree = "<group>"; };
+		A32280C022B78EF4009210D5 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		A32280C122B78EF4009210D5 /* dretog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretog; sourceTree = "<group>"; };
+		A32280C222B78EF4009210D5 /* nautestb.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestb.ans; sourceTree = "<group>"; };
+		A32280C322B78EF4009210D5 /* nautyW1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW1.a; sourceTree = "<group>"; };
+		A32280C422B78EF4009210D5 /* nauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauty.c; sourceTree = "<group>"; };
+		A32280C522B78EF4009210D5 /* gtoolsW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtoolsW.o; sourceTree = "<group>"; };
+		A32280C622B78EF4009210D5 /* nautyW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW1.o; sourceTree = "<group>"; };
+		A32280C722B78EF4009210D5 /* nautest2c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2c.ans; sourceTree = "<group>"; };
+		A32280C822B78EF4009210D5 /* nautest2a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2a.ans; sourceTree = "<group>"; };
+		A32280C922B78EF4009210D5 /* gutil1L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L.o; sourceTree = "<group>"; };
+		A32280CA22B78EF4009210D5 /* planarity.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = planarity.c; sourceTree = "<group>"; };
+		A32280CB22B78EF4009210D5 /* genbg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genbg.c; sourceTree = "<group>"; };
+		A32280CC22B78EF4009210D5 /* nautinv1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv1.o; sourceTree = "<group>"; };
+		A32280CD22B78EF4009210D5 /* traces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = traces.h; sourceTree = "<group>"; };
+		A32280CE22B78EF4009210D5 /* genquarticg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genquarticg; sourceTree = "<group>"; };
+		A32280CF22B78EF4009210D5 /* nautinvW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW.o; sourceTree = "<group>"; };
+		A32280D022B78EF4009210D5 /* subdivideg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = subdivideg.c; sourceTree = "<group>"; };
+		A32280D122B78EF4009210D5 /* nautesta.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautesta.ans; sourceTree = "<group>"; };
+		A32280D222B78EF4009210D5 /* gtnauty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtnauty.c; sourceTree = "<group>"; };
+		A32280D322B78EF4009210D5 /* geng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geng.c; sourceTree = "<group>"; };
+		A32280D422B78EF4009210D5 /* delptg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = delptg.c; sourceTree = "<group>"; };
+		A32280D522B78EF4009210D5 /* gutil2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gutil2.c; sourceTree = "<group>"; };
+		A32280D622B78EF4009210D5 /* traces.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = traces.o; sourceTree = "<group>"; };
+		A32280D722B78EF4009210D5 /* naugraphL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphL.o; sourceTree = "<group>"; };
+		A32280D822B78EF4009210D5 /* naututilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW1.o; sourceTree = "<group>"; };
+		A32280D922B78EF4009210D5 /* sumlines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sumlines.c; sourceTree = "<group>"; };
+		A32280DA22B78EF4009210D5 /* nautest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautest.c; sourceTree = "<group>"; };
+		A32280DB22B78EF4009210D5 /* nautyex9.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex9.c; sourceTree = "<group>"; };
+		A32280DC22B78EF4009210D5 /* directg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = directg; sourceTree = "<group>"; };
+		A32280DD22B78EF4009210D5 /* deledgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = deledgeg.c; sourceTree = "<group>"; };
+		A32280DE22B78EF4009210D5 /* naucompare.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naucompare.c; sourceTree = "<group>"; };
+		A32280DF22B78EF4009210D5 /* nautyex3.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex3.c; sourceTree = "<group>"; };
+		A32280E022B78EF4009210D5 /* nauteste.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nauteste.ans; sourceTree = "<group>"; };
+		A32280E122B78EF4009210D5 /* nautest1.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1.dre; sourceTree = "<group>"; };
+		A32280E222B78EF4009210D5 /* nautil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil.o; sourceTree = "<group>"; };
+		A32280E322B78EF4009210D5 /* README_24 */ = {isa = PBXFileReference; lastKnownFileType = text; path = README_24; sourceTree = "<group>"; };
+		A32280E422B78EF4009210D5 /* nautestd.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestd.ans; sourceTree = "<group>"; };
+		A32280E522B78EF4009210D5 /* nausparse.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nausparse.c; sourceTree = "<group>"; };
+		A32280E622B78EF4009210D5 /* schreier.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = schreier.c; sourceTree = "<group>"; };
+		A32280E722B78EF4009210D5 /* complg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = complg; sourceTree = "<group>"; };
+		A32280E822B78EF4009210D5 /* naugroup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugroup.c; sourceTree = "<group>"; };
+		A32280E922B78EF4009210D5 /* rng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rng.h; sourceTree = "<group>"; };
+		A32280EA22B78EF4009210D5 /* converseg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = converseg; sourceTree = "<group>"; };
+		A32280EB22B78EF4009210D5 /* config.guess */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.guess; sourceTree = "<group>"; };
+		A32280EC22B78EF4009210D5 /* complg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = complg.c; sourceTree = "<group>"; };
+		A32280ED22B78EF4009210D5 /* quarticirred28.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quarticirred28.h; sourceTree = "<group>"; };
+		A32280EE22B78EF4009210D5 /* schreierW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreierW.o; sourceTree = "<group>"; };
+		A32280EF22B78EF4009210D5 /* naututilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilW.o; sourceTree = "<group>"; };
+		A32280F022B78EF4009210D5 /* runalltests */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runalltests; sourceTree = "<group>"; };
+		A32280F122B78EF4009210D5 /* nautestf.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestf.ans; sourceTree = "<group>"; };
+		A32280F222B78EF4009210D5 /* poptest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = poptest.c; sourceTree = "<group>"; };
+		A32280F322B78EF4009210D5 /* nautest2.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest2.dre; sourceTree = "<group>"; };
+		A32280F422B78EF4009210D5 /* labelg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = labelg; sourceTree = "<group>"; };
+		A32280F522B78EF4009210D5 /* nautyex7.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex7.c; sourceTree = "<group>"; };
+		A32280F622B78EF4009210D5 /* naurng.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naurng.o; sourceTree = "<group>"; };
+		A32280F722B78EF4009210D5 /* nautilW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW1.o; sourceTree = "<group>"; };
+		A32280F822B78EF4009210D5 /* nautestg.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautestg.ans; sourceTree = "<group>"; };
+		A32280F922B78EF4009210D5 /* showg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = showg.c; sourceTree = "<group>"; };
+		A32280FA22B78EF4009210D5 /* naututil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil1.o; sourceTree = "<group>"; };
+		A32280FB22B78EF4009210D5 /* naurng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naurng.h; sourceTree = "<group>"; };
+		A32280FC22B78EF4009210D5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A32280FD22B78EF4009210D5 /* cubhamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cubhamg; sourceTree = "<group>"; };
+		A32280FE22B78EF4009210D5 /* naututil.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututil.o; sourceTree = "<group>"; };
+		A32280FF22B78EF4009210D5 /* nautilW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilW.o; sourceTree = "<group>"; };
+		A322810022B78EF4009210D5 /* naututil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naututil.h; sourceTree = "<group>"; };
+		A322810122B78EF4009210D5 /* shortg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = shortg; sourceTree = "<group>"; };
+		A322810222B78EF4009210D5 /* addedgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = addedgeg; sourceTree = "<group>"; };
+		A322810322B78EF4009210D5 /* vcolg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vcolg.c; sourceTree = "<group>"; };
+		A322810422B78EF4009210D5 /* genrang.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genrang.c; sourceTree = "<group>"; };
+		A322810522B78EF4009210D5 /* gutil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1.o; sourceTree = "<group>"; };
+		A322810622B78EF4009210D5 /* nausparseW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseW.o; sourceTree = "<group>"; };
+		A322810722B78EF4009210D5 /* naugraph.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naugraph.c; sourceTree = "<group>"; };
+		A322810822B78EF4009210D5 /* naututil-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "naututil-h.in"; sourceTree = "<group>"; };
+		A322810922B78EF4009210D5 /* nauthread1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread1.c; sourceTree = "<group>"; };
+		A322810A22B78EF4009210D5 /* genbgL */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbgL; sourceTree = "<group>"; };
+		A322810B22B78EF4009210D5 /* nautil1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautil1.o; sourceTree = "<group>"; };
+		A322810C22B78EF4009210D5 /* config.status */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.status; sourceTree = "<group>"; };
+		A322810D22B78EF4009210D5 /* config.sub */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = config.sub; sourceTree = "<group>"; };
+		A322810E22B78EF4009210D5 /* nautyW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyW.a; sourceTree = "<group>"; };
+		A322810F22B78EF4009210D5 /* genspecialg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genspecialg; sourceTree = "<group>"; };
+		A322811022B78EF4009210D5 /* nautinv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautinv.h; sourceTree = "<group>"; };
+		A322811122B78EF4009210D5 /* nautilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL1.o; sourceTree = "<group>"; };
+		A322811222B78EF4009210D5 /* nautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyW.o; sourceTree = "<group>"; };
+		A322811322B78EF4009210D5 /* nautinv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinv.o; sourceTree = "<group>"; };
+		A322811422B78EF4009210D5 /* nauty1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty1.o; sourceTree = "<group>"; };
+		A322811522B78EF4009210D5 /* gutils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gutils.h; sourceTree = "<group>"; };
+		A322811622B78EF4009210D5 /* gtnautyW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyW.o; sourceTree = "<group>"; };
+		A322811722B78EF4009210D5 /* vcolg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = vcolg; sourceTree = "<group>"; };
+		A322811822B78EF4009210D5 /* nauty1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty1.a; sourceTree = "<group>"; };
+		A322811922B78EF4009210D5 /* nautest1c.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.dre; sourceTree = "<group>"; };
+		A322811A22B78EF4009210D5 /* watercluster2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = watercluster2.c; sourceTree = "<group>"; };
+		A322811B22B78EF4009210D5 /* bliss2dre.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bliss2dre.c; sourceTree = "<group>"; };
+		A322811C22B78EF4009210D5 /* converseg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = converseg.c; sourceTree = "<group>"; };
+		A322811D22B78EF4009210D5 /* nautest1a.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.ans; sourceTree = "<group>"; };
+		A322811E22B78EF4009210D5 /* nautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL1.o; sourceTree = "<group>"; };
+		A322811F22B78EF4009210D5 /* nautyex2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex2.c; sourceTree = "<group>"; };
+		A322812022B78EF4009210D5 /* gtools-h.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = "gtools-h.in"; sourceTree = "<group>"; };
+		A322812122B78EF4009210D5 /* nautyL1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL1.a; sourceTree = "<group>"; };
+		A322812222B78EF4009210D5 /* gtools.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gtools.c; sourceTree = "<group>"; };
+		A322812322B78EF4009210D5 /* nautyex8.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex8.c; sourceTree = "<group>"; };
+		A322812422B78EF4009210D5 /* directg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = directg.c; sourceTree = "<group>"; };
+		A322812522B78EF4009210D5 /* deledgeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = deledgeg; sourceTree = "<group>"; };
+		A322812622B78EF4009210D5 /* NRswitchg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = NRswitchg; sourceTree = "<group>"; };
+		A322812722B78EF4009210D5 /* naugstrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugstrings.h; sourceTree = "<group>"; };
+		A322812822B78EF4009210D5 /* nautaux.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nautaux.h; sourceTree = "<group>"; };
+		A322812922B78EF4009210D5 /* This_is_nauty26r11. */ = {isa = PBXFileReference; lastKnownFileType = text; path = This_is_nauty26r11.; sourceTree = "<group>"; };
+		A322812A22B78EF4009210D5 /* splay.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = splay.c; sourceTree = "<group>"; };
+		A322812B22B78EF4009210D5 /* nautest1b.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.dre; sourceTree = "<group>"; };
+		A322812C22B78EF4009210D5 /* sorttemplates.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sorttemplates.c; sourceTree = "<group>"; };
+		A322812D22B78EF4009210D5 /* twohamg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = twohamg; sourceTree = "<group>"; };
+		A322812E22B78EF4009210D5 /* nautest1b.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1b.ans; sourceTree = "<group>"; };
+		A322812F22B78EF4009210D5 /* naututilL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naututilL1.o; sourceTree = "<group>"; };
+		A322813022B78EF4009210D5 /* gutil2L.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L.o; sourceTree = "<group>"; };
+		A322813122B78EF4009210D5 /* NRswitchg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NRswitchg.c; sourceTree = "<group>"; };
+		A322813222B78EF4009210D5 /* hamheuristic */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = hamheuristic; sourceTree = "<group>"; };
+		A322813322B78EF4009210D5 /* nug26.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nug26.pdf; sourceTree = "<group>"; };
+		A322813422B78EF4009210D5 /* amtog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = amtog.c; sourceTree = "<group>"; };
+		A322813522B78EF4009210D5 /* naugroupL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupL.o; sourceTree = "<group>"; };
+		A322813622B78EF4009210D5 /* formats.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = formats.txt; sourceTree = "<group>"; };
+		A322813722B78EF4009210D5 /* shortg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = shortg.c; sourceTree = "<group>"; };
+		A322813822B78EF4009210D5 /* amtog */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = amtog; sourceTree = "<group>"; };
+		A322813922B78EF4009210D5 /* dreadnaut */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dreadnaut; sourceTree = "<group>"; };
+		A322813A22B78EF4009210D5 /* nautest1c.ans */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1c.ans; sourceTree = "<group>"; };
+		A322813B22B78EF4009210D5 /* nautest1a.dre */ = {isa = PBXFileReference; lastKnownFileType = text; path = nautest1a.dre; sourceTree = "<group>"; };
+		A322813C22B78EF4009210D5 /* config.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
+		A322813D22B78EF4009210D5 /* nautyex6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex6.c; sourceTree = "<group>"; };
+		A322813E22B78EF4009210D5 /* gtnauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnauty.o; sourceTree = "<group>"; };
+		A322813F22B78EF4009210D5 /* checks6.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = checks6.c; sourceTree = "<group>"; };
+		A322814022B78EF4009210D5 /* callgeng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = callgeng.c; sourceTree = "<group>"; };
+		A322814122B78EF4009210D5 /* genbg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genbg; sourceTree = "<group>"; };
+		A322814222B78EF4009210D5 /* gutil2.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2.o; sourceTree = "<group>"; };
+		A322814322B78EF4009210D5 /* traces.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = traces.c; sourceTree = "<group>"; };
+		A322814422B78EF4009210D5 /* labelg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = labelg.c; sourceTree = "<group>"; };
+		A322814522B78EF4009210D5 /* gutil1L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil1L1.o; sourceTree = "<group>"; };
+		A322814622B78EF4009210D5 /* nauthread2.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nauthread2.c; sourceTree = "<group>"; };
+		A322814722B78EF4009210D5 /* dretog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretog.c; sourceTree = "<group>"; };
+		A322814822B78EF4009210D5 /* genquarticg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = genquarticg.c; sourceTree = "<group>"; };
+		A322814922B78EF4009210D5 /* COPYRIGHT */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYRIGHT; sourceTree = "<group>"; };
+		A322814A22B78EF4009210D5 /* nautinvW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautinvW1.o; sourceTree = "<group>"; };
+		A322814B22B78EF4009210D5 /* changes24-26.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "changes24-26.txt"; sourceTree = "<group>"; };
+		A322814C22B78EF4009210D5 /* planarity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = planarity.h; sourceTree = "<group>"; };
+		A322814D22B78EF4009210D5 /* hamheuristic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hamheuristic.c; sourceTree = "<group>"; };
+		A322814E22B78EF4009210D5 /* nauty.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nauty.a; sourceTree = "<group>"; };
+		A322814F22B78EF4009210D5 /* subdivideg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = subdivideg; sourceTree = "<group>"; };
+		A322815022B78EF4009210D5 /* gtnautyL1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL1.o; sourceTree = "<group>"; };
+		A322815122B78EF4009210D5 /* gutil2L1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2L1.o; sourceTree = "<group>"; };
+		A322815222B78EF4009210D5 /* nauty.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nauty.o; sourceTree = "<group>"; };
+		A322815322B78EF4009210D5 /* newedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = newedgeg.c; sourceTree = "<group>"; };
+		A322815422B78EF4009210D5 /* gutil2W.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gutil2W.o; sourceTree = "<group>"; };
+		A322815522B78EF4009210D5 /* genrang */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = genrang; sourceTree = "<group>"; };
+		A322815622B78EF4009210D5 /* delptg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = delptg; sourceTree = "<group>"; };
+		A322815722B78EF4009210D5 /* nauty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nauty.h; sourceTree = "<group>"; };
+		A322815822B78EF4009210D5 /* cubhamg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cubhamg.c; sourceTree = "<group>"; };
+		A322815922B78EF4009210D5 /* naugroupW.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroupW.o; sourceTree = "<group>"; };
+		A322815A22B78EF4009210D5 /* schreier.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = schreier.txt; sourceTree = "<group>"; };
+		A322815B22B78EF4009210D5 /* gentreeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentreeg.c; sourceTree = "<group>"; };
+		A322815C22B78EF4009210D5 /* naurng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = naurng.c; sourceTree = "<group>"; };
+		A322815D22B78EF4009210D5 /* geng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = geng; sourceTree = "<group>"; };
+		A322815E22B78EF4009210D5 /* makefile.basic */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.basic; sourceTree = "<group>"; };
+		A322815F22B78EF4009210D5 /* makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = makefile.in; sourceTree = "<group>"; };
+		A322816022B78EF4009210D5 /* nautilL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautilL.o; sourceTree = "<group>"; };
+		A322816122B78EF4009210D5 /* multig */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = multig; sourceTree = "<group>"; };
+		A322816222B78EF4009210D5 /* addedgeg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = addedgeg.c; sourceTree = "<group>"; };
+		A322816322B78EF4009210D5 /* nausparseL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparseL.o; sourceTree = "<group>"; };
+		A322816422B78EF4009210D5 /* countg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = countg; sourceTree = "<group>"; };
+		A322816522B78EF4009210D5 /* nautyex1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex1.c; sourceTree = "<group>"; };
+		A322816622B78EF4009210D5 /* gentourng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gentourng.c; sourceTree = "<group>"; };
+		A322816722B78EF4009210D5 /* dretodot.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dretodot.c; sourceTree = "<group>"; };
+		A322816822B78EF4009210D5 /* dretodot */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = dretodot; sourceTree = "<group>"; };
+		A322816922B78EF4009210D5 /* biplabg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = biplabg.c; sourceTree = "<group>"; };
+		A322816A22B78EF4009210D5 /* nautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nautyL.o; sourceTree = "<group>"; };
+		A322816B22B78EF4009210D5 /* nautil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautil.c; sourceTree = "<group>"; };
+		A322816C22B78EF4009210D5 /* nausparse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nausparse.h; sourceTree = "<group>"; };
+		A322816D22B78EF4009210D5 /* blisstog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = blisstog.c; sourceTree = "<group>"; };
+		A322816E22B78EF4009210D5 /* nausparse.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = nausparse.o; sourceTree = "<group>"; };
+		A322816F22B78EF4009210D5 /* naugroup.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugroup.o; sourceTree = "<group>"; };
+		A322817022B78EF4009210D5 /* nautyL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = nautyL.a; sourceTree = "<group>"; };
+		A322817122B78EF4009210D5 /* schreier.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = schreier.o; sourceTree = "<group>"; };
+		A322817222B78EF4009210D5 /* naugraphW1.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = naugraphW1.o; sourceTree = "<group>"; };
+		A322817322B78EF4009210D5 /* nautyex5.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = nautyex5.c; sourceTree = "<group>"; };
+		A322817422B78EF4009210D5 /* rng.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = rng.c; sourceTree = "<group>"; };
+		A322817522B78EF4009210D5 /* naugroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = naugroup.h; sourceTree = "<group>"; };
+		A322817622B78EF4009210D5 /* schreier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = schreier.h; sourceTree = "<group>"; };
+		A322817722B78EF4009210D5 /* gtnautyL.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = gtnautyL.o; sourceTree = "<group>"; };
+		A322817822B78EF4009210D5 /* ranlabg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ranlabg; sourceTree = "<group>"; };
+		A322817922B78EF4009210D5 /* showg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = showg; sourceTree = "<group>"; };
 		A337EEF7225C985A00AF49CC /* Graphlet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphlet.cpp; sourceTree = "<group>"; };
 		A337EEF8225C985A00AF49CC /* Graphlet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Graphlet.hpp; sourceTree = "<group>"; };
 		A369C9B922683BD7000AB92D /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
@@ -56,6 +770,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A322817B22B798F2009210D5 /* nauty.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +784,751 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3227EAE22B78EBA009210D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A322808C22B78EF4009210D5 /* nauty26r11 */,
+				A3227F9E22B78EDE009210D5 /* nauty26r11 */,
+				A3227EB022B78ECB009210D5 /* nauty26r11 */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3227EB022B78ECB009210D5 /* nauty26r11 */ = {
+			isa = PBXGroup;
+			children = (
+				A3227EB122B78ECB009210D5 /* copyg.c */,
+				A3227EB222B78ECB009210D5 /* watercluster2 */,
+				A3227EB322B78ECB009210D5 /* pickg */,
+				A3227EB422B78ECB009210D5 /* planarg.c */,
+				A3227EB522B78ECB009210D5 /* linegraphg */,
+				A3227EB622B78ECB009210D5 /* nautinv.c */,
+				A3227EB722B78ECB009210D5 /* genspecialg.c */,
+				A3227EB822B78ECB009210D5 /* naututilL.o */,
+				A3227EB922B78ECB009210D5 /* gutil1.c */,
+				A3227EBA22B78ECB009210D5 /* naugraph.o */,
+				A3227EBB22B78ECB009210D5 /* schreierL.o */,
+				A3227EBC22B78ECB009210D5 /* ranlabg.c */,
+				A3227EBD22B78ECB009210D5 /* naugraphL1.o */,
+				A3227EBE22B78ECB009210D5 /* naututil.c */,
+				A3227EBF22B78ECB009210D5 /* testg.c */,
+				A3227EC022B78ECB009210D5 /* install-sh */,
+				A3227EC122B78ECB009210D5 /* configure.ac */,
+				A3227EC222B78ECB009210D5 /* copyg */,
+				A3227EC322B78ECB009210D5 /* nauty-h.in */,
+				A3227EC422B78ECB009210D5 /* listg */,
+				A3227EC522B78ECB009210D5 /* planarg */,
+				A3227EC622B78ECB009210D5 /* catg.c */,
+				A3227EC722B78ECB009210D5 /* newedgeg */,
+				A3227EC822B78ECB009210D5 /* nautyex10.c */,
+				A3227EC922B78ECB009210D5 /* gutil1W1.o */,
+				A3227ECA22B78ECB009210D5 /* gtoolsL.o */,
+				A3227ECB22B78ECB009210D5 /* nautinvL1.o */,
+				A3227ECC22B78ECB009210D5 /* twohamg.c */,
+				A3227ECD22B78ECB009210D5 /* linegraphg.c */,
+				A3227ECE22B78ECB009210D5 /* gentourng */,
+				A3227ECF22B78ECB009210D5 /* naugraph1.o */,
+				A3227ED022B78ECB009210D5 /* nautyex4.c */,
+				A3227ED122B78ECB009210D5 /* nautaux.c */,
+				A3227ED222B78ECB009210D5 /* naugstrings.c */,
+				A3227ED322B78ECB009210D5 /* multig.c */,
+				A3227ED422B78ECB009210D5 /* config.txt */,
+				A3227ED522B78ECB009210D5 /* gutil1W.o */,
+				A3227ED622B78ECB009210D5 /* configure */,
+				A3227ED722B78ECB009210D5 /* catg */,
+				A3227ED822B78ECB009210D5 /* gutil2W1.o */,
+				A3227ED922B78ECB009210D5 /* gtnautyW1.o */,
+				A3227EDA22B78ECB009210D5 /* dreadnaut.c */,
+				A3227EDB22B78ECB009210D5 /* gentreeg */,
+				A3227EDC22B78ECB009210D5 /* nautinvL.o */,
+				A3227EDD22B78ECB009210D5 /* gtools.o */,
+				A3227EDE22B78ECB009210D5 /* naugraphW.o */,
+				A3227EDF22B78ECB009210D5 /* biplabg */,
+				A3227EE022B78ECB009210D5 /* gtools.h */,
+				A3227EE122B78ECB009210D5 /* listg.c */,
+				A3227EE222B78ECB009210D5 /* nautest2b.ans */,
+				A3227EE322B78ECB009210D5 /* nautestc.ans */,
+				A3227EE422B78ECB009210D5 /* makefile */,
+				A3227EE522B78ECB009210D5 /* dretog */,
+				A3227EE622B78ECB009210D5 /* nautestb.ans */,
+				A3227EE722B78ECB009210D5 /* nautyW1.a */,
+				A3227EE822B78ECB009210D5 /* nauty.c */,
+				A3227EE922B78ECB009210D5 /* gtoolsW.o */,
+				A3227EEA22B78ECB009210D5 /* nautyW1.o */,
+				A3227EEB22B78ECB009210D5 /* nautest2c.ans */,
+				A3227EEC22B78ECB009210D5 /* nautest2a.ans */,
+				A3227EED22B78ECB009210D5 /* gutil1L.o */,
+				A3227EEE22B78ECB009210D5 /* planarity.c */,
+				A3227EEF22B78ECB009210D5 /* genbg.c */,
+				A3227EF022B78ECB009210D5 /* nautinv1.o */,
+				A3227EF122B78ECB009210D5 /* traces.h */,
+				A3227EF222B78ECB009210D5 /* genquarticg */,
+				A3227EF322B78ECB009210D5 /* nautinvW.o */,
+				A3227EF422B78ECB009210D5 /* subdivideg.c */,
+				A3227EF522B78ECB009210D5 /* nautesta.ans */,
+				A3227EF622B78ECB009210D5 /* gtnauty.c */,
+				A3227EF722B78ECB009210D5 /* geng.c */,
+				A3227EF822B78ECB009210D5 /* delptg.c */,
+				A3227EF922B78ECB009210D5 /* gutil2.c */,
+				A3227EFA22B78ECB009210D5 /* traces.o */,
+				A3227EFB22B78ECB009210D5 /* naugraphL.o */,
+				A3227EFC22B78ECB009210D5 /* naututilW1.o */,
+				A3227EFD22B78ECB009210D5 /* sumlines.c */,
+				A3227EFE22B78ECB009210D5 /* nautest.c */,
+				A3227EFF22B78ECB009210D5 /* nautyex9.c */,
+				A3227F0022B78ECB009210D5 /* directg */,
+				A3227F0122B78ECB009210D5 /* deledgeg.c */,
+				A3227F0222B78ECB009210D5 /* naucompare.c */,
+				A3227F0322B78ECB009210D5 /* nautyex3.c */,
+				A3227F0422B78ECB009210D5 /* nauteste.ans */,
+				A3227F0522B78ECB009210D5 /* nautest1.dre */,
+				A3227F0622B78ECB009210D5 /* nautil.o */,
+				A3227F0722B78ECB009210D5 /* README_24 */,
+				A3227F0822B78ECB009210D5 /* nautestd.ans */,
+				A3227F0922B78ECB009210D5 /* nausparse.c */,
+				A3227F0A22B78ECB009210D5 /* schreier.c */,
+				A3227F0B22B78ECB009210D5 /* complg */,
+				A3227F0C22B78ECB009210D5 /* naugroup.c */,
+				A3227F0D22B78ECB009210D5 /* rng.h */,
+				A3227F0E22B78ECB009210D5 /* converseg */,
+				A3227F0F22B78ECB009210D5 /* config.guess */,
+				A3227F1022B78ECB009210D5 /* complg.c */,
+				A3227F1122B78ECB009210D5 /* quarticirred28.h */,
+				A3227F1222B78ECB009210D5 /* schreierW.o */,
+				A3227F1322B78ECB009210D5 /* naututilW.o */,
+				A3227F1422B78ECB009210D5 /* runalltests */,
+				A3227F1522B78ECB009210D5 /* nautestf.ans */,
+				A3227F1622B78ECB009210D5 /* poptest.c */,
+				A3227F1722B78ECB009210D5 /* nautest2.dre */,
+				A3227F1822B78ECB009210D5 /* labelg */,
+				A3227F1922B78ECB009210D5 /* nautyex7.c */,
+				A3227F1A22B78ECB009210D5 /* naurng.o */,
+				A3227F1B22B78ECB009210D5 /* nautilW1.o */,
+				A3227F1C22B78ECB009210D5 /* nautestg.ans */,
+				A3227F1D22B78ECB009210D5 /* showg.c */,
+				A3227F1E22B78ECB009210D5 /* naututil1.o */,
+				A3227F1F22B78ECB009210D5 /* naurng.h */,
+				A3227F2022B78ECB009210D5 /* README */,
+				A3227F2122B78ECB009210D5 /* cubhamg */,
+				A3227F2222B78ECB009210D5 /* naututil.o */,
+				A3227F2322B78ECB009210D5 /* nautilW.o */,
+				A3227F2422B78ECB009210D5 /* naututil.h */,
+				A3227F2522B78ECB009210D5 /* shortg */,
+				A3227F2622B78ECB009210D5 /* addedgeg */,
+				A3227F2722B78ECB009210D5 /* vcolg.c */,
+				A3227F2822B78ECB009210D5 /* genrang.c */,
+				A3227F2922B78ECB009210D5 /* gutil1.o */,
+				A3227F2A22B78ECB009210D5 /* nausparseW.o */,
+				A3227F2B22B78ECB009210D5 /* naugraph.c */,
+				A3227F2C22B78ECB009210D5 /* naututil-h.in */,
+				A3227F2D22B78ECB009210D5 /* nauthread1.c */,
+				A3227F2E22B78ECB009210D5 /* genbgL */,
+				A3227F2F22B78ECB009210D5 /* nautil1.o */,
+				A3227F3022B78ECB009210D5 /* config.status */,
+				A3227F3122B78ECB009210D5 /* config.sub */,
+				A3227F3222B78ECB009210D5 /* nautyW.a */,
+				A3227F3322B78ECB009210D5 /* genspecialg */,
+				A3227F3422B78ECB009210D5 /* nautinv.h */,
+				A3227F3522B78ECB009210D5 /* nautilL1.o */,
+				A3227F3622B78ECB009210D5 /* nautyW.o */,
+				A3227F3722B78ECB009210D5 /* nautinv.o */,
+				A3227F3822B78ECB009210D5 /* nauty1.o */,
+				A3227F3922B78ECB009210D5 /* gutils.h */,
+				A3227F3A22B78ECB009210D5 /* gtnautyW.o */,
+				A3227F3B22B78ECB009210D5 /* vcolg */,
+				A3227F3C22B78ECB009210D5 /* nauty1.a */,
+				A3227F3D22B78ECB009210D5 /* nautest1c.dre */,
+				A3227F3E22B78ECB009210D5 /* watercluster2.c */,
+				A3227F3F22B78ECB009210D5 /* bliss2dre.c */,
+				A3227F4022B78ECB009210D5 /* converseg.c */,
+				A3227F4122B78ECB009210D5 /* nautest1a.ans */,
+				A3227F4222B78ECB009210D5 /* nautyL1.o */,
+				A3227F4322B78ECB009210D5 /* nautyex2.c */,
+				A3227F4422B78ECB009210D5 /* gtools-h.in */,
+				A3227F4522B78ECB009210D5 /* nautyL1.a */,
+				A3227F4622B78ECB009210D5 /* gtools.c */,
+				A3227F4722B78ECB009210D5 /* nautyex8.c */,
+				A3227F4822B78ECB009210D5 /* directg.c */,
+				A3227F4922B78ECB009210D5 /* deledgeg */,
+				A3227F4A22B78ECB009210D5 /* NRswitchg */,
+				A3227F4B22B78ECB009210D5 /* naugstrings.h */,
+				A3227F4C22B78ECB009210D5 /* nautaux.h */,
+				A3227F4D22B78ECB009210D5 /* This_is_nauty26r11. */,
+				A3227F4E22B78ECB009210D5 /* splay.c */,
+				A3227F4F22B78ECB009210D5 /* nautest1b.dre */,
+				A3227F5022B78ECB009210D5 /* sorttemplates.c */,
+				A3227F5122B78ECB009210D5 /* twohamg */,
+				A3227F5222B78ECB009210D5 /* nautest1b.ans */,
+				A3227F5322B78ECB009210D5 /* naututilL1.o */,
+				A3227F5422B78ECB009210D5 /* gutil2L.o */,
+				A3227F5522B78ECB009210D5 /* NRswitchg.c */,
+				A3227F5622B78ECB009210D5 /* hamheuristic */,
+				A3227F5722B78ECB009210D5 /* nug26.pdf */,
+				A3227F5822B78ECB009210D5 /* amtog.c */,
+				A3227F5922B78ECB009210D5 /* naugroupL.o */,
+				A3227F5A22B78ECB009210D5 /* formats.txt */,
+				A3227F5B22B78ECB009210D5 /* shortg.c */,
+				A3227F5C22B78ECB009210D5 /* amtog */,
+				A3227F5D22B78ECB009210D5 /* dreadnaut */,
+				A3227F5E22B78ECB009210D5 /* nautest1c.ans */,
+				A3227F5F22B78ECB009210D5 /* nautest1a.dre */,
+				A3227F6022B78ECB009210D5 /* config.log */,
+				A3227F6122B78ECB009210D5 /* nautyex6.c */,
+				A3227F6222B78ECB009210D5 /* gtnauty.o */,
+				A3227F6322B78ECB009210D5 /* checks6.c */,
+				A3227F6422B78ECB009210D5 /* callgeng.c */,
+				A3227F6522B78ECB009210D5 /* genbg */,
+				A3227F6622B78ECB009210D5 /* gutil2.o */,
+				A3227F6722B78ECB009210D5 /* traces.c */,
+				A3227F6822B78ECB009210D5 /* labelg.c */,
+				A3227F6922B78ECB009210D5 /* gutil1L1.o */,
+				A3227F6A22B78ECB009210D5 /* nauthread2.c */,
+				A3227F6B22B78ECB009210D5 /* dretog.c */,
+				A3227F6C22B78ECB009210D5 /* genquarticg.c */,
+				A3227F6D22B78ECB009210D5 /* COPYRIGHT */,
+				A3227F6E22B78ECB009210D5 /* nautinvW1.o */,
+				A3227F6F22B78ECB009210D5 /* changes24-26.txt */,
+				A3227F7022B78ECB009210D5 /* planarity.h */,
+				A3227F7122B78ECB009210D5 /* hamheuristic.c */,
+				A3227F7222B78ECB009210D5 /* nauty.a */,
+				A3227F7322B78ECB009210D5 /* subdivideg */,
+				A3227F7422B78ECB009210D5 /* gtnautyL1.o */,
+				A3227F7522B78ECB009210D5 /* gutil2L1.o */,
+				A3227F7622B78ECB009210D5 /* nauty.o */,
+				A3227F7722B78ECB009210D5 /* newedgeg.c */,
+				A3227F7822B78ECB009210D5 /* gutil2W.o */,
+				A3227F7922B78ECB009210D5 /* genrang */,
+				A3227F7A22B78ECB009210D5 /* delptg */,
+				A3227F7B22B78ECB009210D5 /* nauty.h */,
+				A3227F7C22B78ECB009210D5 /* cubhamg.c */,
+				A3227F7D22B78ECB009210D5 /* naugroupW.o */,
+				A3227F7E22B78ECB009210D5 /* schreier.txt */,
+				A3227F7F22B78ECB009210D5 /* gentreeg.c */,
+				A3227F8022B78ECB009210D5 /* naurng.c */,
+				A3227F8122B78ECB009210D5 /* geng */,
+				A3227F8222B78ECB009210D5 /* makefile.basic */,
+				A3227F8322B78ECB009210D5 /* makefile.in */,
+				A3227F8422B78ECB009210D5 /* nautilL.o */,
+				A3227F8522B78ECB009210D5 /* multig */,
+				A3227F8622B78ECB009210D5 /* addedgeg.c */,
+				A3227F8722B78ECB009210D5 /* nausparseL.o */,
+				A3227F8822B78ECB009210D5 /* countg */,
+				A3227F8922B78ECB009210D5 /* nautyex1.c */,
+				A3227F8A22B78ECB009210D5 /* gentourng.c */,
+				A3227F8B22B78ECB009210D5 /* dretodot.c */,
+				A3227F8C22B78ECB009210D5 /* dretodot */,
+				A3227F8D22B78ECB009210D5 /* biplabg.c */,
+				A3227F8E22B78ECB009210D5 /* nautyL.o */,
+				A3227F8F22B78ECB009210D5 /* nautil.c */,
+				A3227F9022B78ECB009210D5 /* nausparse.h */,
+				A3227F9122B78ECB009210D5 /* blisstog.c */,
+				A3227F9222B78ECB009210D5 /* nausparse.o */,
+				A3227F9322B78ECB009210D5 /* naugroup.o */,
+				A3227F9422B78ECB009210D5 /* nautyL.a */,
+				A3227F9522B78ECB009210D5 /* schreier.o */,
+				A3227F9622B78ECB009210D5 /* naugraphW1.o */,
+				A3227F9722B78ECB009210D5 /* nautyex5.c */,
+				A3227F9822B78ECB009210D5 /* rng.c */,
+				A3227F9922B78ECB009210D5 /* naugroup.h */,
+				A3227F9A22B78ECB009210D5 /* schreier.h */,
+				A3227F9B22B78ECB009210D5 /* gtnautyL.o */,
+				A3227F9C22B78ECB009210D5 /* ranlabg */,
+				A3227F9D22B78ECB009210D5 /* showg */,
+			);
+			name = nauty26r11;
+			path = ../../../../Downloads/nauty26r11;
+			sourceTree = "<group>";
+		};
+		A3227F9E22B78EDE009210D5 /* nauty26r11 */ = {
+			isa = PBXGroup;
+			children = (
+				A3227F9F22B78EDE009210D5 /* copyg.c */,
+				A3227FA022B78EDE009210D5 /* watercluster2 */,
+				A3227FA122B78EDE009210D5 /* pickg */,
+				A3227FA222B78EDE009210D5 /* planarg.c */,
+				A3227FA322B78EDE009210D5 /* linegraphg */,
+				A3227FA422B78EDE009210D5 /* nautinv.c */,
+				A3227FA522B78EDE009210D5 /* genspecialg.c */,
+				A3227FA622B78EDE009210D5 /* naututilL.o */,
+				A3227FA722B78EDE009210D5 /* gutil1.c */,
+				A3227FA822B78EDE009210D5 /* naugraph.o */,
+				A3227FA922B78EDE009210D5 /* schreierL.o */,
+				A3227FAA22B78EDE009210D5 /* ranlabg.c */,
+				A3227FAB22B78EDE009210D5 /* naugraphL1.o */,
+				A3227FAC22B78EDE009210D5 /* naututil.c */,
+				A3227FAD22B78EDE009210D5 /* testg.c */,
+				A3227FAE22B78EDE009210D5 /* install-sh */,
+				A3227FAF22B78EDE009210D5 /* configure.ac */,
+				A3227FB022B78EDE009210D5 /* copyg */,
+				A3227FB122B78EDE009210D5 /* nauty-h.in */,
+				A3227FB222B78EDE009210D5 /* listg */,
+				A3227FB322B78EDE009210D5 /* planarg */,
+				A3227FB422B78EDE009210D5 /* catg.c */,
+				A3227FB522B78EDE009210D5 /* newedgeg */,
+				A3227FB622B78EDE009210D5 /* nautyex10.c */,
+				A3227FB722B78EDE009210D5 /* gutil1W1.o */,
+				A3227FB822B78EDE009210D5 /* gtoolsL.o */,
+				A3227FB922B78EDE009210D5 /* nautinvL1.o */,
+				A3227FBA22B78EDE009210D5 /* twohamg.c */,
+				A3227FBB22B78EDE009210D5 /* linegraphg.c */,
+				A3227FBC22B78EDE009210D5 /* gentourng */,
+				A3227FBD22B78EDE009210D5 /* naugraph1.o */,
+				A3227FBE22B78EDE009210D5 /* nautyex4.c */,
+				A3227FBF22B78EDE009210D5 /* nautaux.c */,
+				A3227FC022B78EDE009210D5 /* naugstrings.c */,
+				A3227FC122B78EDE009210D5 /* multig.c */,
+				A3227FC222B78EDE009210D5 /* config.txt */,
+				A3227FC322B78EDE009210D5 /* gutil1W.o */,
+				A3227FC422B78EDE009210D5 /* configure */,
+				A3227FC522B78EDE009210D5 /* catg */,
+				A3227FC622B78EDE009210D5 /* gutil2W1.o */,
+				A3227FC722B78EDE009210D5 /* gtnautyW1.o */,
+				A3227FC822B78EDE009210D5 /* dreadnaut.c */,
+				A3227FC922B78EDE009210D5 /* gentreeg */,
+				A3227FCA22B78EDE009210D5 /* nautinvL.o */,
+				A3227FCB22B78EDE009210D5 /* gtools.o */,
+				A3227FCC22B78EDE009210D5 /* naugraphW.o */,
+				A3227FCD22B78EDE009210D5 /* biplabg */,
+				A3227FCE22B78EDE009210D5 /* gtools.h */,
+				A3227FCF22B78EDE009210D5 /* listg.c */,
+				A3227FD022B78EDE009210D5 /* nautest2b.ans */,
+				A3227FD122B78EDE009210D5 /* nautestc.ans */,
+				A3227FD222B78EDE009210D5 /* makefile */,
+				A3227FD322B78EDE009210D5 /* dretog */,
+				A3227FD422B78EDE009210D5 /* nautestb.ans */,
+				A3227FD522B78EDE009210D5 /* nautyW1.a */,
+				A3227FD622B78EDE009210D5 /* nauty.c */,
+				A3227FD722B78EDE009210D5 /* gtoolsW.o */,
+				A3227FD822B78EDE009210D5 /* nautyW1.o */,
+				A3227FD922B78EDE009210D5 /* nautest2c.ans */,
+				A3227FDA22B78EDE009210D5 /* nautest2a.ans */,
+				A3227FDB22B78EDE009210D5 /* gutil1L.o */,
+				A3227FDC22B78EDE009210D5 /* planarity.c */,
+				A3227FDD22B78EDE009210D5 /* genbg.c */,
+				A3227FDE22B78EDE009210D5 /* nautinv1.o */,
+				A3227FDF22B78EDE009210D5 /* traces.h */,
+				A3227FE022B78EDE009210D5 /* genquarticg */,
+				A3227FE122B78EDE009210D5 /* nautinvW.o */,
+				A3227FE222B78EDE009210D5 /* subdivideg.c */,
+				A3227FE322B78EDE009210D5 /* nautesta.ans */,
+				A3227FE422B78EDE009210D5 /* gtnauty.c */,
+				A3227FE522B78EDE009210D5 /* geng.c */,
+				A3227FE622B78EDE009210D5 /* delptg.c */,
+				A3227FE722B78EDE009210D5 /* gutil2.c */,
+				A3227FE822B78EDE009210D5 /* traces.o */,
+				A3227FE922B78EDE009210D5 /* naugraphL.o */,
+				A3227FEA22B78EDE009210D5 /* naututilW1.o */,
+				A3227FEB22B78EDE009210D5 /* sumlines.c */,
+				A3227FEC22B78EDE009210D5 /* nautest.c */,
+				A3227FED22B78EDE009210D5 /* nautyex9.c */,
+				A3227FEE22B78EDE009210D5 /* directg */,
+				A3227FEF22B78EDE009210D5 /* deledgeg.c */,
+				A3227FF022B78EDE009210D5 /* naucompare.c */,
+				A3227FF122B78EDE009210D5 /* nautyex3.c */,
+				A3227FF222B78EDE009210D5 /* nauteste.ans */,
+				A3227FF322B78EDE009210D5 /* nautest1.dre */,
+				A3227FF422B78EDE009210D5 /* nautil.o */,
+				A3227FF522B78EDE009210D5 /* README_24 */,
+				A3227FF622B78EDE009210D5 /* nautestd.ans */,
+				A3227FF722B78EDE009210D5 /* nausparse.c */,
+				A3227FF822B78EDE009210D5 /* schreier.c */,
+				A3227FF922B78EDE009210D5 /* complg */,
+				A3227FFA22B78EDE009210D5 /* naugroup.c */,
+				A3227FFB22B78EDE009210D5 /* rng.h */,
+				A3227FFC22B78EDE009210D5 /* converseg */,
+				A3227FFD22B78EDF009210D5 /* config.guess */,
+				A3227FFE22B78EDF009210D5 /* complg.c */,
+				A3227FFF22B78EDF009210D5 /* quarticirred28.h */,
+				A322800022B78EDF009210D5 /* schreierW.o */,
+				A322800122B78EDF009210D5 /* naututilW.o */,
+				A322800222B78EDF009210D5 /* runalltests */,
+				A322800322B78EDF009210D5 /* nautestf.ans */,
+				A322800422B78EDF009210D5 /* poptest.c */,
+				A322800522B78EDF009210D5 /* nautest2.dre */,
+				A322800622B78EDF009210D5 /* labelg */,
+				A322800722B78EDF009210D5 /* nautyex7.c */,
+				A322800822B78EDF009210D5 /* naurng.o */,
+				A322800922B78EDF009210D5 /* nautilW1.o */,
+				A322800A22B78EDF009210D5 /* nautestg.ans */,
+				A322800B22B78EDF009210D5 /* showg.c */,
+				A322800C22B78EDF009210D5 /* naututil1.o */,
+				A322800D22B78EDF009210D5 /* naurng.h */,
+				A322800E22B78EDF009210D5 /* README */,
+				A322800F22B78EDF009210D5 /* cubhamg */,
+				A322801022B78EDF009210D5 /* naututil.o */,
+				A322801122B78EDF009210D5 /* nautilW.o */,
+				A322801222B78EDF009210D5 /* naututil.h */,
+				A322801322B78EDF009210D5 /* shortg */,
+				A322801422B78EDF009210D5 /* addedgeg */,
+				A322801522B78EDF009210D5 /* vcolg.c */,
+				A322801622B78EDF009210D5 /* genrang.c */,
+				A322801722B78EDF009210D5 /* gutil1.o */,
+				A322801822B78EDF009210D5 /* nausparseW.o */,
+				A322801922B78EDF009210D5 /* naugraph.c */,
+				A322801A22B78EDF009210D5 /* naututil-h.in */,
+				A322801B22B78EDF009210D5 /* nauthread1.c */,
+				A322801C22B78EDF009210D5 /* genbgL */,
+				A322801D22B78EDF009210D5 /* nautil1.o */,
+				A322801E22B78EDF009210D5 /* config.status */,
+				A322801F22B78EDF009210D5 /* config.sub */,
+				A322802022B78EDF009210D5 /* nautyW.a */,
+				A322802122B78EDF009210D5 /* genspecialg */,
+				A322802222B78EDF009210D5 /* nautinv.h */,
+				A322802322B78EDF009210D5 /* nautilL1.o */,
+				A322802422B78EDF009210D5 /* nautyW.o */,
+				A322802522B78EDF009210D5 /* nautinv.o */,
+				A322802622B78EDF009210D5 /* nauty1.o */,
+				A322802722B78EDF009210D5 /* gutils.h */,
+				A322802822B78EDF009210D5 /* gtnautyW.o */,
+				A322802922B78EDF009210D5 /* vcolg */,
+				A322802A22B78EDF009210D5 /* nauty1.a */,
+				A322802B22B78EDF009210D5 /* nautest1c.dre */,
+				A322802C22B78EDF009210D5 /* watercluster2.c */,
+				A322802D22B78EDF009210D5 /* bliss2dre.c */,
+				A322802E22B78EDF009210D5 /* converseg.c */,
+				A322802F22B78EDF009210D5 /* nautest1a.ans */,
+				A322803022B78EDF009210D5 /* nautyL1.o */,
+				A322803122B78EDF009210D5 /* nautyex2.c */,
+				A322803222B78EDF009210D5 /* gtools-h.in */,
+				A322803322B78EDF009210D5 /* nautyL1.a */,
+				A322803422B78EDF009210D5 /* gtools.c */,
+				A322803522B78EDF009210D5 /* nautyex8.c */,
+				A322803622B78EDF009210D5 /* directg.c */,
+				A322803722B78EDF009210D5 /* deledgeg */,
+				A322803822B78EDF009210D5 /* NRswitchg */,
+				A322803922B78EDF009210D5 /* naugstrings.h */,
+				A322803A22B78EDF009210D5 /* nautaux.h */,
+				A322803B22B78EDF009210D5 /* This_is_nauty26r11. */,
+				A322803C22B78EDF009210D5 /* splay.c */,
+				A322803D22B78EDF009210D5 /* nautest1b.dre */,
+				A322803E22B78EDF009210D5 /* sorttemplates.c */,
+				A322803F22B78EDF009210D5 /* twohamg */,
+				A322804022B78EDF009210D5 /* nautest1b.ans */,
+				A322804122B78EDF009210D5 /* naututilL1.o */,
+				A322804222B78EDF009210D5 /* gutil2L.o */,
+				A322804322B78EDF009210D5 /* NRswitchg.c */,
+				A322804422B78EDF009210D5 /* hamheuristic */,
+				A322804522B78EDF009210D5 /* nug26.pdf */,
+				A322804622B78EDF009210D5 /* amtog.c */,
+				A322804722B78EDF009210D5 /* naugroupL.o */,
+				A322804822B78EDF009210D5 /* formats.txt */,
+				A322804922B78EDF009210D5 /* shortg.c */,
+				A322804A22B78EDF009210D5 /* amtog */,
+				A322804B22B78EDF009210D5 /* dreadnaut */,
+				A322804C22B78EDF009210D5 /* nautest1c.ans */,
+				A322804D22B78EDF009210D5 /* nautest1a.dre */,
+				A322804E22B78EDF009210D5 /* config.log */,
+				A322804F22B78EDF009210D5 /* nautyex6.c */,
+				A322805022B78EDF009210D5 /* gtnauty.o */,
+				A322805122B78EDF009210D5 /* checks6.c */,
+				A322805222B78EDF009210D5 /* callgeng.c */,
+				A322805322B78EDF009210D5 /* genbg */,
+				A322805422B78EDF009210D5 /* gutil2.o */,
+				A322805522B78EDF009210D5 /* traces.c */,
+				A322805622B78EDF009210D5 /* labelg.c */,
+				A322805722B78EDF009210D5 /* gutil1L1.o */,
+				A322805822B78EDF009210D5 /* nauthread2.c */,
+				A322805922B78EDF009210D5 /* dretog.c */,
+				A322805A22B78EDF009210D5 /* genquarticg.c */,
+				A322805B22B78EDF009210D5 /* COPYRIGHT */,
+				A322805C22B78EDF009210D5 /* nautinvW1.o */,
+				A322805D22B78EDF009210D5 /* changes24-26.txt */,
+				A322805E22B78EDF009210D5 /* planarity.h */,
+				A322805F22B78EDF009210D5 /* hamheuristic.c */,
+				A322806022B78EDF009210D5 /* nauty.a */,
+				A322806122B78EDF009210D5 /* subdivideg */,
+				A322806222B78EDF009210D5 /* gtnautyL1.o */,
+				A322806322B78EDF009210D5 /* gutil2L1.o */,
+				A322806422B78EDF009210D5 /* nauty.o */,
+				A322806522B78EDF009210D5 /* newedgeg.c */,
+				A322806622B78EDF009210D5 /* gutil2W.o */,
+				A322806722B78EDF009210D5 /* genrang */,
+				A322806822B78EDF009210D5 /* delptg */,
+				A322806922B78EDF009210D5 /* nauty.h */,
+				A322806A22B78EDF009210D5 /* cubhamg.c */,
+				A322806B22B78EDF009210D5 /* naugroupW.o */,
+				A322806C22B78EDF009210D5 /* schreier.txt */,
+				A322806D22B78EDF009210D5 /* gentreeg.c */,
+				A322806E22B78EDF009210D5 /* naurng.c */,
+				A322806F22B78EDF009210D5 /* geng */,
+				A322807022B78EDF009210D5 /* makefile.basic */,
+				A322807122B78EDF009210D5 /* makefile.in */,
+				A322807222B78EDF009210D5 /* nautilL.o */,
+				A322807322B78EDF009210D5 /* multig */,
+				A322807422B78EDF009210D5 /* addedgeg.c */,
+				A322807522B78EDF009210D5 /* nausparseL.o */,
+				A322807622B78EDF009210D5 /* countg */,
+				A322807722B78EDF009210D5 /* nautyex1.c */,
+				A322807822B78EDF009210D5 /* gentourng.c */,
+				A322807922B78EDF009210D5 /* dretodot.c */,
+				A322807A22B78EDF009210D5 /* dretodot */,
+				A322807B22B78EDF009210D5 /* biplabg.c */,
+				A322807C22B78EDF009210D5 /* nautyL.o */,
+				A322807D22B78EDF009210D5 /* nautil.c */,
+				A322807E22B78EDF009210D5 /* nausparse.h */,
+				A322807F22B78EDF009210D5 /* blisstog.c */,
+				A322808022B78EDF009210D5 /* nausparse.o */,
+				A322808122B78EDF009210D5 /* naugroup.o */,
+				A322808222B78EDF009210D5 /* nautyL.a */,
+				A322808322B78EDF009210D5 /* schreier.o */,
+				A322808422B78EDF009210D5 /* naugraphW1.o */,
+				A322808522B78EDF009210D5 /* nautyex5.c */,
+				A322808622B78EDF009210D5 /* rng.c */,
+				A322808722B78EDF009210D5 /* naugroup.h */,
+				A322808822B78EDF009210D5 /* schreier.h */,
+				A322808922B78EDF009210D5 /* gtnautyL.o */,
+				A322808A22B78EDF009210D5 /* ranlabg */,
+				A322808B22B78EDF009210D5 /* showg */,
+			);
+			name = nauty26r11;
+			path = ../../../../Downloads/nauty26r11;
+			sourceTree = "<group>";
+		};
+		A322808C22B78EF4009210D5 /* nauty26r11 */ = {
+			isa = PBXGroup;
+			children = (
+				A322808D22B78EF4009210D5 /* copyg.c */,
+				A322808E22B78EF4009210D5 /* watercluster2 */,
+				A322808F22B78EF4009210D5 /* pickg */,
+				A322809022B78EF4009210D5 /* planarg.c */,
+				A322809122B78EF4009210D5 /* linegraphg */,
+				A322809222B78EF4009210D5 /* nautinv.c */,
+				A322809322B78EF4009210D5 /* genspecialg.c */,
+				A322809422B78EF4009210D5 /* naututilL.o */,
+				A322809522B78EF4009210D5 /* gutil1.c */,
+				A322809622B78EF4009210D5 /* naugraph.o */,
+				A322809722B78EF4009210D5 /* schreierL.o */,
+				A322809822B78EF4009210D5 /* ranlabg.c */,
+				A322809922B78EF4009210D5 /* naugraphL1.o */,
+				A322809A22B78EF4009210D5 /* naututil.c */,
+				A322809B22B78EF4009210D5 /* testg.c */,
+				A322809C22B78EF4009210D5 /* install-sh */,
+				A322809D22B78EF4009210D5 /* configure.ac */,
+				A322809E22B78EF4009210D5 /* copyg */,
+				A322809F22B78EF4009210D5 /* nauty-h.in */,
+				A32280A022B78EF4009210D5 /* listg */,
+				A32280A122B78EF4009210D5 /* planarg */,
+				A32280A222B78EF4009210D5 /* catg.c */,
+				A32280A322B78EF4009210D5 /* newedgeg */,
+				A32280A422B78EF4009210D5 /* nautyex10.c */,
+				A32280A522B78EF4009210D5 /* gutil1W1.o */,
+				A32280A622B78EF4009210D5 /* gtoolsL.o */,
+				A32280A722B78EF4009210D5 /* nautinvL1.o */,
+				A32280A822B78EF4009210D5 /* twohamg.c */,
+				A32280A922B78EF4009210D5 /* linegraphg.c */,
+				A32280AA22B78EF4009210D5 /* gentourng */,
+				A32280AB22B78EF4009210D5 /* naugraph1.o */,
+				A32280AC22B78EF4009210D5 /* nautyex4.c */,
+				A32280AD22B78EF4009210D5 /* nautaux.c */,
+				A32280AE22B78EF4009210D5 /* naugstrings.c */,
+				A32280AF22B78EF4009210D5 /* multig.c */,
+				A32280B022B78EF4009210D5 /* config.txt */,
+				A32280B122B78EF4009210D5 /* gutil1W.o */,
+				A32280B222B78EF4009210D5 /* configure */,
+				A32280B322B78EF4009210D5 /* catg */,
+				A32280B422B78EF4009210D5 /* gutil2W1.o */,
+				A32280B522B78EF4009210D5 /* gtnautyW1.o */,
+				A32280B622B78EF4009210D5 /* dreadnaut.c */,
+				A32280B722B78EF4009210D5 /* gentreeg */,
+				A32280B822B78EF4009210D5 /* nautinvL.o */,
+				A32280B922B78EF4009210D5 /* gtools.o */,
+				A32280BA22B78EF4009210D5 /* naugraphW.o */,
+				A32280BB22B78EF4009210D5 /* biplabg */,
+				A32280BC22B78EF4009210D5 /* gtools.h */,
+				A32280BD22B78EF4009210D5 /* listg.c */,
+				A32280BE22B78EF4009210D5 /* nautest2b.ans */,
+				A32280BF22B78EF4009210D5 /* nautestc.ans */,
+				A32280C022B78EF4009210D5 /* makefile */,
+				A32280C122B78EF4009210D5 /* dretog */,
+				A32280C222B78EF4009210D5 /* nautestb.ans */,
+				A32280C322B78EF4009210D5 /* nautyW1.a */,
+				A32280C422B78EF4009210D5 /* nauty.c */,
+				A32280C522B78EF4009210D5 /* gtoolsW.o */,
+				A32280C622B78EF4009210D5 /* nautyW1.o */,
+				A32280C722B78EF4009210D5 /* nautest2c.ans */,
+				A32280C822B78EF4009210D5 /* nautest2a.ans */,
+				A32280C922B78EF4009210D5 /* gutil1L.o */,
+				A32280CA22B78EF4009210D5 /* planarity.c */,
+				A32280CB22B78EF4009210D5 /* genbg.c */,
+				A32280CC22B78EF4009210D5 /* nautinv1.o */,
+				A32280CD22B78EF4009210D5 /* traces.h */,
+				A32280CE22B78EF4009210D5 /* genquarticg */,
+				A32280CF22B78EF4009210D5 /* nautinvW.o */,
+				A32280D022B78EF4009210D5 /* subdivideg.c */,
+				A32280D122B78EF4009210D5 /* nautesta.ans */,
+				A32280D222B78EF4009210D5 /* gtnauty.c */,
+				A32280D322B78EF4009210D5 /* geng.c */,
+				A32280D422B78EF4009210D5 /* delptg.c */,
+				A32280D522B78EF4009210D5 /* gutil2.c */,
+				A32280D622B78EF4009210D5 /* traces.o */,
+				A32280D722B78EF4009210D5 /* naugraphL.o */,
+				A32280D822B78EF4009210D5 /* naututilW1.o */,
+				A32280D922B78EF4009210D5 /* sumlines.c */,
+				A32280DA22B78EF4009210D5 /* nautest.c */,
+				A32280DB22B78EF4009210D5 /* nautyex9.c */,
+				A32280DC22B78EF4009210D5 /* directg */,
+				A32280DD22B78EF4009210D5 /* deledgeg.c */,
+				A32280DE22B78EF4009210D5 /* naucompare.c */,
+				A32280DF22B78EF4009210D5 /* nautyex3.c */,
+				A32280E022B78EF4009210D5 /* nauteste.ans */,
+				A32280E122B78EF4009210D5 /* nautest1.dre */,
+				A32280E222B78EF4009210D5 /* nautil.o */,
+				A32280E322B78EF4009210D5 /* README_24 */,
+				A32280E422B78EF4009210D5 /* nautestd.ans */,
+				A32280E522B78EF4009210D5 /* nausparse.c */,
+				A32280E622B78EF4009210D5 /* schreier.c */,
+				A32280E722B78EF4009210D5 /* complg */,
+				A32280E822B78EF4009210D5 /* naugroup.c */,
+				A32280E922B78EF4009210D5 /* rng.h */,
+				A32280EA22B78EF4009210D5 /* converseg */,
+				A32280EB22B78EF4009210D5 /* config.guess */,
+				A32280EC22B78EF4009210D5 /* complg.c */,
+				A32280ED22B78EF4009210D5 /* quarticirred28.h */,
+				A32280EE22B78EF4009210D5 /* schreierW.o */,
+				A32280EF22B78EF4009210D5 /* naututilW.o */,
+				A32280F022B78EF4009210D5 /* runalltests */,
+				A32280F122B78EF4009210D5 /* nautestf.ans */,
+				A32280F222B78EF4009210D5 /* poptest.c */,
+				A32280F322B78EF4009210D5 /* nautest2.dre */,
+				A32280F422B78EF4009210D5 /* labelg */,
+				A32280F522B78EF4009210D5 /* nautyex7.c */,
+				A32280F622B78EF4009210D5 /* naurng.o */,
+				A32280F722B78EF4009210D5 /* nautilW1.o */,
+				A32280F822B78EF4009210D5 /* nautestg.ans */,
+				A32280F922B78EF4009210D5 /* showg.c */,
+				A32280FA22B78EF4009210D5 /* naututil1.o */,
+				A32280FB22B78EF4009210D5 /* naurng.h */,
+				A32280FC22B78EF4009210D5 /* README */,
+				A32280FD22B78EF4009210D5 /* cubhamg */,
+				A32280FE22B78EF4009210D5 /* naututil.o */,
+				A32280FF22B78EF4009210D5 /* nautilW.o */,
+				A322810022B78EF4009210D5 /* naututil.h */,
+				A322810122B78EF4009210D5 /* shortg */,
+				A322810222B78EF4009210D5 /* addedgeg */,
+				A322810322B78EF4009210D5 /* vcolg.c */,
+				A322810422B78EF4009210D5 /* genrang.c */,
+				A322810522B78EF4009210D5 /* gutil1.o */,
+				A322810622B78EF4009210D5 /* nausparseW.o */,
+				A322810722B78EF4009210D5 /* naugraph.c */,
+				A322810822B78EF4009210D5 /* naututil-h.in */,
+				A322810922B78EF4009210D5 /* nauthread1.c */,
+				A322810A22B78EF4009210D5 /* genbgL */,
+				A322810B22B78EF4009210D5 /* nautil1.o */,
+				A322810C22B78EF4009210D5 /* config.status */,
+				A322810D22B78EF4009210D5 /* config.sub */,
+				A322810E22B78EF4009210D5 /* nautyW.a */,
+				A322810F22B78EF4009210D5 /* genspecialg */,
+				A322811022B78EF4009210D5 /* nautinv.h */,
+				A322811122B78EF4009210D5 /* nautilL1.o */,
+				A322811222B78EF4009210D5 /* nautyW.o */,
+				A322811322B78EF4009210D5 /* nautinv.o */,
+				A322811422B78EF4009210D5 /* nauty1.o */,
+				A322811522B78EF4009210D5 /* gutils.h */,
+				A322811622B78EF4009210D5 /* gtnautyW.o */,
+				A322811722B78EF4009210D5 /* vcolg */,
+				A322811822B78EF4009210D5 /* nauty1.a */,
+				A322811922B78EF4009210D5 /* nautest1c.dre */,
+				A322811A22B78EF4009210D5 /* watercluster2.c */,
+				A322811B22B78EF4009210D5 /* bliss2dre.c */,
+				A322811C22B78EF4009210D5 /* converseg.c */,
+				A322811D22B78EF4009210D5 /* nautest1a.ans */,
+				A322811E22B78EF4009210D5 /* nautyL1.o */,
+				A322811F22B78EF4009210D5 /* nautyex2.c */,
+				A322812022B78EF4009210D5 /* gtools-h.in */,
+				A322812122B78EF4009210D5 /* nautyL1.a */,
+				A322812222B78EF4009210D5 /* gtools.c */,
+				A322812322B78EF4009210D5 /* nautyex8.c */,
+				A322812422B78EF4009210D5 /* directg.c */,
+				A322812522B78EF4009210D5 /* deledgeg */,
+				A322812622B78EF4009210D5 /* NRswitchg */,
+				A322812722B78EF4009210D5 /* naugstrings.h */,
+				A322812822B78EF4009210D5 /* nautaux.h */,
+				A322812922B78EF4009210D5 /* This_is_nauty26r11. */,
+				A322812A22B78EF4009210D5 /* splay.c */,
+				A322812B22B78EF4009210D5 /* nautest1b.dre */,
+				A322812C22B78EF4009210D5 /* sorttemplates.c */,
+				A322812D22B78EF4009210D5 /* twohamg */,
+				A322812E22B78EF4009210D5 /* nautest1b.ans */,
+				A322812F22B78EF4009210D5 /* naututilL1.o */,
+				A322813022B78EF4009210D5 /* gutil2L.o */,
+				A322813122B78EF4009210D5 /* NRswitchg.c */,
+				A322813222B78EF4009210D5 /* hamheuristic */,
+				A322813322B78EF4009210D5 /* nug26.pdf */,
+				A322813422B78EF4009210D5 /* amtog.c */,
+				A322813522B78EF4009210D5 /* naugroupL.o */,
+				A322813622B78EF4009210D5 /* formats.txt */,
+				A322813722B78EF4009210D5 /* shortg.c */,
+				A322813822B78EF4009210D5 /* amtog */,
+				A322813922B78EF4009210D5 /* dreadnaut */,
+				A322813A22B78EF4009210D5 /* nautest1c.ans */,
+				A322813B22B78EF4009210D5 /* nautest1a.dre */,
+				A322813C22B78EF4009210D5 /* config.log */,
+				A322813D22B78EF4009210D5 /* nautyex6.c */,
+				A322813E22B78EF4009210D5 /* gtnauty.o */,
+				A322813F22B78EF4009210D5 /* checks6.c */,
+				A322814022B78EF4009210D5 /* callgeng.c */,
+				A322814122B78EF4009210D5 /* genbg */,
+				A322814222B78EF4009210D5 /* gutil2.o */,
+				A322814322B78EF4009210D5 /* traces.c */,
+				A322814422B78EF4009210D5 /* labelg.c */,
+				A322814522B78EF4009210D5 /* gutil1L1.o */,
+				A322814622B78EF4009210D5 /* nauthread2.c */,
+				A322814722B78EF4009210D5 /* dretog.c */,
+				A322814822B78EF4009210D5 /* genquarticg.c */,
+				A322814922B78EF4009210D5 /* COPYRIGHT */,
+				A322814A22B78EF4009210D5 /* nautinvW1.o */,
+				A322814B22B78EF4009210D5 /* changes24-26.txt */,
+				A322814C22B78EF4009210D5 /* planarity.h */,
+				A322814D22B78EF4009210D5 /* hamheuristic.c */,
+				A322814E22B78EF4009210D5 /* nauty.a */,
+				A322814F22B78EF4009210D5 /* subdivideg */,
+				A322815022B78EF4009210D5 /* gtnautyL1.o */,
+				A322815122B78EF4009210D5 /* gutil2L1.o */,
+				A322815222B78EF4009210D5 /* nauty.o */,
+				A322815322B78EF4009210D5 /* newedgeg.c */,
+				A322815422B78EF4009210D5 /* gutil2W.o */,
+				A322815522B78EF4009210D5 /* genrang */,
+				A322815622B78EF4009210D5 /* delptg */,
+				A322815722B78EF4009210D5 /* nauty.h */,
+				A322815822B78EF4009210D5 /* cubhamg.c */,
+				A322815922B78EF4009210D5 /* naugroupW.o */,
+				A322815A22B78EF4009210D5 /* schreier.txt */,
+				A322815B22B78EF4009210D5 /* gentreeg.c */,
+				A322815C22B78EF4009210D5 /* naurng.c */,
+				A322815D22B78EF4009210D5 /* geng */,
+				A322815E22B78EF4009210D5 /* makefile.basic */,
+				A322815F22B78EF4009210D5 /* makefile.in */,
+				A322816022B78EF4009210D5 /* nautilL.o */,
+				A322816122B78EF4009210D5 /* multig */,
+				A322816222B78EF4009210D5 /* addedgeg.c */,
+				A322816322B78EF4009210D5 /* nausparseL.o */,
+				A322816422B78EF4009210D5 /* countg */,
+				A322816522B78EF4009210D5 /* nautyex1.c */,
+				A322816622B78EF4009210D5 /* gentourng.c */,
+				A322816722B78EF4009210D5 /* dretodot.c */,
+				A322816822B78EF4009210D5 /* dretodot */,
+				A322816922B78EF4009210D5 /* biplabg.c */,
+				A322816A22B78EF4009210D5 /* nautyL.o */,
+				A322816B22B78EF4009210D5 /* nautil.c */,
+				A322816C22B78EF4009210D5 /* nausparse.h */,
+				A322816D22B78EF4009210D5 /* blisstog.c */,
+				A322816E22B78EF4009210D5 /* nausparse.o */,
+				A322816F22B78EF4009210D5 /* naugroup.o */,
+				A322817022B78EF4009210D5 /* nautyL.a */,
+				A322817122B78EF4009210D5 /* schreier.o */,
+				A322817222B78EF4009210D5 /* naugraphW1.o */,
+				A322817322B78EF4009210D5 /* nautyex5.c */,
+				A322817422B78EF4009210D5 /* rng.c */,
+				A322817522B78EF4009210D5 /* naugroup.h */,
+				A322817622B78EF4009210D5 /* schreier.h */,
+				A322817722B78EF4009210D5 /* gtnautyL.o */,
+				A322817822B78EF4009210D5 /* ranlabg */,
+				A322817922B78EF4009210D5 /* showg */,
+			);
+			name = nauty26r11;
+			path = ../../../../Downloads/nauty26r11;
+			sourceTree = "<group>";
+		};
 		A38F3D3B225785DC00EA3296 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +1543,7 @@
 				A37F0A3E22B64F9000A871AA /* Occurrence.hpp */,
 				A38F3D4F225786B500EA3296 /* main.cpp */,
 				A38F3D45225785DC00EA3296 /* Products */,
+				A3227EAE22B78EBA009210D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +1643,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3227EAD22B78E9E009210D5 /* Graphlet.hpp in Sources */,
+				A3227EAC22B78E9C009210D5 /* Occurrence.hpp in Sources */,
 				A39CEA272267491B0084B092 /* Graph.cpp in Sources */,
 				A37F0A3F22B64F9000A871AA /* Occurrence.cpp in Sources */,
 				A3961F5E225D075C0006FE55 /* Graphlet.cpp in Sources */,
@@ -320,6 +1783,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.69.0/include/,
+					/Users/ince/Downloads/nauty26r11/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.69.0/lib/,
+					/Users/ince/Downloads/nauty26r11/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -328,6 +1799,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.69.0/include/,
+					/Users/ince/Downloads/nauty26r11/,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.69.0/lib/,
+					/Users/ince/Downloads/nauty26r11/,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

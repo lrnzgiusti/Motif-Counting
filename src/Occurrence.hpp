@@ -10,9 +10,24 @@
 #define Occurrence_hpp
 #include <climits>
 #include "Graph.hpp"
+
+#include "/Users/ince/Downloads/nauty26r11/nauty.h"
+
+
+class OccurrenceCanonicizer;
+
+static constexpr int MOTIVO_NAUTY_WORDSIZE = WORDSIZE;
+static constexpr int MOTIVO_NAUTY_TRUE = TRUE;
+
+typedef graph nauty_graph;
+typedef set nauty_set;
+
+
 class Occurrence
 {
-    
+    friend class OccurrenceCanonicizer;
+    friend class Graph;
+
     
 public:
     //i,j in {0,...,15}
@@ -75,7 +90,7 @@ public:
 private:
     unsigned int size;
     uint8_t edges[binary_footprint_bytes] = { 0 };
-    mutable uint64_t spanning_trees = 0;
+    std::vector<int> verts;
     mutable char text_footprint_buffer[text_footprint_bytes + 1] = { 0 }; //Add null-terminator
     
     inline void add_edge(unsigned int i, unsigned int j)
@@ -86,7 +101,7 @@ private:
     
     
 public:
-    constexpr Occurrence() : size(0)
+    Occurrence() : size(0)
     {} //Empty constructor to take advantage of Stack allocation
     
     Occurrence(const unsigned int size, const Graph* graph);
@@ -120,5 +135,29 @@ public:
     
 };
 
+
+//The underlying library used to canonicize the occurrence requires initialization and cleanup to be used
+//from multiple threads. We use this friend class to save on this overhead.
+//A single instance of this class is not thread safe. However distinct instances can be used by different threads.
+class OccurrenceCanonicizer {
+private:
+    const unsigned int size;
+    const size_t words_needed;
+    
+    nauty_graph* g;
+    nauty_graph *cang;
+    int *lab;
+    int *ptn;
+    int *orbits;
+    
+    DEFAULTOPTIONS_GRAPH (options);
+    statsblk stats;
+    
+public:
+    OccurrenceCanonicizer(unsigned int size);
+    ~OccurrenceCanonicizer();
+    
+    void canonicize(Occurrence* occ);
+};
 
 #endif /* Occurrence_hpp */
