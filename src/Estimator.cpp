@@ -88,7 +88,7 @@ std::unordered_map<int, float> Estimator::read_distro(std::string filename){
     fptr.open(filename);
     
     if(!fptr){
-        std::cerr << "Unable to open edgelist!\tTry Again!\n";
+        std::cerr << "Unable to open distro file!\tTry Again!\n";
         return distro;
     }
     std::hash<Graphlet> hasher;
@@ -110,6 +110,7 @@ std::unordered_map<int, float> Estimator::read_distro(std::string filename){
 
 //This function is used for estimate the graph of graphlets distribution
 std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k){
+    //std::cout << "spia: sampling started\n";
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
@@ -119,15 +120,18 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
     do{
+        //std::cout << "spia: loop started\n";
         t++;
         distro_tprec = distro_t; //alignment
         for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
+            //std::cout << "spia: first nested\t" << vk.first << "\n";
             for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
+                //std::cout << "spia: second nested\t" << wk.first << "\n";
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
                     for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
-                        
+                        //std::cout << "spia: third nested\t" << nk <<"\n";
                         if((vk.first != nk) and (gk.get_repr().find(nk) == gk.end())){
                             uk = gk;
                             uk.exclude_include_vertex(G, vk.first, nk);
@@ -146,6 +150,7 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
         distro_tprec[gk] += 0;
     }while(l1_diff(distro_t, distro_tprec, t) > epsilon);
     normalize_distribution(distro_t, t);
+    //std::cout << "spia: sampling ended\n";
     return distro_t;
 }
 
@@ -154,10 +159,10 @@ std::unordered_map<Graphlet, float> Estimator::random_walk(Graph G, int start, i
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<int, float> distro_t; //the current distribution
     std::unordered_map<Graphlet, float> distro_t_graphlets; //the current distribution
-    std::unordered_map<int, float> distro_real = read_distro("/Users/ince/Desktop/distro_3.dat");
+    std::unordered_map<int, float> distro_real = read_distro("/Users/ince/Desktop/bressan_data/distro_3.dat");
     int t = 1; //current time
     std::hash<Graphlet> hasher;
-    float epsilon = 0.10; //precision to declare convergence
+    float epsilon = 0.055; //precision to declare convergence
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[hasher(gk)] = 1; //init of the distribution
@@ -189,7 +194,8 @@ std::unordered_map<Graphlet, float> Estimator::random_walk(Graph G, int start, i
         
         distro_t[hasher(gk)] += 1;
         distro_t_graphlets[gk] += 1;
-    }while(l1_disto_diff(distro_t, distro_real, t) > epsilon);//while(l1_diff(distro_t, distro_tprec, t) > epsilon);
+    }while(l1_disto_diff(distro_t, distro_real, t) > epsilon);
+    //maybe insert the L1 distance between the two distributions, some eustistics
     normalize_distribution(distro_t, t);
     normalize_distribution(distro_t_graphlets, t);
     std::cout << "Mixing time: " << t << "\n";

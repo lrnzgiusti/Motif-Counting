@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A32F2E44225E4C7900E77810 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D4F225786B500EA3296 /* main.cpp */; };
+		A37F0A3F22B64F9000A871AA /* Occurrence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A37F0A3D22B64F9000A871AA /* Occurrence.cpp */; };
 		A3880A95226DAAB700570876 /* Estimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3A5AF7222604D46009A7C79 /* Estimator.cpp */; };
 		A38F3D6A2257892C00EA3296 /* Graph.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A38F3D52225787FA00EA3296 /* Graph.hpp */; };
 		A3961F5E225D075C0006FE55 /* Graphlet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A337EEF7225C985A00AF49CC /* Graphlet.cpp */; };
@@ -39,6 +40,8 @@
 		A337EEF7225C985A00AF49CC /* Graphlet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphlet.cpp; sourceTree = "<group>"; };
 		A337EEF8225C985A00AF49CC /* Graphlet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Graphlet.hpp; sourceTree = "<group>"; };
 		A369C9B922683BD7000AB92D /* Utility.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utility.hpp; sourceTree = "<group>"; };
+		A37F0A3D22B64F9000A871AA /* Occurrence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Occurrence.cpp; sourceTree = "<group>"; };
+		A37F0A3E22B64F9000A871AA /* Occurrence.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Occurrence.hpp; sourceTree = "<group>"; };
 		A38F3D44225785DC00EA3296 /* src */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = src; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38F3D4F225786B500EA3296 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		A38F3D51225787FA00EA3296 /* Graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 				A337EEF8225C985A00AF49CC /* Graphlet.hpp */,
 				A38F3D51225787FA00EA3296 /* Graph.cpp */,
 				A38F3D52225787FA00EA3296 /* Graph.hpp */,
+				A37F0A3D22B64F9000A871AA /* Occurrence.cpp */,
+				A37F0A3E22B64F9000A871AA /* Occurrence.hpp */,
 				A38F3D4F225786B500EA3296 /* main.cpp */,
 				A38F3D45225785DC00EA3296 /* Products */,
 			);
@@ -178,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A39CEA272267491B0084B092 /* Graph.cpp in Sources */,
+				A37F0A3F22B64F9000A871AA /* Occurrence.cpp in Sources */,
 				A3961F5E225D075C0006FE55 /* Graphlet.cpp in Sources */,
 				A3880A95226DAAB700570876 /* Estimator.cpp in Sources */,
 				A38F3D6A2257892C00EA3296 /* Graph.hpp in Sources */,

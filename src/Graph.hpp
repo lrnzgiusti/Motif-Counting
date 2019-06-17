@@ -36,23 +36,42 @@ public:
     bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
     bool isUndirected(int);
+    bool isValid() const;
     uint8_t get_num_of_nodes();
     uint32_t get_num_of_edges();
-    
+    const char* text_footprint() const;
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
     std::vector<float> random_walk();
     void printGraph();
     std::unordered_set<int> operator[](int) const;
     
+    inline bool has_edge(unsigned int i, unsigned int j) const //FIXME: Could be invoked with j>=i
+    {
+        
+        try {
+            return repr.at(i).find(j) != repr.at(i).end();
+        } catch (...) {
+            return false;
+        }
+        
+    }
+    
+    unsigned int get_size() const
+    {
+        return static_cast<unsigned int>(repr.size());
+    }
+    
+    
 private:
     void read_edgelist(std::string);
+    
     
 protected:
     std::unordered_map<int, std::unordered_set<int>> repr;
     uint8_t num_of_nodes;
-    uint32_t num_of_edges;
-    uint32_t max_degree;
-    uint32_t min_degree;
+    uint8_t num_of_edges;
+    uint8_t max_degree;
+    uint8_t min_degree;
     void random_bipartite_generator(int, int, int);
     void random_non_bipartite_generator(int, int, int);
 };

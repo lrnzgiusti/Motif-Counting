@@ -50,15 +50,16 @@ void Graph::read_edgelist(std::string filename){
         std::cerr << "Unable to open edgelist!\tTry Again!\n";
         return;
     }
-    
+    //std::cout << "spia: edgelist opened\n";
     std::string edgelist_row;
     std::vector<std::string> tokens;
     num_of_edges = 0;
     num_of_nodes = 0;
+    unsigned int tok1, tok2;
     while(std::getline(fptr, edgelist_row)){
         boost::split(tokens, edgelist_row, [](char c){return c == ',';});
-        int tok1 = std::stoi(tokens[0]);
-        int tok2 = std::stoi(tokens[1]);
+        tok1 = std::stoi(tokens[0]);
+        tok2 = std::stoi(tokens[1]);
         
         G[tok1].insert(tok2);
         G[tok2].insert(tok1);
@@ -66,8 +67,10 @@ void Graph::read_edgelist(std::string filename){
         this->num_of_edges++;
     }
     fptr.close();
+    //std::cout << "spia: edgelist closed\n";
     this->num_of_nodes = G.size();
     this->repr = G;
+    //std::cout << "spia: graph readed\n";
     return;
 }
 
@@ -313,3 +316,10 @@ void Graph::random_bipartite_generator(int min_degree, int max_degree, int numbe
     this->repr = G;
     return;
 }
+
+
+bool Graph::isValid() const{
+    return this->repr.size() != 0;
+}
+
+
