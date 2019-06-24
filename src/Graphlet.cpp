@@ -29,15 +29,7 @@ Graphlet::~Graphlet(){}
 
 bool Graphlet::operator ==(const Graphlet &g) const{
     std::unordered_map<int, std::unordered_set<int>> other_graph_representation = g.get_repr();
-    //Better handle this, avoidable but...
-    /*if (num_of_edges != g.num_of_edges) {
-        std:: cout << "edges: " << num_of_edges << " : " << g.num_of_edges;
-        return false;
-    }
-    if (num_of_nodes != g.num_of_nodes) {
-        std:: cout << "nodes: " << num_of_nodes << " : " << g.num_of_nodes;
-        return false;
-    }*/
+    
     for (std::pair<int, std::unordered_set<int>> p : other_graph_representation) {
         try {
             if (repr.at(p.first) != other_graph_representation.at(p.first)) return false;
@@ -70,13 +62,20 @@ void Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
         this->repr[check_edges.first].erase(excl);
     }
     
+    
     //place <incl> in the vertex and in the neighbords
-    for (int vertex : G[incl]) {
-        if(this->repr.find(vertex) != this->repr.end()){
+    for (int vertex : G[incl]) { //questo li ciocca tutti TODO
+        
+        if(this->repr.find(vertex) != this->repr.end()){ //qua ne becca al massimo un paio TODO
+            
             this->repr[incl].insert(vertex);
             this->repr[vertex].insert(incl);
         }
     }
+    
+    
+    this->source = incl;
+    
     return;
 }
 

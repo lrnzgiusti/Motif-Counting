@@ -43,8 +43,8 @@ public:
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
     std::vector<float> random_walk();
     void printGraph();
+    bool exist_vertex(const int& k);
     std::unordered_set<int> operator[](int) const;
-    
     inline bool has_edge(unsigned int i, unsigned int j) const //FIXME: Could be invoked with j>=i
     {
         
@@ -71,6 +71,7 @@ protected:
     uint8_t num_of_nodes;
     uint8_t num_of_edges;
     uint8_t max_degree;
+    int source;
     uint8_t min_degree;
     void random_bipartite_generator(int, int, int);
     void random_non_bipartite_generator(int, int, int);

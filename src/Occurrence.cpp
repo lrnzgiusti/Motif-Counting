@@ -26,8 +26,8 @@ Occurrence::Occurrence(const unsigned int size, const Graph *graph) : size(size)
         for(unsigned int j=0; j<i; j++)
         {
             if (graph->has_edge(verts[i], verts[j])){
-                    std::cout << "Test succeed with (" << verts[i] << "," << verts[j] << ")\n";
-                    std::cout << "Adding (" << i << "," << j << ")\n";
+                    //std::cout << "Test succeed with (" << verts[i] << "," << verts[j] << ")\n";
+                    //std::cout << "Adding (" << i << "," << j << ")\n";
                     add_edge(i, j);
             }
         }

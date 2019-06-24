@@ -19,6 +19,7 @@ Graph::Graph(std::string filename){
 
 Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
     this->repr = repr;
+    this->source = repr.begin()->first;
 }
 
 Graph::Graph(std::set<std::pair<int, int>> edges){
@@ -50,12 +51,12 @@ void Graph::read_edgelist(std::string filename){
         std::cerr << "Unable to open edgelist!\tTry Again!\n";
         return;
     }
-    //std::cout << "spia: edgelist opened\n";
+    
     std::string edgelist_row;
     std::vector<std::string> tokens;
     num_of_edges = 0;
     num_of_nodes = 0;
-    unsigned int tok1, tok2;
+    unsigned int tok1 = 0, tok2 = 0;
     while(std::getline(fptr, edgelist_row)){
         boost::split(tokens, edgelist_row, [](char c){return c == ',';});
         tok1 = std::stoi(tokens[0]);
@@ -67,10 +68,11 @@ void Graph::read_edgelist(std::string filename){
         this->num_of_edges++;
     }
     fptr.close();
-    //std::cout << "spia: edgelist closed\n";
+    
+    this->source = tok1;
     this->num_of_nodes = G.size();
     this->repr = G;
-    //std::cout << "spia: graph readed\n";
+    
     return;
 }
 
@@ -96,9 +98,9 @@ void Graph::printGraph(){
 
 bool Graph::isBipartite(){
     
-    int source = this->repr.begin()->first;
+    int source = this->source;
     size_t n_of_verteces = this->repr.size();
-    int colorArr[n_of_verteces+1];
+    std::unordered_map<int,int> colorArr;
     for (int i = 1; i < n_of_verteces+1; ++i)
         colorArr[i] = -1;
     
@@ -126,7 +128,7 @@ bool Graph::isBipartite(){
             if (colorArr[*it] == -1)
             {
                 // Assign alternate color to this adjacent v of u
-                colorArr[*it] = 1 - colorArr[u];
+                colorArr[*it] = 1;
                 q.push(*it);
             }
             // An edge from u to v exists and destination
@@ -145,19 +147,22 @@ bool Graph::isBipartite(){
 
 bool Graph::isConnected(){
     
-    int source = this->repr.begin()->first;
-    size_t n_of_verteces = this->repr.size();
+    
+    unsigned int source = this->source;
+    const size_t n_of_verteces = this->repr.size();
     std::unordered_set<int> expected_veteces;
-    std::unordered_map<int, int>colorArr;
+    std::unordered_map<int, int> colorArr;
     expected_veteces.reserve(n_of_verteces);
+    
     for(auto x: this->repr){
+        
         expected_veteces.insert(x.first);
-        colorArr[x.first] = -1;
+        colorArr[x.first] = 0;
     }
+    
     //reserve expected_verteces, this->repr.size()
     //calculate expected_verteced
     std::unordered_set<int> real_veteces;
-    //reserve expected_verteces, this->repr.size()
     
     
     
@@ -168,27 +173,31 @@ bool Graph::isConnected(){
     real_veteces.insert(source);
     // Run while there are vertices
     // in queue (Similar to BFS)
+    std::unordered_set<int>::iterator it;
+    int u;
+
     while (!q.empty())
     {
         // Dequeue a vertex from queue
-        int u = q.front();
+        u = q.front();
         q.pop();
         // Find all non-colored adjacent vertices
-        std::unordered_set<int>::iterator it = this->repr[u].begin();
+        it = this->repr[u].begin();
         
         for (; it != (this->repr[u].end()); it++)
         {
             // An edge from u to v exists and
             // destination v is not colored
-            if (colorArr[*it] == -1)
+            if (colorArr[*it] == 0)
             {
                 // Assign alternate color to this adjacent v of u
-                colorArr[*it] = 1 - colorArr[u];
+                colorArr[*it] = 1;
                 q.push(*it);
                 real_veteces.insert(*it);
             }
         }
     }
+    
     return expected_veteces == real_veteces;
     
 }
@@ -322,4 +331,8 @@ bool Graph::isValid() const{
     return this->repr.size() != 0;
 }
 
+
+bool Graph::exist_vertex(const int& k){
+    return this->repr.find(k) != this->repr.end();
+}
 

@@ -27,7 +27,7 @@ template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_
     for(std::pair<T, float> p : v1){
         sum += abs(v1.at(p.first) - v2.at(p.first));
     }
-    //std::cout << sum << "\n";
+    std::cout << sum << "\n";
     return sum;
 }
 
@@ -49,7 +49,7 @@ float l1_disto_diff(std::unordered_map<int, float> real, std::unordered_map<int,
 }
 
 
-template<class T> void normalize_distribution(std::unordered_map<T, float> &distro, int t){
+template<class T> void normalize_distribution(std::unordered_map<T, float> &distro, unsigned int t){
     for(std::pair<T, float> p : distro){
         distro.at(p.first) /= t;
     }

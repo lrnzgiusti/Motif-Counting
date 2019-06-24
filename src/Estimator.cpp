@@ -108,34 +108,34 @@ std::unordered_map<int, float> Estimator::read_distro(std::string filename){
 }
 
 
+bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, Graphlet u, Graphlet v){
+    return ((Gk[u].find(v) != Gk[u].end()) and (Gk[v].find(u) != Gk[v].end()));
+}
+
 //This function is used for estimate the graph of graphlets distribution
 std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k){
     //std::cout << "spia: sampling started\n";
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
-    int t = 1; //current time
-    float epsilon = 1e-3; //precision to declare convergence
+    unsigned int mix_time = 1;
+    float epsilon = 0.005; //precision to declare convergence
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
     do{
-        //std::cout << "spia: loop started\n";
-        t++;
         distro_tprec = distro_t; //alignment
         for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
-            //std::cout << "spia: first nested\t" << vk.first << "\n";
             for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
-                //std::cout << "spia: second nested\t" << wk.first << "\n";
+                
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
                     for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
-                        //std::cout << "spia: third nested\t" << nk <<"\n";
-                        if((vk.first != nk) and (gk.get_repr().find(nk) == gk.end())){
+                        if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
                             uk = gk;
-                            uk.exclude_include_vertex(G, vk.first, nk);
-                            if (uk.isConnected()) {
+                            uk.exclude_include_vertex(G, vk.first, nk); //molto lento
+                            if (!(exist_edge(Gk, uk, gk)) and uk.isConnected()) { //cercare di velocizzare
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
                             }
@@ -144,13 +144,14 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
                 }
             }
         }
+        
         if (Gk[gk].size() > 0 )
             gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
         distro_t[gk] += 1;
         distro_tprec[gk] += 0;
-    }while(l1_diff(distro_t, distro_tprec, t) > epsilon);
-    normalize_distribution(distro_t, t);
-    //std::cout << "spia: sampling ended\n";
+        mix_time++;
+    }while(mix_time < 100);//(l1_diff(distro_t, distro_tprec, mix_time) >= epsilon);
+    normalize_distribution(distro_t, mix_time);
     return distro_t;
 }
 
