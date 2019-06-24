@@ -7,7 +7,8 @@
 //
 
 #include "Graph.hpp"
-
+#include <chrono>
+using namespace std::chrono;
 Graph::Graph(){
 }
 
@@ -148,6 +149,9 @@ bool Graph::isBipartite(){
 bool Graph::isConnected(){
     
     
+    
+     
+    
     unsigned int source = this->source;
     const size_t n_of_verteces = this->repr.size();
     std::unordered_set<int> expected_veteces;
@@ -197,7 +201,6 @@ bool Graph::isConnected(){
             }
         }
     }
-    
     return expected_veteces == real_veteces;
     
 }

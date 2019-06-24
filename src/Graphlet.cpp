@@ -57,25 +57,17 @@ void Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
     //erase <excl> from the nodes of the graph
     this->repr.erase(excl);
     
-    //erase <excl> from the neighbors
+    //erase <excl> from the neighbors and add connections
     for(std::pair<int, std::unordered_set<int>> check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-    }
-    
-    
-    //place <incl> in the vertex and in the neighbords
-    for (int vertex : G[incl]) { //questo li ciocca tutti TODO
-        
-        if(this->repr.find(vertex) != this->repr.end()){ //qua ne becca al massimo un paio TODO
+        if(G[incl].find(check_edges.first) != G[incl].end()){ //qua ne becca al massimo un paio TODO
             
-            this->repr[incl].insert(vertex);
-            this->repr[vertex].insert(incl);
+            this->repr[incl].insert(check_edges.first);
+            this->repr[check_edges.first].insert(incl);
         }
     }
-    
-    
+
     this->source = incl;
-    
     return;
 }
 

@@ -6,8 +6,14 @@
 //  Copyright © 2019 Lorenzo Giusti. All rights reserved.
 //
 
+
+#include <chrono>
+
+
 #include "Estimator.hpp"
 #include "Utility.hpp"
+
+using namespace std::chrono;
 
 Estimator::Estimator(){}
 
@@ -123,6 +129,7 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
+    std::cout << "starting sampling\n";
     do{
         distro_tprec = distro_t; //alignment
         for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
@@ -133,13 +140,26 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
                         if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
+                            
                             uk = gk;
+                            
                             uk.exclude_include_vertex(G, vk.first, nk); //molto lento
+                            
+                            auto start = high_resolution_clock::now();
+                            //durata di questo check è incrementale con il numero di iterazioni, perch?
                             if (!(exist_edge(Gk, uk, gk)) and uk.isConnected()) { //cercare di velocizzare
+                                
+                                
+                                auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
+                                std::cout << "Time taken by function: "<< duration.count() << " ms\n";
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
+                                
                             }
+                            /*
+                             */
                         }
+                        
                     }
                 }
             }
@@ -150,6 +170,7 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
         distro_t[gk] += 1;
         distro_tprec[gk] += 0;
         mix_time++;
+        std::cout << mix_time << " mix\n";
     }while(mix_time < 100);//(l1_diff(distro_t, distro_tprec, mix_time) >= epsilon);
     normalize_distribution(distro_t, mix_time);
     return distro_t;
