@@ -31,7 +31,6 @@ int main(int argc, char* argv[])
 	ss <<  "/Users/ince/Desktop/bressan_data/" << argv[1];
 	
 	std::string filename = ss.str();
-	
 	Graph G(filename);
 	Estimator e;
 	assert(not G.isBipartite());

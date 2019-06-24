@@ -27,7 +27,7 @@ template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_
     for(std::pair<T, float> p : v1){
         sum += abs(v1.at(p.first) - v2.at(p.first));
     }
-    std::cout << sum << "\n";
+    
     return sum;
 }
 

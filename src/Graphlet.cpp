@@ -53,7 +53,7 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
  Vanilla: Create a new graph by copying the reference to this, exclude the vertex <excl> and include the vertex <incl>
  Gamma1: since the constructor take very long time, i perform the operation on <this> and <this> is a reference to the graphlet i have to exclude-include
  */
-void Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
+bool Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
     //erase <excl> from the nodes of the graph
     this->repr.erase(excl);
     
@@ -68,7 +68,7 @@ void Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
     }
 
     this->source = incl;
-    return;
+    return this->isConnected();
 }
 
 void Graphlet::insert_edge(std::pair<int, int> incl){

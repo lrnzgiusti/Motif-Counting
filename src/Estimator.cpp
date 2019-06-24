@@ -125,7 +125,7 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
     unsigned int mix_time = 1;
-    float epsilon = 0.005; //precision to declare convergence
+    //float epsilon = 0.005; //precision to declare convergence
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
@@ -135,33 +135,33 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k
         for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
             for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
                 
+               
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
+                    
+                    auto start = high_resolution_clock::now();
                     for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
                         if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
                             
                             uk = gk;
+                            //this takes 0.6 s
+                            if (uk.exclude_include_vertex(G, vk.first, nk)){
                             
-                            uk.exclude_include_vertex(G, vk.first, nk); //molto lento
-                            
-                            auto start = high_resolution_clock::now();
+                           
                             //durata di questo check è incrementale con il numero di iterazioni, perch?
-                            if (!(exist_edge(Gk, uk, gk)) and uk.isConnected()) { //cercare di velocizzare
+                            //if (((exist_edge(Gk, uk, gk)) == false) and (uk.isConnected())) { //cercare di velocizzare
                                 
-                                
-                                auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
-                                std::cout << "Time taken by function: "<< duration.count() << " ms\n";
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
                                 
                             }
-                            /*
-                             */
-                        }
-                        
-                    }
-                }
+                            auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
+                            std::cout << "Time taken by function: "<< duration.count() << " ms\n";
+                        } //0.63 secondi
+                    }//incrementale
+                    
+                } // 15 secondi
             }
         }
         
