@@ -13,21 +13,16 @@
 #include <vector>
 #include <unordered_map>
 
-template<class T> float l1_diff(std::unordered_map<T, float> v1, std::unordered_map<T, float> v2, int t){
+template<class T> float l1_diff(std::unordered_map<T, float> &v1, std::unordered_map<T, float> &v2, int t){
     if(v1.size() != v2.size()){
         return -1; //Distribution size are different
     }
     double sum = 0;
     
     for(std::pair<T, float> p : v1){
-        v1.at(p.first) /= t;
-        v2.at(p.first) /= t;
+        sum += abs((v1.at(p.first) - v2.at(p.first))/t);
     }
-    
-    for(std::pair<T, float> p : v1){
-        sum += abs(v1.at(p.first) - v2.at(p.first));
-    }
-    
+    std::cout << sum << "\n";
     return sum;
 }
 

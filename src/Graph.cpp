@@ -145,12 +145,8 @@ bool Graph::isBipartite(){
     return true;
 }
 
-
+// this takes 15 microsecs
 bool Graph::isConnected(){
-    
-    
-    
-     
     
     unsigned int source = this->source;
     const size_t n_of_verteces = this->repr.size();
@@ -167,9 +163,7 @@ bool Graph::isConnected(){
     //reserve expected_verteces, this->repr.size()
     //calculate expected_verteced
     std::unordered_set<int> real_veteces;
-    
-    
-    
+
     // Assign first color to source
     colorArr[source] = 1;
     std::queue <int> q;
@@ -202,7 +196,6 @@ bool Graph::isConnected(){
         }
     }
     return expected_veteces == real_veteces;
-    
 }
 
 

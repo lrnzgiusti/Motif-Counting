@@ -53,11 +53,14 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
  Vanilla: Create a new graph by copying the reference to this, exclude the vertex <excl> and include the vertex <incl>
  Gamma1: since the constructor take very long time, i perform the operation on <this> and <this> is a reference to the graphlet i have to exclude-include
  */
-bool Graphlet::exclude_include_vertex(Graph G, int excl, int incl){
+//this takes around 70 microsecs
+bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
+    
     //erase <excl> from the nodes of the graph
     this->repr.erase(excl);
     
     //erase <excl> from the neighbors and add connections
+    
     for(std::pair<int, std::unordered_set<int>> check_edges : *this){
         this->repr[check_edges.first].erase(excl);
         if(G[incl].find(check_edges.first) != G[incl].end()){ //qua ne becca al massimo un paio TODO

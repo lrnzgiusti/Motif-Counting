@@ -25,7 +25,7 @@ Estimator::Estimator(Graph g){
 
 
 
-Graphlet Estimator::pick_the_first(Graph G, int source, int k){
+Graphlet Estimator::pick_the_first(Graph &G, int source, int k){
     std::set<int> Vk = {source}; //vertex in the first graphlet
     std::set<std::pair<int, int>> Ek; //edges in the first graphlet
     std::set<int> C;
@@ -119,59 +119,47 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
 }
 
 //This function is used for estimate the graph of graphlets distribution
-std::unordered_map<Graphlet, float> Estimator::sampler(Graph G, int start, int k){
+std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int k){
     //std::cout << "spia: sampling started\n";
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
     unsigned int mix_time = 1;
-    //float epsilon = 0.005; //precision to declare convergence
+    float epsilon = 0.001;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 1; //init of the distribution
     std::cout << "starting sampling\n";
     do{
         distro_tprec = distro_t; //alignment
-        for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
-            for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
-                
-               
+        for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet O(k)
+            for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the O(k) previous
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    
-                    auto start = high_resolution_clock::now();
-                    for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
+                    for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
-                        // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
+                        // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
                         if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
-                            
                             uk = gk;
-                            //this takes 0.6 s
+                            //this returns true if uk is connected, otherwise i don't care about connecting in Gk
+                            //auto start = high_resolution_clock::now();
                             if (uk.exclude_include_vertex(G, vk.first, nk)){
-                            
-                           
-                            //durata di questo check è incrementale con il numero di iterazioni, perch?
-                            //if (((exist_edge(Gk, uk, gk)) == false) and (uk.isConnected())) { //cercare di velocizzare
-                                
+                                //auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
+                                //std::cout << "Time taken by function: "<< duration.count() << " ms\n";
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
-                                
                             }
-                            auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
-                            std::cout << "Time taken by function: "<< duration.count() << " ms\n";
-                        } //0.63 secondi
-                    }//incrementale
-                    
-                } // 15 secondi
+                        }
+                    }
+                }
             }
         }
-        
+    
         if (Gk[gk].size() > 0 )
             gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
         distro_t[gk] += 1;
         distro_tprec[gk] += 0;
         mix_time++;
-        std::cout << mix_time << " mix\n";
-    }while(mix_time < 100);//(l1_diff(distro_t, distro_tprec, mix_time) >= epsilon);
+    }while(l1_diff(distro_t, distro_tprec, mix_time) >= epsilon);//(mix_time < 100);
     normalize_distribution(distro_t, mix_time);
     return distro_t;
 }
