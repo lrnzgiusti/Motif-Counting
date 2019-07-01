@@ -12,6 +12,7 @@
 
 #include "Estimator.hpp"
 #include "Utility.hpp"
+#include <csignal>
 
 using namespace std::chrono;
 
@@ -118,24 +119,27 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
     return ((Gk[u].find(v) != Gk[u].end()) and (Gk[v].find(u) != Gk[v].end()));
 }
 
+
+volatile sig_atomic_t stop;
+
+void handler(int signum){stop = 1;}
 //This function is used for estimate the graph of graphlets distribution
 std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int k){
     //std::cout << "spia: sampling started\n";
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
-    std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
+    //std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
     unsigned int mix_time = 1;
-    float epsilon = 0.001;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
-    distro_t[gk] = 1; //init of the distribution
-    std::cout << "starting sampling\n";
+    distro_t[gk] = 0; //init of the distribution
+    signal(SIGINT, handler);
     do{
-        distro_tprec = distro_t; //alignment
-        for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet O(k)
-            for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the O(k) previous
+        //distro_tprec = distro_t; //alignment
+        for(const std::pair<int, std::unordered_set<int>> &vk : gk){ //for-each vertex in the graphlet O(k)
+            for(const std::pair<int, std::unordered_set<int>> &wk : gk){ //for-each vertex in the graphlet without the O(k) previous
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
+                    for(const int &nk : G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
                         // (vk.first != nk) means that i don't insert the vertex i'm excluding
                         // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
                         if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
@@ -143,8 +147,6 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int 
                             //this returns true if uk is connected, otherwise i don't care about connecting in Gk
                             //auto start = high_resolution_clock::now();
                             if (uk.exclude_include_vertex(G, vk.first, nk)){
-                                //auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start);
-                                //std::cout << "Time taken by function: "<< duration.count() << " ms\n";
                                 Gk[uk].insert(gk);
                                 Gk[gk].insert(uk);
                             }
@@ -153,61 +155,12 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int 
                 }
             }
         }
-    
-        if (Gk[gk].size() > 0 )
-            gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
-        distro_t[gk] += 1;
-        distro_tprec[gk] += 0;
-        mix_time++;
-    }while(l1_diff(distro_t, distro_tprec, mix_time) >= epsilon);//(mix_time < 100);
-    normalize_distribution(distro_t, mix_time);
-    return distro_t;
-}
 
-//this function estimate the mixing time
-std::unordered_map<Graphlet, float> Estimator::random_walk(Graph G, int start, int k){
-    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
-    std::unordered_map<int, float> distro_t; //the current distribution
-    std::unordered_map<Graphlet, float> distro_t_graphlets; //the current distribution
-    std::unordered_map<int, float> distro_real = read_distro("/Users/ince/Desktop/bressan_data/distro_3.dat");
-    int t = 1; //current time
-    std::hash<Graphlet> hasher;
-    float epsilon = 0.055; //precision to declare convergence
-    Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
-    Graphlet uk; //Graphlet I add to the final result
-    distro_t[hasher(gk)] = 1; //init of the distribution
-    distro_t_graphlets[gk] = 1;
-    do{
-        t++;
-        //distro_tprec = distro_t; //alignment
-        for(std::pair<int, std::unordered_set<int>> vk : gk){ //for-each vertex in the graphlet
-            for(std::pair<int, std::unordered_set<int>> wk : gk){ //for-each vertex in the graphlet without the previous
-                if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    for(int nk : G[wk.first]){ //for-each neighbor of wk in the original graph
-                        // (vk.first != nk) means that i don't insert the vertex i'm excluding
-                        // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet
-                        
-                        if((vk.first != nk) and (gk.get_repr().find(nk) == gk.end())){
-                            uk = gk;
-                            uk.exclude_include_vertex(G, vk.first, nk);
-                            if (uk.isConnected()) {
-                                Gk[uk].insert(gk);
-                                Gk[gk].insert(uk);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (Gk[gk].size() > 0 )
-            gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
+        gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
+        distro_t[gk] += 1.0/Gk[gk].size();
+        mix_time++;
         
-        distro_t[hasher(gk)] += 1;
-        distro_t_graphlets[gk] += 1;
-    }while(l1_disto_diff(distro_t, distro_real, t) > epsilon);
-    //maybe insert the L1 distance between the two distributions, some eustistics
-    normalize_distribution(distro_t, t);
-    normalize_distribution(distro_t_graphlets, t);
-    std::cout << "Mixing time: " << t << "\n";
-    return distro_t_graphlets;
+    }while((mix_time < 500) and (!stop));
+    normalize_distribution(distro_t);
+    return distro_t;
 }

@@ -16,8 +16,6 @@ public:
     Estimator(Graph); //deprecated
     ~Estimator();
     Graphlet pick_the_first(Graph &, int, int); // this will be called at the start of the random walk so it's private. Public function only for the tests.
-    std::unordered_map<Graphlet, float> random_walk(Graph G, int start, int k);
-    
     std::unordered_map<int, float> read_distro(std::string);
     std::unordered_map<Graphlet, float>  sampler(Graph &G, int start, int k);
     

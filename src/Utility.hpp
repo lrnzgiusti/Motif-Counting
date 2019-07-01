@@ -44,11 +44,18 @@ float l1_disto_diff(std::unordered_map<int, float> real, std::unordered_map<int,
 }
 
 
-template<class T> void normalize_distribution(std::unordered_map<T, float> &distro, unsigned int t){
+
+
+template<class T> void normalize_distribution(std::unordered_map<T, float> &distro){
+    float sum = 0;
     for(std::pair<T, float> p : distro){
-        distro.at(p.first) /= t;
+        sum += p.second;
+        
     }
     
+    for(std::pair<T, float> p : distro){
+        distro.at(p.first) /= sum;
+    }
 }
 
 template<class T> void save_distribution(std::unordered_map<T, float> distro, std::string filename){

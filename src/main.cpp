@@ -37,7 +37,8 @@ int main(int argc, char* argv[])
 	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);//e.random_walk(G, 1, 4);
 	//save_distribution(Gk_distro, "/Users/ince/Desktop/distro_3.dat");
 	
-	std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);
+	std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, std::stoi(argv[2]));
+	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3, 0);
 	
 	std::unordered_map<std::string, double> motif_distro;
 	
