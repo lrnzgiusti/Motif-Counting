@@ -120,15 +120,37 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
 }
 
 
+std::unordered_map<int, std::set<int>> shotgun(Graph &G){
+    std::unordered_map<int, std::set<int>> fast_G;
+    for(const std::pair<int, std::unordered_set<int>> &v : G.get_repr()){
+        for(const int &nv : G[v.first]){
+            fast_G[v.first].insert(nv);
+        }
+    }
+    return fast_G;
+}
+
+void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
+    std::unordered_map<int, std::set<int>>::iterator it;
+    for(it = fast_G.begin(); it != fast_G.end(); ++it){
+        std::cout << "[" << it->first << "] -> ";
+        
+        std::set<int>::iterator set_iter;
+        for (set_iter = it->second.begin(); set_iter != it->second.end(); ++set_iter) {
+            std::cout << *set_iter << "<->";
+        }
+        std::cout << "NULL\n";
+    }
+}
+
 volatile sig_atomic_t stop;
 
 void handler(int signum){stop = 1;}
 //This function is used for estimate the graph of graphlets distribution
 std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int k){
-    //std::cout << "spia: sampling started\n";
+    std::unordered_map<int, std::set<int>> fast_G = shotgun(G);
     std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
-    //std::unordered_map<Graphlet, float> distro_tprec; //the distribution at t-1 for make the comparisons
     unsigned int mix_time = 1;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
@@ -136,19 +158,20 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int 
     std::unordered_set<Graphlet>::iterator it;
     signal(SIGINT, handler);
     do{
-        //auto start = high_resolution_clock::now();
+        
         for(const std::pair<int, std::unordered_set<int>> &vk : gk){ //for-each vertex in the graphlet O(k)
             for(const std::pair<int, std::unordered_set<int>> &wk : gk){ //for-each vertex in the graphlet without the O(k) previous
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
+                    
                     //DEADLOCK, CERCARE UN MTHREAD QUI
-                    for(const int &nk : G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
+                    for(const int &nk : fast_G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
                             // (vk.first != nk) means that i don't insert the vertex i'm excluding
                             // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
                             if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
                                 uk = gk;
                                 //this returns true if uk is connected, otherwise i don't care about connecting in Gk
                                 
-                                if (uk.exclude_include_vertex(G, vk.first, nk)){
+                                if (uk.exclude_include_vertex(fast_G, vk.first, nk)){
                                    
                                     Gk[uk].insert(gk);
                                     Gk[gk].insert(uk);
@@ -165,11 +188,11 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int 
         distro_t[gk] += 1.0/Gk[gk].size();
         mix_time++;
         /*
+         auto start = high_resolution_clock::now();
          auto end = std::chrono::high_resolution_clock::now();
          std::chrono::duration<double> diff = end-start;
         std::cout << "\tJump time: " << diff.count() << " s\n";*/
-    }while((mix_time < 200) and (!stop));
-    std::cout << mix_time << "\n";
+    }while((mix_time < 2000) and (!stop));
     normalize_distribution(distro_t);
     return distro_t;
 }
