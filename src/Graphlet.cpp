@@ -9,6 +9,8 @@
 #include "Graphlet.hpp"
 #include <math.h>
 #include <chrono>
+#include <thread>
+
 Graphlet::Graphlet(){}
 
 Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
@@ -55,21 +57,16 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
  */
 //this takes around 70 microsecs
 bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
-    
     //erase <excl> from the nodes of the graph
     this->repr.erase(excl);
-    
     //erase <excl> from the neighbors and add connections
-    
-    for(std::pair<int, std::unordered_set<int>> check_edges : *this){
+    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-        if(G[incl].find(check_edges.first) != G[incl].end()){ //qua ne becca al massimo un paio TODO
-            
+        if(G[incl].find(check_edges.first) != G[incl].end()){ // linear in the dimension of G[incl] TODO
             this->repr[incl].insert(check_edges.first);
             this->repr[check_edges.first].insert(incl);
         }
     }
-
     this->source = incl;
     return this->isConnected();
 }

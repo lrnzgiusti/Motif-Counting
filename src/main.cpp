@@ -19,17 +19,20 @@
 #include <string>
 #include "Utility.hpp"
 #include "Occurrence.cpp"
+#include <thread>
 
 
+
+/// TODO : MULTITHREAD INTRODUCE SEGFAULT ERRORS: WHY ?! 
 int main(int argc, char* argv[])
 {
-	
+
 	srand(time(NULL));
 
 	
 	std::stringstream ss;
-	ss <<  "/Users/ince/Desktop/bressan_data/" << argv[1];
-	
+	//ss <<  "/Users/ince/Desktop/bressan_data/" << argv[1];
+	ss << "/Users/ince/Desktop/bressan_data/facebook.ascii";
 	std::string filename = ss.str();
 	Graph G(filename);
 	Estimator e;
@@ -37,8 +40,8 @@ int main(int argc, char* argv[])
 	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);//e.random_walk(G, 1, 4);
 	//save_distribution(Gk_distro, "/Users/ince/Desktop/distro_3.dat");
 	
-	std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, std::stoi(argv[2]));
-	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3, 0);
+	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, std::stoi(argv[2]));
+	std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);
 	
 	std::unordered_map<std::string, double> motif_distro;
 	

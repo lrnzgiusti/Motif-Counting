@@ -13,7 +13,7 @@
 #include "Estimator.hpp"
 #include "Utility.hpp"
 #include <csignal>
-
+#include <thread>
 using namespace std::chrono;
 
 Estimator::Estimator(){}
@@ -133,34 +133,43 @@ std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int 
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     distro_t[gk] = 0; //init of the distribution
+    std::unordered_set<Graphlet>::iterator it;
     signal(SIGINT, handler);
     do{
-        //distro_tprec = distro_t; //alignment
+        //auto start = high_resolution_clock::now();
         for(const std::pair<int, std::unordered_set<int>> &vk : gk){ //for-each vertex in the graphlet O(k)
             for(const std::pair<int, std::unordered_set<int>> &wk : gk){ //for-each vertex in the graphlet without the O(k) previous
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
+                    //DEADLOCK, CERCARE UN MTHREAD QUI
                     for(const int &nk : G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
-                        // (vk.first != nk) means that i don't insert the vertex i'm excluding
-                        // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
-                        if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
-                            uk = gk;
-                            //this returns true if uk is connected, otherwise i don't care about connecting in Gk
-                            //auto start = high_resolution_clock::now();
-                            if (uk.exclude_include_vertex(G, vk.first, nk)){
-                                Gk[uk].insert(gk);
-                                Gk[gk].insert(uk);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        gk = *(std::next(Gk[gk].begin(), rand()%Gk[gk].size()));
+                            // (vk.first != nk) means that i don't insert the vertex i'm excluding
+                            // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
+                            if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
+                                uk = gk;
+                                //this returns true if uk is connected, otherwise i don't care about connecting in Gk
+                                
+                                if (uk.exclude_include_vertex(G, vk.first, nk)){
+                                   
+                                    Gk[uk].insert(gk);
+                                    Gk[gk].insert(uk);
+                                } //end if (uk.exclude_include_vertex(G, vk.first, nk))
+                            } //end if((vk.first != nk) and (gk.exist_vertex(nk) == false))
+                        }// end for(const int &nk : G[wk.first])
+                }// end if(vk.first != wk.first)
+            }//end for(const std::pair<int, std::unordered_set<int>> &wk : gk)
+        }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
+        //
+        it = Gk[gk].begin();
+        std::advance(it,rand()%Gk[gk].size());
+        gk = *it;
         distro_t[gk] += 1.0/Gk[gk].size();
         mix_time++;
-        
-    }while((mix_time < 500) and (!stop));
+        /*
+         auto end = std::chrono::high_resolution_clock::now();
+         std::chrono::duration<double> diff = end-start;
+        std::cout << "\tJump time: " << diff.count() << " s\n";*/
+    }while((mix_time < 200) and (!stop));
+    std::cout << mix_time << "\n";
     normalize_distribution(distro_t);
     return distro_t;
 }

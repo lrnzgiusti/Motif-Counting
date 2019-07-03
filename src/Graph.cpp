@@ -154,7 +154,7 @@ bool Graph::isConnected(){
     std::unordered_map<int, int> colorArr;
     expected_veteces.reserve(n_of_verteces);
     
-    for(auto x: this->repr){
+    for(const std::pair<int, std::unordered_set<int>> &x: this->repr){
         
         expected_veteces.insert(x.first);
         colorArr[x.first] = 0;
