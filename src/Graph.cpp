@@ -34,12 +34,7 @@ Graph::Graph(std::set<std::pair<int, int>> edges){
     num_of_nodes = repr.size();
 }
 
-Graph::Graph(int min_degree, int max_degree, int num_of_verteces){
-    num_of_edges = 0;
-    num_of_nodes = 0;
-    random_non_bipartite_generator(min_degree, max_degree, num_of_verteces);
-    
-}
+
 
 Graph::~Graph(){}
 
@@ -216,34 +211,6 @@ float get_density(int n_edges, int n_verteces){
     return (2.0*n_edges)/(n_verteces*(n_verteces-1));
 }
 
-void Graph::random_non_bipartite_generator(int min_degree, int max_degree, int number_of_verteces){
-    
-    if((min_degree > max_degree) or (max_degree > number_of_verteces)){
-        std::cerr << "Parameters not valid!";
-        return;
-    }
-    
-    std::unordered_map<int, std::unordered_set<int>> G;
-    int random_number_of_neighbours;
-    int random_neighbor;
-    for(int i = 1; i < number_of_verteces; i++){
-        random_number_of_neighbours = rand()%max_degree+min_degree;
-        for(int j = 0; j < random_number_of_neighbours; j++){
-            random_neighbor = rand()%number_of_verteces+1;
-            while(random_neighbor == i) random_neighbor = rand()%number_of_verteces+1;
-            if (G[i].count(random_neighbor) == 0) {
-                G[i].insert(random_neighbor);
-                G[random_neighbor].insert(i);
-                num_of_edges++;
-            }
-        }
-        
-    }
-    this->repr = G;
-    this->num_of_nodes = G.size();
-    return;
-}
-
 
 
 std::vector<float> Graph::random_walk(){
@@ -272,55 +239,6 @@ std::vector<float> Graph::random_walk(){
 }
 
 
-
-void Graph::random_bipartite_generator(int min_degree, int max_degree, int number_of_verteces){
-    
-    if((min_degree > max_degree) or (max_degree > number_of_verteces)){
-        std::cerr << "Parameters not valid!";
-        return;
-    }
-    
-    int current = 1;
-    int sub_current = 2;
-    std::unordered_map<int, std::unordered_set<int>> G;
-    int current_number_of_edges = 0;
-    int color[number_of_verteces];
-    color[current-1] = 0;
-    int n_of_neigh;
-    int first_random_vertex, second_random_vertex;
-    
-    while (G.size() <= number_of_verteces) {
-        n_of_neigh = rand()%max_degree+min_degree;
-        for (int i = 0; i < n_of_neigh; ++i, ++sub_current) {
-            G[current].insert(sub_current);
-            G[sub_current].insert(current);
-            current_number_of_edges++;
-            color[sub_current-1] = !color[current-1];
-            
-            //the first condition tells us to avoid insert edges if it's unecessary.
-            // and avoid to compute the density with less then two verteces.
-            //refill the graph until you get an acceptable density
-            while ( (G.size() > 2) and (G.size() <= number_of_verteces) and get_density(current_number_of_edges, (int)G.size()) < .15) {
-                first_random_vertex = rand()%sub_current+1;
-                second_random_vertex = rand()%sub_current+1;
-                
-                //if you pick the same colors you end up with a non-bipartite graph.
-                while (color[second_random_vertex-1] == color[first_random_vertex-1]){
-                    first_random_vertex = rand()%sub_current+1;
-                    second_random_vertex = rand()%sub_current+1;
-                }
-                
-                //classical connection between two verteces.
-                G[first_random_vertex].insert(second_random_vertex);
-                G[second_random_vertex].insert(first_random_vertex);
-                current_number_of_edges++;
-            }
-            current = sub_current;
-        }
-    }
-    this->repr = G;
-    return;
-}
 
 
 bool Graph::isValid() const{

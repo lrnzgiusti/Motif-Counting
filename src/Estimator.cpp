@@ -14,6 +14,8 @@
 #include "Utility.hpp"
 #include <csignal>
 #include <thread>
+
+#include "Occurrence.cpp"
 using namespace std::chrono;
 
 Estimator::Estimator(){}
@@ -120,8 +122,8 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
 }
 
 
-std::unordered_map<int, std::set<int>> shotgun(Graph &G){
-    std::unordered_map<int, std::set<int>> fast_G;
+std::map<int, std::set<int>> shotgun(Graph &G){
+    std::map<int, std::set<int>> fast_G;
     for(const std::pair<int, std::unordered_set<int>> &v : G.get_repr()){
         for(const int &nv : G[v.first]){
             fast_G[v.first].insert(nv);
@@ -146,53 +148,177 @@ void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
 volatile sig_atomic_t stop;
 
 void handler(int signum){stop = 1;}
+
 //This function is used for estimate the graph of graphlets distribution
-std::unordered_map<Graphlet, float> Estimator::sampler(Graph &G, int start, int k){
-    std::unordered_map<int, std::set<int>> fast_G = shotgun(G);
-    std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk; //the final Graph of graphlets
+std::unordered_map<std::string, float>  Estimator::sampler(Graph &G, int start, int k, int max_iter){
+    std::map<int, std::set<int>> fast_G = shotgun(G);
+    std::unordered_set<Graphlet> Gk; //the final Graph of graphlets VERY high occupancy of memory
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     unsigned int mix_time = 1;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
-    distro_t[gk] = 0; //init of the distribution
+    Graphlet uk_prime; //Graphlet I add to the final result
+    
     std::unordered_set<Graphlet>::iterator it;
+    
+    std::unordered_map<std::string, float> motif_distro; //result
+    
+    Occurrence *o;
+    OccurrenceCanonicizer *oc;
+    
     signal(SIGINT, handler);
+    float acc = 0;
     do{
         
+        auto start = high_resolution_clock::now();
         for(const std::pair<int, std::unordered_set<int>> &vk : gk){ //for-each vertex in the graphlet O(k)
             for(const std::pair<int, std::unordered_set<int>> &wk : gk){ //for-each vertex in the graphlet without the O(k) previous
+                
                 if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    
-                    //DEADLOCK, CERCARE UN MTHREAD QUI
-                    for(const int &nk : fast_G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
+                    uk = gk;
+                    if(uk.exclude_vertex(fast_G, vk.first)) //if gk - vk.first is not connected i avoid useless stuff to do
+                    {
+                        uk_prime = uk;
+                        for(const int &nk : fast_G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
                             // (vk.first != nk) means that i don't insert the vertex i'm excluding
-                            // (gk.get_repr().find(nk) == gk.end()) means that i don't insert a vertex already in the graphlet;
+                            // (gk.exist_vertex(nk) == false)  means that i don't insert a vertex already in the graphlet;
                             if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
-                                uk = gk;
                                 //this returns true if uk is connected, otherwise i don't care about connecting in Gk
-                                
-                                if (uk.exclude_include_vertex(fast_G, vk.first, nk)){
-                                   
-                                    Gk[uk].insert(gk);
-                                    Gk[gk].insert(uk);
-                                } //end if (uk.exclude_include_vertex(G, vk.first, nk))
+                                    if(uk_prime.include_vertex(fast_G, nk)){
+                                        Gk.insert(uk_prime);
+                                        uk_prime = uk;
+                                    }//end if (uk.exclude_include_vertex(G, vk.first, nk))
                             } //end if((vk.first != nk) and (gk.exist_vertex(nk) == false))
                         }// end for(const int &nk : G[wk.first])
+                    }//end if(uk.exclude_vertex(fast_G, vk.first))
                 }// end if(vk.first != wk.first)
             }//end for(const std::pair<int, std::unordered_set<int>> &wk : gk)
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
-        //
-        it = Gk[gk].begin();
-        std::advance(it,rand()%Gk[gk].size());
-        gk = *it;
-        distro_t[gk] += 1.0/Gk[gk].size();
+        
+        
+        it = Gk.begin(); //pick an iterator to the set
+        std::advance(it,rand()%Gk.size()); //pick a random neighbor
+        gk = *it; //set it to the new graphlet
         mix_time++;
-        /*
-         auto start = high_resolution_clock::now();
-         auto end = std::chrono::high_resolution_clock::now();
-         std::chrono::duration<double> diff = end-start;
-        std::cout << "\tJump time: " << diff.count() << " s\n";*/
-    }while((mix_time < 2000) and (!stop));
-    normalize_distribution(distro_t);
-    return distro_t;
+        
+        o= new Occurrence(gk.get_size(), &gk);
+        oc = (new OccurrenceCanonicizer(gk.get_size()));
+        oc->canonicize(o);
+        motif_distro[o->text_footprint()] += 1.0/Gk.size(); //use it as weight to the distro
+        
+        Gk.clear(); //clear the neighborhood
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        acc += diff.count();
+    }while((mix_time < max_iter) and (!stop));
+    normalize_distribution(motif_distro);
+    
+    std::cout << "avg jump time: " << acc/mix_time << "\n"; //ideal: this <= 0.001 s
+    return motif_distro;
+}
+
+
+std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int start, int k, int max_iter){
+    std::map<int, std::set<int>> fast_G = shotgun(G); //fast graph (using trees instead of hashset)
+    unsigned int mix_time = 1;
+    Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
+    Graphlet uk; //Graphlet I add to the final result
+    
+    std::set<int>::iterator it; //iterator to get the adding node
+    std::unordered_map<int, std::set<int>> L; //temportary distribution
+    std::map<int, std::set<int>> Lprime; //verteces whih i pick the new node randomly
+    std::set<int> keys; //nodes in the graphlets
+    
+    std::random_device rd; //random distro stuff
+    std::mt19937 gen(rd()); //random distro stuff
+
+    std::vector<double> p; //probability to select a vertex u
+    std::vector<int> q; //the corresponding vector of vertex picket with a distro specified in p;
+    std::discrete_distribution<> d; //distrbution of the nodes in which i pick the including one.
+    
+    int excl = 0;
+    int incl = 0;
+    float deno = 0;
+    
+    std::unordered_map<std::string, float> motif_distro; //result
+
+    Occurrence *o;
+    OccurrenceCanonicizer *oc;
+    signal(SIGINT, handler);
+    float acc = 0; //useful for statistics
+    std::cout << "Starting algorithm\n";
+    do{
+        
+        auto start = high_resolution_clock::now();
+       
+        //get the nodes of gk, useful for removing one of them in the next section.
+        for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
+        
+        //for-each vertex in the graphlet O(k)
+        for(const std::pair<int, std::unordered_set<int>> &u : gk){
+            
+            uk = gk;
+            if(uk.exclude_vertex(fast_G, u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
+            {
+                //L(u)= \cup{N(v) for v in g-u}
+                for(const std::pair<int, std::unordered_set<int>> &v : uk){
+                        std::set_union(L[u.first].begin(), L[u.first].end(),
+                                       fast_G[v.first].begin(), fast_G[v.first].end(),
+                                       std::inserter(L[u.first],
+                                                     L[u.first].end()));
+                    
+                }
+                
+                for(const int &key : keys){
+                    L[u.first].erase(key);
+                }
+                //I remove the verteces that already belongs to the motif
+                /*std::set_difference(L[u.first].begin(), L[u.first].end(),
+                                    keys.begin(), keys.end(),
+                                    std::inserter(Lprime[u.first],
+                                                  Lprime[u.first].end()));*/
+                deno += L[u.first].size();
+            }//end if(uk.exclude_vertex(fast_G, vk.first))
+        }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
+        
+        
+        for(const std::pair<int, std::unordered_set<int>> &u : gk){
+            p.push_back(L[u.first].size()/deno);
+            q.push_back(u.first);
+        }
+        
+        d = *(new std::discrete_distribution<>(p.begin(), p.end()));
+        excl = q[d(gen)];
+        
+        it = L[excl].begin(); //pick an iterator to the set
+        std::advance(it,rand()%L[excl].size()); //pick a random neighbor
+        incl = *it; //set it to the new graphlet
+        gk.exclude_include_vertex(fast_G, excl, incl); //excl == incl; perché?
+        mix_time++;
+        
+        
+        o= new Occurrence(gk.get_size(), &gk);
+        oc = (new OccurrenceCanonicizer(gk.get_size()));
+        oc->canonicize(o);
+        motif_distro[o->text_footprint()] += 1.0/L[excl].size();
+        
+        //clear all the temporary variables
+        keys.clear();
+        L.clear();
+        //Lprime.clear();
+        p.clear();
+        q.clear();
+        deno = 0;
+        
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        
+        acc += diff.count();
+        
+        if(mix_time % 20000 == 0) std::cout << mix_time << "\n";
+    }while((mix_time < max_iter) and (!stop));
+    normalize_distribution(motif_distro);
+    
+    std::cout << "avg jump time: " << acc/mix_time << "\n"; //ideal: this <= 0.001 s
+    return motif_distro;
 }

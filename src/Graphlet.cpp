@@ -11,6 +11,7 @@
 #include <chrono>
 #include <thread>
 
+
 Graphlet::Graphlet(){}
 
 Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
@@ -32,7 +33,7 @@ Graphlet::~Graphlet(){}
 bool Graphlet::operator ==(const Graphlet &g) const{
     std::unordered_map<int, std::unordered_set<int>> other_graph_representation = g.get_repr();
     
-    for (std::pair<int, std::unordered_set<int>> p : other_graph_representation) {
+    for (const std::pair<int, std::unordered_set<int>> &p : other_graph_representation) {
         try {
             if (repr.at(p.first) != other_graph_representation.at(p.first)) return false;
         } catch (...) {
@@ -56,17 +57,65 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
  Gamma1: since the constructor take very long time, i perform the operation on <this> and <this> is a reference to the graphlet i have to exclude-include
  */
 //this takes around 70 microsecs
-bool Graphlet::exclude_include_vertex(std::unordered_map<int, std::set<int>> &G, int excl, int incl){
+
+
+bool Graphlet::exclude_vertex(const std::map<int, std::set<int>> &G, int excl)
+{
+    this->repr.erase(excl);
+    //erase <excl> from the neighbors and add connections
+    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
+        this->repr[check_edges.first].erase(excl);
+        this->source = check_edges.first;
+    }
+    return this->isConnected();
+}
+
+bool Graphlet::exclude_vertex(Graph &G, int excl)
+{
+    this->repr.erase(excl);
+    //erase <excl> from the neighbors and add connections
+    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
+        this->repr[check_edges.first].erase(excl);
+        this->source = check_edges.first;
+    }
+    return this->isConnected();
+}
+
+bool Graphlet::include_vertex(std::map<int, std::set<int>> &G, int incl){
+    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
+        if(G[incl].find(check_edges.first) != G[incl].end()){
+            this->repr[incl].insert(check_edges.first);
+            this->repr[check_edges.first].insert(incl);
+        }
+    }
+    this->source = incl;
+    return true;
+}
+
+bool Graphlet::include_vertex(Graph &G, int incl){
+    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
+        if(G[incl].find(check_edges.first) != G[incl].end()){
+            this->repr[incl].insert(check_edges.first);
+            this->repr[check_edges.first].insert(incl);
+        }
+    }
+    this->source = incl;
+    return true;
+}
+
+bool Graphlet::exclude_include_vertex(const std::map<int, std::set<int>> &G, int excl, int incl){
+
     //erase <excl> from the nodes of the graph
     this->repr.erase(excl);
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-        if(G[incl].find(check_edges.first) != G[incl].end()){ // linear in the dimension of G[incl] TODO
+        if(G.at(incl).find(check_edges.first) != G.at(incl).end()){ 
         this->repr[incl].insert(check_edges.first);
         this->repr[check_edges.first].insert(incl);
         }
     }
+    
     this->source = incl;
     return this->isConnected();
 }
@@ -77,7 +126,7 @@ bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-        if(G[incl].find(check_edges.first) != G[incl].end()){ // linear in the dimension of G[incl] TODO
+        if(G[incl].find(check_edges.first) != G[incl].end()){
             this->repr[incl].insert(check_edges.first);
             this->repr[check_edges.first].insert(incl);
         }

@@ -31,7 +31,6 @@ public:
     Graph(std::string);
     Graph(std::unordered_map<int, std::unordered_set<int>>);
     Graph(std::set<std::pair<int, int>>);
-    Graph(int, int, int);
     ~Graph();
     bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
@@ -73,8 +72,6 @@ protected:
     uint8_t max_degree;
     int source;
     uint8_t min_degree;
-    void random_bipartite_generator(int, int, int);
-    void random_non_bipartite_generator(int, int, int);
 };
 
 std::ostream& operator<<(std::ostream& os, const Graph& G)

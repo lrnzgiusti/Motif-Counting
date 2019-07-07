@@ -6,53 +6,36 @@
 //  Copyright © 2019 Lorenzo Giusti. All rights reserved.
 //
 
-
-// TODO: random edge placement
-// TODO: read edgelist
 #include "Estimator.cpp"
-
-
 #include <unordered_map>
-#include <unordered_set>
 #include <algorithm>
 #include <sstream>
 #include <string>
 #include "Utility.hpp"
-#include "Occurrence.cpp"
-#include <thread>
 
 
+#include <random>
+#include <vector>
 
-/// TODO : MULTITHREAD INTRODUCE SEGFAULT ERRORS: WHY ?! 
+
 int main(int argc, char* argv[])
 {
-
-	srand(time(NULL));
-
 	
+	
+	
+	
+	srand(time(NULL));
 	std::stringstream ss;
 	//ss <<  "/Users/ince/Desktop/bressan_data/" << argv[1];
 	ss << "/Users/ince/Desktop/bressan_data/facebook.ascii";
 	std::string filename = ss.str();
 	Graph G(filename);
 	Estimator e;
-	assert(not G.isBipartite());
-	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);//e.random_walk(G, 1, 4);
-	//save_distribution(Gk_distro, "/Users/ince/Desktop/distro_3.dat");
+	//assert(not G.isBipartite());
 	
-	//std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, std::stoi(argv[2]));
-	std::unordered_map<Graphlet, float> Gk_distro = e.sampler(G, 1, 3);
-	
-	std::unordered_map<std::string, double> motif_distro;
-	
-	for(std::pair<Graphlet, float> p : Gk_distro){
-		Occurrence *o = new Occurrence(p.first.get_size(), &p.first);
-		OccurrenceCanonicizer oc(p.first.get_size());
-		oc.canonicize(o);
-		std::cout << o->text_footprint() << "\t" << p.first << "\t" <<  p.second << "\n";
-		motif_distro[o->text_footprint()] += p.second;
-	}
-	
+	//std::unordered_map<std::string, float> motif_distro = e.sampler_test(G, 1, std::stoi(argv[2]), std::stoi(argv[3]));
+	std::unordered_map<std::string, float> motif_distro = e.sampler_test(G, 1, 3, 200000);
+
 	std::cout << std::endl;
 	for (auto kv : motif_distro){
 		std::cout << kv.first << "\t" << kv.second << "\n";
