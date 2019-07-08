@@ -18,7 +18,7 @@ public:
     Graphlet pick_the_first(Graph &, int, int); // this will be called at the start of the random walk so it's private. Public function only for the tests.
     std::unordered_map<int, float> read_distro(std::string);
     std::unordered_map<std::string, float>  sampler(Graph &G, int start, int k, int );
-    std::unordered_map<std::string, float>  sampler_test(Graph &G, int start, int k, int );
+    std::unordered_map<std::string, float>  sampler_test(Graph &G, int start, int k, int , int);
     
     
 private:

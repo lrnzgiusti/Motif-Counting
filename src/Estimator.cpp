@@ -122,7 +122,7 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
 }
 
 
-std::map<int, std::set<int>> shotgun(Graph &G){
+std::map<int, std::set<int>> graph_converter(Graph &G){
     std::map<int, std::set<int>> fast_G;
     for(const std::pair<int, std::unordered_set<int>> &v : G.get_repr()){
         for(const int &nv : G[v.first]){
@@ -132,6 +132,7 @@ std::map<int, std::set<int>> shotgun(Graph &G){
     return fast_G;
 }
 
+/* Print hout a graph with a set instead of unordered set, it's only a debug function */
 void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
     std::unordered_map<int, std::set<int>>::iterator it;
     for(it = fast_G.begin(); it != fast_G.end(); ++it){
@@ -145,13 +146,13 @@ void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
     }
 }
 
-volatile sig_atomic_t stop;
+volatile sig_atomic_t stop; //handle the signal
 
-void handler(int signum){stop = 1;}
+void handler(int signum){stop = 1;} //stop the chain if ctrl+c is pressed
 
 //This function is used for estimate the graph of graphlets distribution
 std::unordered_map<std::string, float>  Estimator::sampler(Graph &G, int start, int k, int max_iter){
-    std::map<int, std::set<int>> fast_G = shotgun(G);
+    std::map<int, std::set<int>> fast_G = graph_converter(G);
     std::unordered_set<Graphlet> Gk; //the final Graph of graphlets VERY high occupancy of memory
     std::unordered_map<Graphlet, float> distro_t; //the current distribution
     unsigned int mix_time = 1;
@@ -218,9 +219,9 @@ std::unordered_map<std::string, float>  Estimator::sampler(Graph &G, int start, 
 }
 
 
-std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int start, int k, int max_iter){
-    std::map<int, std::set<int>> fast_G = shotgun(G); //fast graph (using trees instead of hashset)
-    unsigned int mix_time = 1;
+std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int start, int k, int max_iter, int lock){
+    std::map<int, std::set<int>> fast_G = graph_converter(G); //fast graph (using trees instead of hashset)
+    unsigned int mix_time = 0;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
     
@@ -238,8 +239,7 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
     
     int excl = 0;
     int incl = 0;
-    float deno = 0;
-    
+    float deno = 0; //(sum L(v) for v in g)
     std::unordered_map<std::string, float> motif_distro; //result
 
     Occurrence *o;
@@ -269,14 +269,10 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
                     
                 }
                 
+                //I remove the verteces that already belongs to the motif
                 for(const int &key : keys){
                     L[u.first].erase(key);
                 }
-                //I remove the verteces that already belongs to the motif
-                /*std::set_difference(L[u.first].begin(), L[u.first].end(),
-                                    keys.begin(), keys.end(),
-                                    std::inserter(Lprime[u.first],
-                                                  Lprime[u.first].end()));*/
                 deno += L[u.first].size();
             }//end if(uk.exclude_vertex(fast_G, vk.first))
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
@@ -296,16 +292,16 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
         gk.exclude_include_vertex(fast_G, excl, incl); //excl == incl; perché?
         mix_time++;
         
-        
-        o= new Occurrence(gk.get_size(), &gk);
-        oc = (new OccurrenceCanonicizer(gk.get_size()));
-        oc->canonicize(o);
-        motif_distro[o->text_footprint()] += 1.0/L[excl].size();
-        
+        //update the distribution every lock steps
+        if(mix_time % lock == 0){
+            o= new Occurrence(gk.get_size(), &gk);
+            oc = (new OccurrenceCanonicizer(gk.get_size()));
+            oc->canonicize(o);
+            motif_distro[o->text_footprint()] += 1.0/deno;
+        }
         //clear all the temporary variables
         keys.clear();
         L.clear();
-        //Lprime.clear();
         p.clear();
         q.clear();
         deno = 0;
@@ -314,11 +310,10 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
         std::chrono::duration<double> diff = end-start;
         
         acc += diff.count();
-        
-        if(mix_time % 20000 == 0) std::cout << mix_time << "\n";
+
     }while((mix_time < max_iter) and (!stop));
     normalize_distribution(motif_distro);
     
-    std::cout << "avg jump time: " << acc/mix_time << "\n"; //ideal: this <= 0.001 s
+    std::cout << "avg jump time: " << acc/mix_time << "\n"; 
     return motif_distro;
 }

@@ -65,8 +65,9 @@ bool Graphlet::exclude_vertex(const std::map<int, std::set<int>> &G, int excl)
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-        this->source = check_edges.first;
+        //this->source = check_edges.first;
     }
+    this->source = this->repr.begin()->first;
     return this->isConnected();
 }
 
@@ -76,8 +77,9 @@ bool Graphlet::exclude_vertex(Graph &G, int excl)
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         this->repr[check_edges.first].erase(excl);
-        this->source = check_edges.first;
+        //this->source = check_edges.first;
     }
+    this->source = this->repr.begin()->first;
     return this->isConnected();
 }
 

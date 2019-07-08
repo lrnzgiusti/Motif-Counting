@@ -27,6 +27,32 @@ template<class T> float l1_diff(std::unordered_map<T, float> &v1, std::unordered
 }
 
 
+std::unordered_map<std::string, std::string> read_config_file(std::string path){
+    std::unordered_map<std::string, std::string> cfg;
+    
+    std::ifstream fptr;
+    fptr.open(path);
+    
+    if(!fptr){
+        std::cerr << "Unable to open cfg file!\tTry Again!\n";
+        return cfg;
+    }
+    
+    std::string config_row;
+    std::vector<std::string> tokens;
+    std::string key, value;
+    while(std::getline(fptr, config_row)){
+        boost::split(tokens, config_row, [](char c){return c == ':';});
+        key = tokens[0];
+        value = tokens[1];
+        cfg[key] = value;
+        tokens.clear();
+    }
+    fptr.close();
+    
+    return cfg;
+}
+
 float l1_disto_diff(std::unordered_map<int, float> real, std::unordered_map<int, float> theo, int t){
     if(theo.size() != real.size()){
         return 1e6; //Distribution size are different, let's get more samples
