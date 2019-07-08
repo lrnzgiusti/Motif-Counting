@@ -13,7 +13,8 @@
 #include "Estimator.hpp"
 #include "Utility.hpp"
 #include <csignal>
-#include <thread>
+#include <sys/types.h>
+#include <unistd.h>
 
 #include "Occurrence.cpp"
 using namespace std::chrono;
@@ -28,7 +29,7 @@ Estimator::Estimator(Graph g){
 
 
 
-Graphlet Estimator::pick_the_first(Graph &G, int source, int k){
+Graphlet Estimator::pick_the_first(std::map<int, std::set<int>> &G, int source, int k){
     std::set<int> Vk = {source}; //vertex in the first graphlet
     std::set<std::pair<int, int>> Ek; //edges in the first graphlet
     std::set<int> C;
@@ -121,17 +122,6 @@ bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, G
     return ((Gk[u].find(v) != Gk[u].end()) and (Gk[v].find(u) != Gk[v].end()));
 }
 
-
-std::map<int, std::set<int>> graph_converter(Graph &G){
-    std::map<int, std::set<int>> fast_G;
-    for(const std::pair<int, std::unordered_set<int>> &v : G.get_repr()){
-        for(const int &nv : G[v.first]){
-            fast_G[v.first].insert(nv);
-        }
-    }
-    return fast_G;
-}
-
 /* Print hout a graph with a set instead of unordered set, it's only a debug function */
 void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
     std::unordered_map<int, std::set<int>>::iterator it;
@@ -150,77 +140,8 @@ volatile sig_atomic_t stop; //handle the signal
 
 void handler(int signum){stop = 1;} //stop the chain if ctrl+c is pressed
 
-//This function is used for estimate the graph of graphlets distribution
-std::unordered_map<std::string, float>  Estimator::sampler(Graph &G, int start, int k, int max_iter){
-    std::map<int, std::set<int>> fast_G = graph_converter(G);
-    std::unordered_set<Graphlet> Gk; //the final Graph of graphlets VERY high occupancy of memory
-    std::unordered_map<Graphlet, float> distro_t; //the current distribution
-    unsigned int mix_time = 1;
-    Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
-    Graphlet uk; //Graphlet I add to the final result
-    Graphlet uk_prime; //Graphlet I add to the final result
-    
-    std::unordered_set<Graphlet>::iterator it;
-    
-    std::unordered_map<std::string, float> motif_distro; //result
-    
-    Occurrence *o;
-    OccurrenceCanonicizer *oc;
-    
-    signal(SIGINT, handler);
-    float acc = 0;
-    do{
-        
-        auto start = high_resolution_clock::now();
-        for(const std::pair<int, std::unordered_set<int>> &vk : gk){ //for-each vertex in the graphlet O(k)
-            for(const std::pair<int, std::unordered_set<int>> &wk : gk){ //for-each vertex in the graphlet without the O(k) previous
-                
-                if(vk.first != wk.first){ //this implies that in this inner iteration you exclude vk
-                    uk = gk;
-                    if(uk.exclude_vertex(fast_G, vk.first)) //if gk - vk.first is not connected i avoid useless stuff to do
-                    {
-                        uk_prime = uk;
-                        for(const int &nk : fast_G[wk.first]){ //for-each neighbor of wk in the original graph O(E)
-                            // (vk.first != nk) means that i don't insert the vertex i'm excluding
-                            // (gk.exist_vertex(nk) == false)  means that i don't insert a vertex already in the graphlet;
-                            if((vk.first != nk) and (gk.exist_vertex(nk) == false)){
-                                //this returns true if uk is connected, otherwise i don't care about connecting in Gk
-                                    if(uk_prime.include_vertex(fast_G, nk)){
-                                        Gk.insert(uk_prime);
-                                        uk_prime = uk;
-                                    }//end if (uk.exclude_include_vertex(G, vk.first, nk))
-                            } //end if((vk.first != nk) and (gk.exist_vertex(nk) == false))
-                        }// end for(const int &nk : G[wk.first])
-                    }//end if(uk.exclude_vertex(fast_G, vk.first))
-                }// end if(vk.first != wk.first)
-            }//end for(const std::pair<int, std::unordered_set<int>> &wk : gk)
-        }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
-        
-        
-        it = Gk.begin(); //pick an iterator to the set
-        std::advance(it,rand()%Gk.size()); //pick a random neighbor
-        gk = *it; //set it to the new graphlet
-        mix_time++;
-        
-        o= new Occurrence(gk.get_size(), &gk);
-        oc = (new OccurrenceCanonicizer(gk.get_size()));
-        oc->canonicize(o);
-        motif_distro[o->text_footprint()] += 1.0/Gk.size(); //use it as weight to the distro
-        
-        Gk.clear(); //clear the neighborhood
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> diff = end-start;
-        acc += diff.count();
-    }while((mix_time < max_iter) and (!stop));
-    normalize_distribution(motif_distro);
-    
-    std::cout << "avg jump time: " << acc/mix_time << "\n"; //ideal: this <= 0.001 s
-    return motif_distro;
-}
-
-
-std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int start, int k, int max_iter, int lock){
-    std::map<int, std::set<int>> fast_G = graph_converter(G); //fast graph (using trees instead of hashset)
+void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock){
+    //std::map<int, std::set<int>> fast_G = graph_converter(G); //fast graph (using trees instead of hashset)
     unsigned int mix_time = 0;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
@@ -258,12 +179,12 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
             
             uk = gk;
-            if(uk.exclude_vertex(fast_G, u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
+            if(uk.exclude_vertex(G, u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
             {
                 //L(u)= \cup{N(v) for v in g-u}
                 for(const std::pair<int, std::unordered_set<int>> &v : uk){
                         std::set_union(L[u.first].begin(), L[u.first].end(),
-                                       fast_G[v.first].begin(), fast_G[v.first].end(),
+                                       G[v.first].begin(), G[v.first].end(),
                                        std::inserter(L[u.first],
                                                      L[u.first].end()));
                     
@@ -289,7 +210,7 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
         it = L[excl].begin(); //pick an iterator to the set
         std::advance(it,rand()%L[excl].size()); //pick a random neighbor
         incl = *it; //set it to the new graphlet
-        gk.exclude_include_vertex(fast_G, excl, incl); //excl == incl; perché?
+        gk.exclude_include_vertex(G, excl, incl); //excl == incl; perché?
         mix_time++;
         
         //update the distribution every lock steps
@@ -314,6 +235,20 @@ std::unordered_map<std::string, float> Estimator::sampler_test(Graph &G, int sta
     }while((mix_time < max_iter) and (!stop));
     normalize_distribution(motif_distro);
     
-    std::cout << "avg jump time: " << acc/mix_time << "\n"; 
-    return motif_distro;
+    std::ofstream of;
+    std::stringstream ss;
+    ss <<std::this_thread::get_id();
+    of.open(ss.str()+".txt");
+    if(!of) std::cerr << "File di output non aperto correttamente\n";
+    of << "Starting node: " << start << "\n";
+    of << "Number of nodes in a graphlet: " << k << "\n";
+    of << "Steps done: " << max_iter << "\n";
+    of << "Steps before sampling: " << lock << "\n";
+    of  << "Average jump time: " << acc/mix_time << "\n";
+    of << "Statistics: \n\n";
+    for (auto kv : motif_distro){
+        of << kv.first << "\t" << kv.second << "\n";
+    }
+    of.close();
+    return ;
 }
