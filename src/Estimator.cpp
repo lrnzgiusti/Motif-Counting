@@ -141,6 +141,7 @@ volatile sig_atomic_t stop; //handle the signal
 void handler(int signum){stop = 1;} //stop the chain if ctrl+c is pressed
 
 void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock){
+    //std::cout << start << " " << k << " " << max_iter << " " << lock << "\n";
     //std::map<int, std::set<int>> fast_G = graph_converter(G); //fast graph (using trees instead of hashset)
     unsigned int mix_time = 0;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
@@ -162,11 +163,21 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
     int incl = 0;
     float deno = 0; //(sum L(v) for v in g)
     std::unordered_map<std::string, float> motif_distro; //result
-
+    std::map<int, std::unordered_map<std::string, float>> iter_to_distro;
+    
     Occurrence *o;
     OccurrenceCanonicizer *oc;
     signal(SIGINT, handler);
     float acc = 0; //useful for statistics
+    
+    
+    std::ofstream of;
+    std::stringstream ss;
+    ss <<std::this_thread::get_id();
+    of.open(ss.str()+".txt");
+    if(!of) std::cerr << "File di output non aperto correttamente\n";
+    
+    
     std::cout << "Starting algorithm\n";
     do{
         
@@ -177,17 +188,18 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
         
         //for-each vertex in the graphlet O(k)
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
-            
+            //std::cout << "Test0\n";
             uk = gk;
             if(uk.exclude_vertex(G, u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
             {
                 //L(u)= \cup{N(v) for v in g-u}
                 for(const std::pair<int, std::unordered_set<int>> &v : uk){
+                    //std::cout << "Test01\n";
                         std::set_union(L[u.first].begin(), L[u.first].end(),
                                        G[v.first].begin(), G[v.first].end(),
                                        std::inserter(L[u.first],
                                                      L[u.first].end()));
-                    
+                    //std::cout << "Test1\n";
                 }
                 
                 //I remove the verteces that already belongs to the motif
@@ -219,6 +231,7 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
             motif_distro[o->text_footprint()] += 1.0/deno;
+            iter_to_distro[mix_time] = motif_distro;
         }
         //clear all the temporary variables
         keys.clear();
@@ -233,21 +246,16 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
         acc += diff.count();
 
     }while((mix_time < max_iter) and (!stop));
-    normalize_distribution(motif_distro);
-    
-    std::ofstream of;
-    std::stringstream ss;
-    ss <<std::this_thread::get_id();
-    of.open(ss.str()+".txt");
-    if(!of) std::cerr << "File di output non aperto correttamente\n";
-    of << "Starting node: " << start << "\n";
-    of << "Number of nodes in a graphlet: " << k << "\n";
-    of << "Steps done: " << max_iter << "\n";
-    of << "Steps before sampling: " << lock << "\n";
-    of  << "Average jump time: " << acc/mix_time << "\n";
-    of << "Statistics: \n\n";
-    for (auto kv : motif_distro){
-        of << kv.first << "\t" << kv.second << "\n";
+    //normalize_distribution(motif_distro);
+    of << "Start: " << start << " k: " << k << " iter: " << max_iter << " freq: " << lock << "\n";
+    for(const std::pair<int, std::unordered_map<std::string, float>> &distro : iter_to_distro){
+        of << distro.first << " ";
+        motif_distro = distro.second;
+        normalize_distribution(motif_distro);
+        for(const std::pair<std::string, float> &items : motif_distro){
+            of << items.first << " " << items.second << " ";
+        }
+        of << "\n";
     }
     of.close();
     return ;

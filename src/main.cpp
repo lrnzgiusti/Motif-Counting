@@ -32,8 +32,12 @@ int main(int argc, char* argv[])
 	
 	
 	
-	//2- multithread the chains
-		//each chain runs in a separate thread, the results are probably stored into hashmap with chain is as key and objcet as value
+	/*
+	 
+	 k = 9 goes in:
+	 src(16821,0x70000d110000) malloc: *** error for object 0x7fcd527f6530: pointer being freed was not allocated
+	 src(16821,0x70000d110000) malloc: *** set a breakpoint in malloc_error_break to debug
+	 */
 	
 	std::string data_path = argv[1]; //argv[1] contains the path of the graph.
 	Graph G(data_path);
@@ -43,7 +47,6 @@ int main(int argc, char* argv[])
 	std::vector<std::thread> threads;
 	std::unordered_map<std::string, std::string> cfg;
 	for(int i = 2; i < argc; i++){
-		std::cout << argv[i] << "\n";
 		cfg = read_config_file(argv[i]);
 		threads.push_back(std::thread([&cfg, &fast_G]{
 			unsigned int start = std::stoi(cfg["start"]); //starting vertex, we'll use this for create the first graphlet
@@ -52,7 +55,6 @@ int main(int argc, char* argv[])
 			unsigned int lock = std::stoi(cfg["lock"]); //how many steps before sampling
 			unsigned long seed = std::stoi(cfg["seed"]);
 			srand(seed);
-			
 			
 			Estimator e;
 			
