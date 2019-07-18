@@ -32,6 +32,9 @@ public:
     Graph(std::unordered_map<int, std::unordered_set<int>>);
     Graph(std::set<std::pair<int, int>>);
     ~Graph();
+    
+    
+    
     bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
     bool isUndirected(int);

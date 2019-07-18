@@ -73,7 +73,7 @@ float l1_disto_diff(std::unordered_map<int, float> real, std::unordered_map<int,
 
 
 template<class T> void normalize_distribution(std::unordered_map<T, float> &distro){
-    float sum = 0;
+    double sum = 0;
     for(std::pair<T, float> p : distro){
         sum += p.second;
         

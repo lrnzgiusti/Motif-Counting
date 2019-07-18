@@ -161,7 +161,7 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
     
     int excl = 0;
     int incl = 0;
-    float deno = 0; //(sum L(v) for v in g)
+    long double deno = 0; //(sum L(v) for v in g)
     std::unordered_map<std::string, float> motif_distro; //result
     std::map<int, std::unordered_map<std::string, float>> iter_to_distro;
     
@@ -210,7 +210,7 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
             }//end if(uk.exclude_vertex(fast_G, vk.first))
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
         
-        
+        //std::cout << gk << deno << " " << (double)1.0/deno <<"\n";
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
             p.push_back(L[u.first].size()/deno);
             q.push_back(u.first);
@@ -230,6 +230,11 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
             o= new Occurrence(gk.get_size(), &gk);
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
+           /* std::cout << mix_time << " "
+                      << o->text_footprint() <<  " "
+                      << deno << " "
+                      << 1.0/deno << " "
+                      << motif_distro[o->text_footprint()] << "\n";*/
             motif_distro[o->text_footprint()] += 1.0/deno;
             iter_to_distro[mix_time] = motif_distro;
         }
