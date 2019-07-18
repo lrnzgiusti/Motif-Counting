@@ -21,18 +21,14 @@
 class Graphlet: public Graph {
 public:
     Graphlet(); //default constructor --probably useless
-    Graphlet(std::unordered_map<int, std::unordered_set<int>>); //get the graphlet from an adjacency list
     Graphlet(std::set<std::pair<int, int>>); //get the graphlet from edgelist
-    Graphlet(std::string); //workaround for compare the theoretical distro to the estimated one
     ~Graphlet();
-    void insert_edge(std::pair<int, int>); //attach a neighbor of the <int> vertex in the <Graph> G
-    bool exclude_include_vertex(const std::map<int, std::set<int>>  &, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
-    bool exclude_include_vertex(Graph &, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
     
-    bool exclude_vertex(const std::map<int, std::set<int>>  &, int);
-    bool exclude_vertex(Graph &, int);
+    bool exclude_include_vertex(std::map<int, std::set<int>>  &, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
+   
+    bool exclude_vertex(int);
+    
     bool include_vertex(std::map<int, std::set<int>>  &, int);
-    bool include_vertex(Graph  &, int);
     
     std::unordered_map<int, std::unordered_set<int>>::iterator begin();
     std::unordered_map<int, std::unordered_set<int>>::iterator end();

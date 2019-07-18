@@ -13,25 +13,14 @@ Graph::Graph(){
 }
 
 Graph::Graph(std::string filename){
-    this->num_of_nodes = 0;
-    this->num_of_edges = 0;
     read_edgelist(filename);
 }
 
-Graph::Graph(std::unordered_map<int, std::unordered_set<int>> repr){
-    this->repr = repr;
-    this->source = repr.begin()->first;
-}
-
 Graph::Graph(std::set<std::pair<int, int>> edges){
-    num_of_edges = 0;
-    num_of_nodes = 0;
     for(auto edge : edges){
         repr[edge.first].insert(edge.second);
         repr[edge.second].insert(edge.first);
-        num_of_edges++;
     }
-    num_of_nodes = repr.size();
 }
 
 
@@ -50,8 +39,6 @@ void Graph::read_edgelist(std::string filename){
     
     std::string edgelist_row;
     std::vector<std::string> tokens;
-    num_of_edges = 0;
-    num_of_nodes = 0;
     unsigned int tok1 = 0, tok2 = 0;
     while(std::getline(fptr, edgelist_row)){
         boost::split(tokens, edgelist_row, [](char c){return c == ',';});
@@ -61,25 +48,23 @@ void Graph::read_edgelist(std::string filename){
         G[tok1].insert(tok2);
         G[tok2].insert(tok1);
         tokens.clear();
-        this->num_of_edges++;
     }
     fptr.close();
     
-    this->source = tok1;
-    this->num_of_nodes = G.size();
-    this->repr = G;
+    source = tok1;
+    repr = G;
     
     return;
 }
 
 
 std::unordered_map<int, std::unordered_set<int>> Graph::get_repr() const{
-    return this->repr;
+    return repr;
 }
 
 void Graph::printGraph(){
     std::unordered_map<int, std::unordered_set<int>>::iterator it;
-    for(it = this->repr.begin(); it != this->repr.end(); ++it){
+    for(it = repr.begin(); it != repr.end(); ++it){
         std::cout << "[" << it->first << "] -> ";
         
         std::unordered_set<int>::iterator set_iter;
@@ -94,8 +79,8 @@ void Graph::printGraph(){
 
 bool Graph::isBipartite(){
     
-    int source = this->source;
-    size_t n_of_verteces = this->repr.size();
+    int source = source;
+    size_t n_of_verteces = repr.size();
     std::unordered_map<int,int> colorArr;
     for (int i = 1; i < n_of_verteces+1; ++i)
         colorArr[i] = -1;
@@ -115,9 +100,9 @@ bool Graph::isBipartite(){
         int u = q.front();
         q.pop();
         // Find all non-colored adjacent vertices
-        std::unordered_set<int>::iterator it = this->repr[u].begin();
+        std::unordered_set<int>::iterator it = repr[u].begin();
         
-        for (; it != (this->repr[u].end()); ++it)
+        for (; it != (repr[u].end()); ++it)
         {
             // An edge from u to v exists and
             // destination v is not colored
@@ -144,12 +129,12 @@ bool Graph::isBipartite(){
 bool Graph::isConnected(){
     
     unsigned int source = this->source;
-    const size_t n_of_verteces = this->repr.size();
+    const size_t n_of_verteces = repr.size();
     std::unordered_set<int> expected_veteces;
     std::unordered_map<int, int> colorArr;
     expected_veteces.reserve(n_of_verteces);
     
-    for(const std::pair<int, std::unordered_set<int>> &x: this->repr){
+    for(const std::pair<int, std::unordered_set<int>> &x: repr){
         
         expected_veteces.insert(x.first);
         colorArr[x.first] = 0;
@@ -175,9 +160,9 @@ bool Graph::isConnected(){
         u = q.front();
         q.pop();
         // Find all non-colored adjacent vertices
-        it = this->repr[u].begin();
+        it = repr[u].begin();
         
-        for (; it != (this->repr[u].end()); it++)
+        for (; it != repr[u].end(); it++)
         {
             // An edge from u to v exists and
             // destination v is not colored
@@ -199,54 +184,13 @@ std::unordered_set<int> Graph::operator[](int idx) const {
 }
 
 
-uint8_t Graph::get_num_of_nodes(){
-    return this->num_of_nodes;
-}
-
-uint32_t Graph::get_num_of_edges(){
-    return this->num_of_edges;
-}
-
-float get_density(int n_edges, int n_verteces){
-    return (2.0*n_edges)/(n_verteces*(n_verteces-1));
-}
-
-
-
-std::vector<float> Graph::random_walk(){
-    std::vector<float> distro_t(num_of_nodes+1);
-    std::vector<float> distro_tprec(num_of_nodes+1);
-    float epsilon = 1e-6;
-    int t = 1;
-    distro_t[1] = 1;
-    int current_vertex = 1;
-    auto it = std::next(repr[current_vertex].begin(), rand()%repr[current_vertex].size()) ;
-    do{
-        t++;
-        distro_tprec = distro_t;
-        it = std::next(repr[current_vertex].begin(), rand()%repr[current_vertex].size());
-        current_vertex = *it;
-        distro_t[current_vertex]++;
-    }while (l1_diff(distro_t, distro_tprec,t) > epsilon);
-    
-
-    for(int i = 0; i < distro_t.size(); i++){
-        distro_t[i] /= t;
-    }
-    
-    std::cout << t << "\n";
-    return distro_t;
-}
-
-
-
 
 bool Graph::isValid() const{
-    return this->repr.size() != 0;
+    return repr.size() != 0;
 }
 
 
 bool Graph::exist_vertex(const int& k){
-    return this->repr.find(k) != this->repr.end();
+    return repr.find(k) != repr.end();
 }
 

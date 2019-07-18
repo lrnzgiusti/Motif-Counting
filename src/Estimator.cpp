@@ -12,6 +12,7 @@
 
 #include "Estimator.hpp"
 #include "Utility.hpp"
+#include <thread>
 #include <csignal>
 #include <sys/types.h>
 #include <unistd.h>
@@ -22,12 +23,6 @@ using namespace std::chrono;
 Estimator::Estimator(){}
 
 Estimator::~Estimator(){}
-
-Estimator::Estimator(Graph g){
-    graph_to_sample = g;
-}
-
-
 
 Graphlet Estimator::pick_the_first(std::map<int, std::set<int>> &G, int source, int k){
     std::set<int> Vk = {source}; //vertex in the first graphlet
@@ -92,57 +87,17 @@ Graphlet Estimator::pick_the_first(std::map<int, std::set<int>> &G, int source, 
 }
 
 
-std::unordered_map<int, float> Estimator::read_distro(std::string filename){
-    std::ifstream fptr;
-    std::unordered_map<int, float> distro;
-    fptr.open(filename);
-    
-    if(!fptr){
-        std::cerr << "Unable to open distro file!\tTry Again!\n";
-        return distro;
-    }
-    std::hash<Graphlet> hasher;
-    std::vector<std::string> tokens;
-    std::string tok1;
-    std::string row;
-    float tok2;
-    while(std::getline(fptr, row)){
-        boost::split(tokens, row, [](char c){return c == ',';});
-        tok1 = tokens[0];
-        tok2 = std::stof(tokens[1]);
-        distro[hasher(Graphlet(tokens[0]))] = tok2;
-        tokens.clear();
-    }
-    fptr.close();
-    return distro;
-}
 
 
 bool exist_edge(std::unordered_map<Graphlet, std::unordered_set<Graphlet>> Gk, Graphlet u, Graphlet v){
     return ((Gk[u].find(v) != Gk[u].end()) and (Gk[v].find(u) != Gk[v].end()));
 }
 
-/* Print hout a graph with a set instead of unordered set, it's only a debug function */
-void tmp_out(std::unordered_map<int, std::set<int>> fast_G ){
-    std::unordered_map<int, std::set<int>>::iterator it;
-    for(it = fast_G.begin(); it != fast_G.end(); ++it){
-        std::cout << "[" << it->first << "] -> ";
-        
-        std::set<int>::iterator set_iter;
-        for (set_iter = it->second.begin(); set_iter != it->second.end(); ++set_iter) {
-            std::cout << *set_iter << "<->";
-        }
-        std::cout << "NULL\n";
-    }
-}
-
 volatile sig_atomic_t stop; //handle the signal
 
 void handler(int signum){stop = 1;} //stop the chain if ctrl+c is pressed
 
-void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock){
-    //std::cout << start << " " << k << " " << max_iter << " " << lock << "\n";
-    //std::map<int, std::set<int>> fast_G = graph_converter(G); //fast graph (using trees instead of hashset)
+void Estimator::sampler(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock){
     unsigned int mix_time = 0;
     Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
     Graphlet uk; //Graphlet I add to the final result
@@ -168,16 +123,16 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
     Occurrence *o;
     OccurrenceCanonicizer *oc;
     signal(SIGINT, handler);
-    float acc = 0; //useful for statistics
     
-    
+    //* This chunk creates the output file *//
     std::ofstream of;
     std::stringstream ss;
     ss <<std::this_thread::get_id();
     of.open(ss.str()+".txt");
-    if(!of) std::cerr << "File di output non aperto correttamente\n";
+    if(!of) std::cerr << "Output file not created.\n";
     
     
+    float acc = 0; //useful for statistics
     std::cout << "Starting algorithm\n";
     do{
         
@@ -188,18 +143,18 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
         
         //for-each vertex in the graphlet O(k)
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
-            //std::cout << "Test0\n";
+            
             uk = gk;
-            if(uk.exclude_vertex(G, u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
+            if(uk.exclude_vertex(u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
             {
                 //L(u)= \cup{N(v) for v in g-u}
                 for(const std::pair<int, std::unordered_set<int>> &v : uk){
-                    //std::cout << "Test01\n";
+                    
                         std::set_union(L[u.first].begin(), L[u.first].end(),
                                        G[v.first].begin(), G[v.first].end(),
                                        std::inserter(L[u.first],
                                                      L[u.first].end()));
-                    //std::cout << "Test1\n";
+                    
                 }
                 
                 //I remove the verteces that already belongs to the motif
@@ -210,7 +165,7 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
             }//end if(uk.exclude_vertex(fast_G, vk.first))
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
         
-        //std::cout << gk << deno << " " << (double)1.0/deno <<"\n";
+        
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
             p.push_back(L[u.first].size()/deno);
             q.push_back(u.first);
@@ -230,11 +185,6 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
             o= new Occurrence(gk.get_size(), &gk);
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
-           /* std::cout << mix_time << " "
-                      << o->text_footprint() <<  " "
-                      << deno << " "
-                      << 1.0/deno << " "
-                      << motif_distro[o->text_footprint()] << "\n";*/
             motif_distro[o->text_footprint()] += 1.0/deno;
             iter_to_distro[mix_time] = motif_distro;
         }
@@ -263,5 +213,6 @@ void Estimator::sampler_test(std::map<int, std::set<int>> &G, int start, int k, 
         of << "\n";
     }
     of.close();
+    std::cout << "AVG jump time: " << acc/mix_time << "\n";
     return ;
 }

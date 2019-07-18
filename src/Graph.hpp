@@ -10,7 +10,6 @@
 #define Graph_hpp
 
 
-#include <vector>
 #include <unordered_map>
 #include <iostream>
 #include <unordered_set>
@@ -29,7 +28,6 @@ class Graph
 public:
     Graph();
     Graph(std::string);
-    Graph(std::unordered_map<int, std::unordered_set<int>>);
     Graph(std::set<std::pair<int, int>>);
     ~Graph();
     
@@ -37,13 +35,10 @@ public:
     
     bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
-    bool isUndirected(int);
     bool isValid() const;
-    uint8_t get_num_of_nodes();
-    uint32_t get_num_of_edges();
     const char* text_footprint() const;
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
-    std::vector<float> random_walk();
+    
     void printGraph();
     bool exist_vertex(const int& k);
     std::unordered_set<int> operator[](int) const;
@@ -70,11 +65,7 @@ private:
     
 protected:
     std::unordered_map<int, std::unordered_set<int>> repr;
-    uint8_t num_of_nodes;
-    uint8_t num_of_edges;
-    uint8_t max_degree;
-    int source;
-    uint8_t min_degree;
+    unsigned int source;
 };
 
 std::ostream& operator<<(std::ostream& os, const Graph& G)

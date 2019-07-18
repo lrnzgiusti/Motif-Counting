@@ -7,26 +7,10 @@
 //
 
 #include "Graphlet.hpp"
-#include <math.h>
-#include <chrono>
-#include <thread>
-
 
 Graphlet::Graphlet(){}
 
-Graphlet::Graphlet(std::unordered_map<int, std::unordered_set<int>> repr) : Graph(repr){}
-
 Graphlet::Graphlet(std::set<std::pair<int, int>> edges) : Graph(edges){}
-
-Graphlet::Graphlet(std::string s){
-    //string has the format [ v1 v2 v3 ] we want a graph that has no edges but the nodes, in order to hash it.
-    
-    std::vector<std::string> tokens;
-    boost::split(tokens, s, [](char c){return c == ' ';});
-    for(int i = 1; i < tokens.size()-1; i++){
-        this->repr[std::stoi(tokens[i])] = {};
-    }
-}
 
 Graphlet::~Graphlet(){}
 
@@ -59,89 +43,48 @@ std::unordered_map<int, std::unordered_set<int>>::iterator Graphlet::end(){
 //this takes around 70 microsecs
 
 
-bool Graphlet::exclude_vertex(const std::map<int, std::set<int>> &G, int excl)
+bool Graphlet::exclude_vertex(int excl)
 {
-    this->repr.erase(excl);
+    repr.erase(excl);
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        this->repr[check_edges.first].erase(excl);
+        repr[check_edges.first].erase(excl);
         //this->source = check_edges.first;
     }
-    this->source = this->repr.begin()->first;
-    return this->isConnected();
+    source = repr.begin()->first;
+    return isConnected();
 }
 
-bool Graphlet::exclude_vertex(Graph &G, int excl)
-{
-    this->repr.erase(excl);
-    //erase <excl> from the neighbors and add connections
-    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        this->repr[check_edges.first].erase(excl);
-        //this->source = check_edges.first;
-    }
-    this->source = this->repr.begin()->first;
-    return this->isConnected();
-}
 
 bool Graphlet::include_vertex(std::map<int, std::set<int>> &G, int incl){
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         if(G[incl].find(check_edges.first) != G[incl].end()){
-            this->repr[incl].insert(check_edges.first);
-            this->repr[check_edges.first].insert(incl);
+            repr[incl].insert(check_edges.first);
+            repr[check_edges.first].insert(incl);
         }
     }
-    this->source = incl;
+    source = incl;
     return true;
 }
 
-bool Graphlet::include_vertex(Graph &G, int incl){
-    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        if(G[incl].find(check_edges.first) != G[incl].end()){
-            this->repr[incl].insert(check_edges.first);
-            this->repr[check_edges.first].insert(incl);
-        }
-    }
-    this->source = incl;
-    return true;
-}
 
-bool Graphlet::exclude_include_vertex(const std::map<int, std::set<int>> &G, int excl, int incl){
+
+bool Graphlet::exclude_include_vertex(std::map<int, std::set<int>> &G, int excl, int incl){
 
     //erase <excl> from the nodes of the graph
-    this->repr.erase(excl);
+    repr.erase(excl);
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        this->repr[check_edges.first].erase(excl);
+        repr[check_edges.first].erase(excl);
         if(G.at(incl).find(check_edges.first) != G.at(incl).end()){ 
-        this->repr[incl].insert(check_edges.first);
-        this->repr[check_edges.first].insert(incl);
+        repr[incl].insert(check_edges.first);
+        repr[check_edges.first].insert(incl);
         }
     }
     
-    this->source = incl;
-    return this->isConnected();
+    source = incl;
+    return isConnected();
 }
-
-bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
-    //erase <excl> from the nodes of the graph
-    this->repr.erase(excl);
-    //erase <excl> from the neighbors and add connections
-    for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        this->repr[check_edges.first].erase(excl);
-        if(G[incl].find(check_edges.first) != G[incl].end()){
-            this->repr[incl].insert(check_edges.first);
-            this->repr[check_edges.first].insert(incl);
-        }
-    }
-    this->source = incl;
-    return this->isConnected();
-}
-
-void Graphlet::insert_edge(std::pair<int, int> incl){
-    repr[incl.first].insert(incl.second);
-    repr[incl.second].insert(incl.first);
-}
-
 
 
 namespace std {
