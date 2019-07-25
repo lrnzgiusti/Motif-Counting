@@ -119,7 +119,7 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
     return sum;
 }
 
-double weightOf(Graphlet g){
+double weightOf(Graphlet &g){
     return 1;
 }
 

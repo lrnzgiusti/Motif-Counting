@@ -288,26 +288,20 @@ void Estimator::sampler_weighted(std::map<int, std::set<int>> &G, int start, int
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
         
         
-        for(const std::pair<int, std::unordered_set<int>> &excl : gk){
+        for(const std::pair<int, std::unordered_set<int>> &excl : gk){ // Itero su tutti i nodi del graphlet (che possono essere esclusi)
             
-            for(const int &incl : L[excl.first]){
+            for(const int &incl : L[excl.first]){ // Itero su tutti i nodi che possono essere inclusi nel graphlet escludendo il nodo excl
                 tmp_graphlet = gk;
-                tmp_graphlet.exclude_include_vertex(G, excl.first, incl);
-                p.push_back(weightOf(tmp_graphlet));
-                q.push_back(tmp_graphlet);
+                tmp_graphlet.exclude_include_vertex(G, excl.first, incl); //calcolo il graphlet adiacente
+                p.push_back(weightOf(tmp_graphlet)); //inserisco nella distribuzione di probabilità il peso associato all’arco dal graphlet corrente (gk) al graphlet adiacente (tmp_graphlet)
+                q.push_back(tmp_graphlet); // vector di supporto, contiene tutti i Graphlet adiacenti a gk; il numero estratto dalla distribuzione di probabilità ‘p’ verrà usato come indice di questo array per estrarre il graphlet su cui ci si sposta.
                 
             }
         }
         
-        d = *(new std::discrete_distribution<>(p.begin(), p.end()));
-        gk = q[d(gen)];
-        /*
-         locked: [ 2 5 1 3 ] EMAAAA 1
-         locked: [ 3 1 2 4 ] HMAAAA 1
-         locked: [ 2 1 3 5 ] EMAAAA 2
-         locked: [ 5 3 1 4 ] DMAAAA 1
-         locked: [ 4 1 5 2 ] EMAAAA 3    STESSO FINGERPRINT GRAPHLET DIFFERENTE*/
-        //gk.exclude_include_vertex(G, excl_incl.first, excl_incl.second); //excl == incl; perché?
+        d = *(new std::discrete_distribution<>(p.begin(), p.end())); //costruisce una distribuzione di probabilità (si preoccupa da se di normalizzare gli elementi) con gli elementi di p
+        gk = q[d(gen)]; ////scegli un graphlet da q con probabilità pari al peso dell’arco tra gk ed i suoi adiacenti
+        
         mix_time++;
         
         //update the distribution every lock steps
@@ -318,8 +312,6 @@ void Estimator::sampler_weighted(std::map<int, std::set<int>> &G, int start, int
             motif_distro[o->text_footprint()] += 1.0;///deno;
             iter_to_distro[mix_time] = motif_distro;
             
-            std::cout << "locked: " << gk << " " << o->text_footprint()
-            << " " <<  motif_distro[o->text_footprint()] << "\n";
         }
         //clear all the temporary variables
         keys.clear();
