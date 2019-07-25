@@ -54,11 +54,10 @@ int main(int argc, char* argv[])
 	unsigned int max_iter = std::stoi(cfg["max_iter"]); //max number of sampling step
 	unsigned int lock = std::stoi(cfg["lock"]); //how many steps before sampling
 	unsigned long seed = std::stoi(cfg["seed"]);
-	std::cout << "aa" << std::endl;
 	srand(seed);
 	
 	Estimator e;
-	e.sampler(fast_G, start, k, max_iter, lock);
+	e.sampler_weighted(fast_G, start, k, max_iter, lock);
 
 	return 0;
 }

@@ -12,6 +12,8 @@
 
 #include <vector>
 #include <unordered_map>
+#include "Graphlet.hpp"
+
 
 template<class T> float l1_diff(std::unordered_map<T, float> &v1, std::unordered_map<T, float> &v2, int t){
     if(v1.size() != v2.size()){
@@ -115,6 +117,10 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
         sum += abs(v1[i] - v2[i]);
     }
     return sum;
+}
+
+double weightOf(Graphlet g){
+    return 1;
 }
 
 #endif /* Utility_hpp */

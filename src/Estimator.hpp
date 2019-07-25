@@ -18,7 +18,8 @@ public:
     Graphlet pick_the_first(std::map<int, std::set<int>> &, int, int); // this will be called at the start of the random walk so it's private. Public function only for the tests.
     
     void sampler(std::map<int, std::set<int>> &G, int start, int k, int , int);
-    
+    void sampler_weighted(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock);
+
     
 private:
     int k;

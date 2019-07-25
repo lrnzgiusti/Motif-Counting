@@ -216,3 +216,136 @@ void Estimator::sampler(std::map<int, std::set<int>> &G, int start, int k, int m
     std::cout << "AVG jump time: " << acc/mix_time << "\n";
     return ;
 }
+
+
+
+void Estimator::sampler_weighted(std::map<int, std::set<int>> &G, int start, int k, int max_iter, int lock){
+    unsigned int mix_time = 0;
+    Graphlet gk = Estimator().pick_the_first(G, start, k); //first graphlet i pick from G, the variable is used to point to the current graphlet
+    Graphlet uk, tmp_graphlet; //Graphlet I add to the final result
+    
+    std::set<int>::iterator it; //iterator to get the adding node
+    std::unordered_map<int, std::set<int>> L; //temportary distribution
+    std::map<int, std::set<int>> Lprime; //verteces whih i pick the new node randomly
+    std::set<int> keys; //nodes in the graphlets
+    
+    std::random_device rd; //random distro stuff
+    std::mt19937 gen(rd()); //random distro stuff
+    
+    std::vector<double> p; //probability to select a vertex u
+    std::vector<Graphlet> q; //the corresponding vector of vertex picket with a distro specified in p; when you pick from here, you pick a graphlet to jump on.
+    std::discrete_distribution<> d; //distrbution of the nodes in which i pick the including one.
+    
+    std::pair<int, int> excl_incl;
+    long double deno = 0; //(sum L(v) for v in g)
+    double foo = 0;
+    std::unordered_map<std::string, float> motif_distro; //result
+    std::map<int, std::unordered_map<std::string, float>> iter_to_distro;
+    
+    Occurrence *o;
+    OccurrenceCanonicizer *oc;
+    signal(SIGINT, handler);
+    
+    //* This chunk creates the output file *//
+    std::ofstream of;
+    std::stringstream ss;
+    ss <<std::this_thread::get_id();
+    of.open(ss.str()+".txt");
+    if(!of) std::cerr << "Output file not created.\n";
+    
+    
+    float acc = 0; //useful for statistics
+    std::cout << "Starting algorithm\n";
+    do{
+        
+        auto start = high_resolution_clock::now();
+        
+        //get the nodes of gk, useful for removing one of them in the next section.
+        for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
+        
+        //for-each vertex in the graphlet O(k)
+        for(const std::pair<int, std::unordered_set<int>> &u : gk){
+            
+            uk = gk;
+            if(uk.exclude_vertex(u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
+            {
+                //L(u)= \cup{N(v) for v in g-u}
+                for(const std::pair<int, std::unordered_set<int>> &v : uk){
+                    
+                    std::set_union(L[u.first].begin(), L[u.first].end(),
+                                   G[v.first].begin(), G[v.first].end(),
+                                   std::inserter(L[u.first],
+                                                 L[u.first].end()));
+                    
+                }
+                
+                //I remove the verteces that already belongs to the motif
+                for(const int &key : keys){
+                    L[u.first].erase(key);
+                }
+                deno += L[u.first].size();
+            }//end if(uk.exclude_vertex(fast_G, vk.first))
+        }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
+        
+        
+        for(const std::pair<int, std::unordered_set<int>> &excl : gk){
+            
+            for(const int &incl : L[excl.first]){
+                tmp_graphlet = gk;
+                tmp_graphlet.exclude_include_vertex(G, excl.first, incl);
+                p.push_back(weightOf(tmp_graphlet));
+                q.push_back(tmp_graphlet);
+                
+            }
+        }
+        
+        d = *(new std::discrete_distribution<>(p.begin(), p.end()));
+        gk = q[d(gen)];
+        /*
+         locked: [ 2 5 1 3 ] EMAAAA 1
+         locked: [ 3 1 2 4 ] HMAAAA 1
+         locked: [ 2 1 3 5 ] EMAAAA 2
+         locked: [ 5 3 1 4 ] DMAAAA 1
+         locked: [ 4 1 5 2 ] EMAAAA 3    STESSO FINGERPRINT GRAPHLET DIFFERENTE*/
+        //gk.exclude_include_vertex(G, excl_incl.first, excl_incl.second); //excl == incl; perché?
+        mix_time++;
+        
+        //update the distribution every lock steps
+        if(mix_time % lock == 0){
+            o= new Occurrence(gk.get_size(), &gk);
+            oc = (new OccurrenceCanonicizer(gk.get_size()));
+            oc->canonicize(o);
+            motif_distro[o->text_footprint()] += 1.0;///deno;
+            iter_to_distro[mix_time] = motif_distro;
+            
+            std::cout << "locked: " << gk << " " << o->text_footprint()
+            << " " <<  motif_distro[o->text_footprint()] << "\n";
+        }
+        //clear all the temporary variables
+        keys.clear();
+        L.clear();
+        p.clear();
+        q.clear();
+        deno = 0;
+        
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        
+        acc += diff.count();
+        
+    }while((mix_time < max_iter) and (!stop));
+    //normalize_distribution(motif_distro);
+    of << "Start: " << start << " k: " << k << " iter: " << max_iter << " freq: " << lock << "\n";
+    for(const std::pair<int, std::unordered_map<std::string, float>> &distro : iter_to_distro){
+        of << distro.first << " ";
+        motif_distro = distro.second;
+        normalize_distribution(motif_distro);
+        for(const std::pair<std::string, float> &items : motif_distro){
+            of << items.first << " " << items.second << " ";
+        }
+        of << "\n";
+    }
+    of.close();
+    std::cout << "AVG jump time: " << acc/mix_time << "\n";
+    return ;
+}

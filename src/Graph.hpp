@@ -20,7 +20,6 @@
 #include <fstream>
 #include <string>
 #include <boost/algorithm/string.hpp>
-#include "Utility.hpp"
 
 
 class Graph
