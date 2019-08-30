@@ -12,6 +12,10 @@ using namespace std::chrono;
 Graph::Graph(){
 }
 
+Graph::Graph(std::map<int, std::set<int>> adj_list){
+    ordered_repr = adj_list;
+}
+
 Graph::Graph(std::string filename){
     read_edgelist(filename);
 }
@@ -60,6 +64,10 @@ void Graph::read_edgelist(std::string filename){
 
 std::unordered_map<int, std::unordered_set<int>> Graph::get_repr() const{
     return repr;
+}
+
+std::map<int, std::set<int>> Graph::get_ordered_repr() const{
+    return ordered_repr;
 }
 
 void Graph::printGraph(){
@@ -179,8 +187,12 @@ bool Graph::isConnected(){
 }
 
 
-std::unordered_set<int> Graph::operator[](int idx) const {
-    return repr.at(idx);
+std::set<int>* Graph::get(int idx){
+    return &ordered_repr[idx];
+}
+
+std::set<int> Graph::operator[](int idx) const {
+    return ordered_repr.at(idx);
 }
 
 

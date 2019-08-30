@@ -24,11 +24,11 @@ public:
     Graphlet(std::set<std::pair<int, int>>); //get the graphlet from edgelist
     ~Graphlet();
     
-    bool exclude_include_vertex(std::map<int, std::set<int>>  &, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
+    bool exclude_include_vertex(Graph  &, int, int); //exclude a vertex <int> from itself and include another vertex represented by the edge in the main graph.
    
     bool exclude_vertex(int);
     
-    bool include_vertex(std::map<int, std::set<int>>  &, int);
+    bool include_vertex(Graph &, int);
     
     std::unordered_map<int, std::unordered_set<int>>::iterator begin();
     std::unordered_map<int, std::unordered_set<int>>::iterator end();

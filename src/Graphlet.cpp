@@ -56,11 +56,12 @@ bool Graphlet::exclude_vertex(int excl)
 }
 
 
-bool Graphlet::include_vertex(std::map<int, std::set<int>> &G, int incl){
+bool Graphlet::include_vertex(Graph &G, int incl){
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
-        if(G[incl].find(check_edges.first) != G[incl].end()){
+        if(G[incl].count(check_edges.first)){
             repr[incl].insert(check_edges.first);
             repr[check_edges.first].insert(incl);
+            //std::cout << "Include_vertex:: Adding (" << check_edges.first << "," << incl << ")\n";
         }
     }
     source = incl;
@@ -69,16 +70,17 @@ bool Graphlet::include_vertex(std::map<int, std::set<int>> &G, int incl){
 
 
 
-bool Graphlet::exclude_include_vertex(std::map<int, std::set<int>> &G, int excl, int incl){
+bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
 
     //erase <excl> from the nodes of the graph
     repr.erase(excl);
     //erase <excl> from the neighbors and add connections
     for(const std::pair<int, std::unordered_set<int>> &check_edges : *this){
         repr[check_edges.first].erase(excl);
-        if(G.at(incl).find(check_edges.first) != G.at(incl).end()){ 
-        repr[incl].insert(check_edges.first);
-        repr[check_edges.first].insert(incl);
+        if(G[incl].count(check_edges.first)){
+            repr[incl].insert(check_edges.first);
+            repr[check_edges.first].insert(incl);
+            //std::cout << "Exclude_Include_vertex:: Adding (" << check_edges.first << "," << incl << ")\n";
         }
     }
     

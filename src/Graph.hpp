@@ -27,20 +27,27 @@ class Graph
 public:
     Graph();
     Graph(std::string);
+    Graph(std::map<int, std::set<int>>);
     Graph(std::set<std::pair<int, int>>);
     ~Graph();
     
-    
+    unsigned int num_of_nodes;
+    unsigned int num_of_edges;
+    unsigned int min_degree;
+    unsigned int max_degree;
     
     bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
     bool isValid() const;
     const char* text_footprint() const;
     std::unordered_map<int, std::unordered_set<int>> get_repr() const;
+    std::map<int, std::set<int>> get_ordered_repr() const;
     
     void printGraph();
     bool exist_vertex(const int& k);
-    std::unordered_set<int> operator[](int) const;
+    
+    std::set<int>*get(int);
+    std::set<int> operator[](int) const;
     inline bool has_edge(unsigned int i, unsigned int j) const //FIXME: Could be invoked with j>=i
     {
         
@@ -62,8 +69,10 @@ private:
     void read_edgelist(std::string);
     
     
+    
 protected:
     std::unordered_map<int, std::unordered_set<int>> repr;
+    std::map<int, std::set<int>> ordered_repr;
     unsigned int source;
 };
 
