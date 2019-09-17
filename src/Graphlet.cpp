@@ -80,7 +80,6 @@ bool Graphlet::exclude_include_vertex(Graph &G, int excl, int incl){
         if(G[incl].count(check_edges.first)){
             repr[incl].insert(check_edges.first);
             repr[check_edges.first].insert(incl);
-            //std::cout << "Exclude_Include_vertex:: Adding (" << check_edges.first << "," << incl << ")\n";
         }
     }
     

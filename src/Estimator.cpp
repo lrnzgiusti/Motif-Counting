@@ -260,9 +260,11 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     std::stringstream ss;
     ss <<std::this_thread::get_id();
     of.open(ss.str()+".txt");
-    if(!of) std::cerr << "Output file not created.\n";
+    if(!of) {
+        std::cerr << "Output file not created.\n";
+        return;
+    }
     
-    size_t realloc_dim = 0;
     float acc = 0; //useful for statistics
     std::cout << "Starting algorithm\n";
     
@@ -271,6 +273,7 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
         
         auto start = high_resolution_clock::now();
         
+        auto start1 = high_resolution_clock::now();
         //get the nodes of gk, useful for removing one of them in the next section.
         for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
         
@@ -281,7 +284,6 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
             if(uk.exclude_vertex(u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
             {
                 //L(u)= \cup{N(v) for v in g-u}
-                
                 for(const std::pair<int, std::unordered_set<int>> &v : uk){
                     
                     pointer_to_neighbors = G.get(v.first);
@@ -292,21 +294,17 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
                                                  L[u.first].end()));
                     
                 }
-                
-               
                 //I remove the verteces that already belongs to the motif
                 for(const int &key : keys){
                     L[u.first].erase(key);
                 }
-                
-                
-                //deno += L[u.first].size();
             }//end if(uk.exclude_vertex(fast_G, vk.first))
-          
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
         
-         auto start1 = high_resolution_clock::now();
-        //blocco lento
+        auto end1 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff1 = end1-start1;
+        std::cout << "Il primo blocco dura " << diff1.count() << " secondi\n";
+        //this outer for loop is the bottleneck for the computaiton
         for(const std::pair<int, std::unordered_set<int>> &excl : gk){ // Itero su tutti i nodi del graphlet (che possono essere esclusi)
             
             for(const int &incl : L[excl.first]){ // Itero su tutti i nodi che possono essere inclusi nel graphlet escludendo il nodo excl
@@ -318,11 +316,6 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
             }
         }
         
-        realloc_dim = p.size();
-        auto end1 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> diff1 = end1-start1;
-        std::cout << diff1.count() << "\n";
-        
         
         d = *(new std::discrete_distribution<>(p.begin(), p.end())); //costruisce una distribuzione di probabilità (si preoccupa da se di normalizzare gli elementi) con gli elementi di p
         gk = q[d(gen)]; ////scegli un graphlet da q con probabilità pari al peso dell’arco tra gk ed i suoi adiacenti
@@ -333,23 +326,17 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
             o= new Occurrence(gk.get_size(), &gk);
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
-            //std::cout << "Gk: " << gk << " FP: " << o->text_footprint() << "\n\n";
-            motif_distro[o->text_footprint()] += weightOf(gk);//1.0;///deno;
+            motif_distro[o->text_footprint()] += weightOf(gk);
             iter_to_distro[mix_time] = motif_distro;
             
         }
         
-        //std::cout << "Keys Size: " << keys.size() << "\nL Size: " << L.size() << "\np Size: " << p.size() << "\nq Size: " << q.size() << "\n";
-       
         //clear all the temporary variables
         keys.clear();
         L.clear();
-        p = std::vector<double>(realloc_dim); //.clear();
-        q = std::vector<Graphlet>(realloc_dim);//.clear();
-        //deno = 0;
-        
-        
-      
+        p.clear(); // = std::vector<double>(realloc_dim); //
+        q.clear(); // std::vector<Graphlet>(realloc_dim);
+       
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
         
