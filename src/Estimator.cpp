@@ -259,6 +259,9 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     std::ofstream of;
     std::stringstream ss;
     ss <<std::this_thread::get_id();
+    ss << "_";
+    ss << rand();
+    std::cout << ss.str();
     of.open(ss.str()+".txt");
     if(!of) {
         std::cerr << "Output file not created.\n";
@@ -273,7 +276,6 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
         
         auto start = high_resolution_clock::now();
         
-        auto start1 = high_resolution_clock::now();
         //get the nodes of gk, useful for removing one of them in the next section.
         for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
         
@@ -301,9 +303,6 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
             }//end if(uk.exclude_vertex(fast_G, vk.first))
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
         
-        auto end1 = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> diff1 = end1-start1;
-        std::cout << "Il primo blocco dura " << diff1.count() << " secondi\n";
         //this outer for loop is the bottleneck for the computaiton
         for(const std::pair<int, std::unordered_set<int>> &excl : gk){ // Itero su tutti i nodi del graphlet (che possono essere esclusi)
             

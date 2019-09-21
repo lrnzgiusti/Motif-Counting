@@ -109,6 +109,10 @@ std::map<int, float> k5_facebook = {{75, 0.1720740379552569},
 std::map<int, float> k3_facebook = {{3 , 0.9453808},
     {7 , 0.0546192}};
 
+
+std::map<int, float> k3_test = {{3 , 0.4285714},
+    {7 , 0.5714286}};
+
 std::map<std::string, int> k5_string_to_minhash ={  {"IFMAAA", 117}, {"MIMAAA", 236}, {"CPMAAA", 127},
     {"BPIAAA", 222}, {"BPMAAA", 223}, {"ADMAAA", 75},
     {"APIAAA", 94}, {"EPMAAA", 239}, {"DPMAAA", 255},

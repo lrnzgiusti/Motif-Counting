@@ -45,7 +45,7 @@ std::map<int, std::map<int, float>>  load_sample(std::string filename, int n_of_
         boost::split(tokens, s, [](char c){return c == ' ';});
         tokens.erase(tokens.end()-1); //remove the ending \n
         for(int i = 1; i < tokens.size()/2; i++){
-            motif_to_freq[k5_string_to_minhash[tokens[2*i-1]]] = std::stof(tokens[2*i])/n_of_samples; 
+            motif_to_freq[k3_string_to_minhash[tokens[2*i-1]]] = std::stof(tokens[2*i])/n_of_samples;
             try {
                 sample[std::stoi(tokens[0])] = motif_to_freq;
             } catch (...) {
@@ -84,10 +84,8 @@ std::map<int, std::map<int, float>> load_samples(){
         for (std::string line : lines){
             boost::split(tokens, line, [](char c){return c == ' ';});
             tokens.erase(tokens.end()-1); //remove the ending \n
-            
-            
             for(int i = 1; i <= tokens.size()/2; i++){
-                time_to_avg[std::stoi(tokens[0])][k5_string_to_minhash[tokens[2*i-1]]] += std::stof(tokens[2*i])/n_of_samples;
+                time_to_avg[std::stoi(tokens[0])][k3_string_to_minhash[tokens[2*i-1]]] += std::stof(tokens[2*i])/n_of_samples;
             }
             tokens.clear();
         }

@@ -38,7 +38,7 @@ Graph read_edgelist(std::vector<std::string> edgelist){
 		tokens.clear();
 	}
 	num_of_nodes = (unsigned int)adj_list.size();
-	
+	num_of_edges = num_of_edges / 2 +1;
 	std::cout << "Graph loaded!\n" << "Number of nodes: " << num_of_nodes
 			  << "\nNumber of edges: " << num_of_edges
 			  << "\nMax degree: " << max_degree
@@ -56,7 +56,7 @@ Graph read_edgelist(std::vector<std::string> edgelist){
 
 int main(int argc, char* argv[])
 {
-	
+
 	std::string data_path = argv[1]; //argv[1] contains the path of the graph.
 	
 	//this load the edgelist file into the memory, it's the fastest way to read a text file
@@ -78,12 +78,24 @@ int main(int argc, char* argv[])
 	unsigned int max_iter = std::stoi(cfg["max_iter"]); //max number of sampling step
 	unsigned int lock = std::stoi(cfg["lock"]); //how many steps before sampling
 	unsigned long seed = std::stoi(cfg["seed"]);
+	int sleep = std::stoi(cfg["sleep"]);
+	int run = std::stoi(cfg["run"]);
 	srand(seed);
 	
 	
-	
 	Estimator e;
-	e.sampler_weighted(fast_G, start, k, max_iter, lock);
+	for (int i = 0; i < run; i++) {
+		e.sampler_weighted(fast_G, start, k, max_iter, lock);
+		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
+	}
+	
+	
+	/**
+	 WARNING: CHANGE k3_string_to_minhash TO k5_string_to_minhash
+	 **/
+	
+	//perform_L1(k3_test);
+	
 
 	return 0;
 }
