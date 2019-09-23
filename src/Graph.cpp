@@ -196,7 +196,6 @@ std::set<int> Graph::operator[](int idx) const {
 }
 
 
-
 bool Graph::isValid() const{
     return repr.size() != 0;
 }

@@ -119,8 +119,39 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
     return sum;
 }
 
+
+/*
+ Calc_single_weight(gk, G):
+    n_x = 0
+    prod = 1
+    for each vertex x in gk
+        n_x = 0
+        for each vertex y in N(x) , N(x) is taken on G
+            if y is a vertex of gk
+                n_x = max(d(y), n_x) where d(y) is the degree of y in G
+ 
+        prod *= n_x
+    return prod
+ */
+double weightOf(Graphlet &gk, Graph &G){
+    
+    double prod = 1.0f; //the final cost of the graphlet
+    float n_x = 0.0f; //the degree of the neighbour of x with the max degree
+    for(const std::pair<int, std::unordered_set<int>> &x : gk){
+        n_x = 0.0f;
+        for(const int &y : G[x.first]){
+            if(gk.exist_vertex(y)){
+                n_x = std::max(n_x, static_cast<float>(G[y].size()));
+            }
+        }
+        prod *= n_x;
+    }
+    return prod;
+}
+
+/*
 double weightOf(Graphlet &g){
     return 1;
 }
-
+*/
 #endif /* Utility_hpp */

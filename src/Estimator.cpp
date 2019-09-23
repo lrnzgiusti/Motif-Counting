@@ -251,6 +251,10 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     std::unordered_map<std::string, float> motif_distro; //result
     std::map<int, std::unordered_map<std::string, float>> iter_to_distro;
     
+    /* Weights*/
+    float c_g = weightOf(gk, G); //this is the cost of the graphlet I'm on.
+    
+    
     Occurrence *o;
     OccurrenceCanonicizer *oc;
     signal(SIGINT, handler);
@@ -275,6 +279,8 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     do{
         
         auto start = high_resolution_clock::now();
+        
+        //here I set the weight of gk
         
         //get the nodes of gk, useful for removing one of them in the next section.
         for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
@@ -309,7 +315,7 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
             for(const int &incl : L[excl.first]){ // Itero su tutti i nodi che possono essere inclusi nel graphlet escludendo il nodo excl
                 tmp_graphlet = gk;
                 tmp_graphlet.exclude_include_vertex(G, excl.first, incl); //calcolo il graphlet adiacente
-                p.push_back(weightOf(tmp_graphlet)); //inserisco nella distribuzione di probabilità il peso associato all’arco dal graphlet corrente (gk) al graphlet adiacente (tmp_graphlet)
+                p.push_back(c_g+weightOf(tmp_graphlet, G)); //inserisco nella distribuzione di probabilità il peso associato all’arco dal graphlet corrente (gk) al graphlet adiacente (tmp_graphlet)
                 q.push_back(tmp_graphlet); // vector di supporto, contiene tutti i Graphlet adiacenti a gk; il numero estratto dalla distribuzione di probabilità ‘p’ verrà usato come indice di questo array per estrarre il graphlet su cui ci si sposta.
                 
             }
@@ -319,13 +325,13 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
         d = *(new std::discrete_distribution<>(p.begin(), p.end())); //costruisce una distribuzione di probabilità (si preoccupa da se di normalizzare gli elementi) con gli elementi di p
         gk = q[d(gen)]; ////scegli un graphlet da q con probabilità pari al peso dell’arco tra gk ed i suoi adiacenti
         mix_time++;
-        
+        c_g = weightOf(gk, G);
         //update the distribution every lock steps
         if(mix_time % lock == 0){
             o= new Occurrence(gk.get_size(), &gk);
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
-            motif_distro[o->text_footprint()] += weightOf(gk);
+            motif_distro[o->text_footprint()] += 1.0/c_g; //salvare i pesi in una variabile temporanea, probabilmente si risparmia molto tempo
             iter_to_distro[mix_time] = motif_distro;
             
         }
