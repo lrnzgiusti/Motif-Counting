@@ -11,6 +11,7 @@
 
 
 #include <vector>
+#include <algorithm>
 #include <unordered_map>
 #include "Graphlet.hpp"
 
@@ -122,30 +123,47 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
 
 /*
  Calc_single_weight(gk, G):
-    n_x = 0
-    prod = 1
-    for each vertex x in gk
-        n_x = 0
-        for each vertex y in N(x) , N(x) is taken on G
-            if y is a vertex of gk
-                n_x = max(d(y), n_x) where d(y) is the degree of y in G
- 
-        prod *= n_x
-    return prod
+ p = 1
+ X = (copia dell')insieme dei nodi di g
+ u1,…,uk = nodi di g in ordine decrescente di grado in G
+ for i = 1,…,k:
+ N = (nodi di X che sono vicini di ui)
+ p = p / d(ui)**|N|
+ X = X \ N
+ return p
  */
 double weightOf(Graphlet &gk, Graph &G){
     
     double prod = 1.0f; //the final cost of the graphlet
-    float n_x = 0.0f; //the degree of the neighbour of x with the max degree
-    for(const std::pair<int, std::unordered_set<int>> &x : gk){
-        n_x = 0.0f;
-        for(const int &y : G[x.first]){
-            if(gk.exist_vertex(y)){
-                n_x = std::max(n_x, static_cast<float>(G[y].size()));
-            }
-        }
-        prod *= n_x;
+    std::vector<int> X,U; //copy of the set of verteces of gk
+    for(const std::pair<int, std::unordered_set<int>> &vertex : gk) {
+        X.push_back(vertex.first);
     }
+    
+    U = X;
+    
+    std::sort(U.begin(), U.end(), [&G](const int &a, const int &b) -> bool
+    {
+        return G[a].size() > G[b].size();
+    });
+    
+    std::vector<int> N;
+    std::set<int>* pointer_to_neighbors;
+    for(int i = 0; i < U.size(); ++i){
+        pointer_to_neighbors = G.get(U[i]); //avoid vanishing pointers (invalidation issue)
+        std::set_intersection(X.begin(), X.end(),
+                              pointer_to_neighbors->begin(), pointer_to_neighbors->end(),
+                              std::inserter(N,
+                                            N.end())); //compute ((nodi di X che sono vicini di ui))
+        
+        prod = prod / (std::pow(G[U[i]].size(), N.size()));
+        std::set_difference(X.begin(), X.end(),
+                            N.begin(), N.end(), X.begin()); //compute X = X \ N
+        if(X.empty()) break;
+        else N.clear();
+        
+    }
+
     return prod;
 }
 

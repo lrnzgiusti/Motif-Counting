@@ -56,7 +56,6 @@ Graph read_edgelist(std::vector<std::string> edgelist){
 
 int main(int argc, char* argv[])
 {
-
 	std::string data_path = argv[1]; //argv[1] contains the path of the graph.
 	
 	//this load the edgelist file into the memory, it's the fastest way to read a text file
@@ -88,7 +87,7 @@ int main(int argc, char* argv[])
 		e.sampler_weighted(fast_G, start, k, max_iter, lock);
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
 	}
-	
+
 	
 	/**
 	 WARNING: CHANGE k3_string_to_minhash TO k5_string_to_minhash
