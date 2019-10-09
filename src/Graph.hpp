@@ -38,7 +38,6 @@ public:
     unsigned int min_degree;
     unsigned int max_degree;
     
-    bool isBipartite(); //the formal parameter is the source vertex in which you start the traversal
     bool isConnected(); //same as isBipartite
     bool isValid() const;
     const char* text_footprint() const;
@@ -47,6 +46,7 @@ public:
     
     void printGraph();
     bool exist_vertex(const int& k);
+    void insertEdge(int, int);
     
     std::set<int>*get(int);
     std::set<int> operator[](int) const;

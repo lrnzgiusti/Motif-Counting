@@ -8,8 +8,7 @@
 
 
 #include <chrono>
-
-
+#include <sstream>
 #include "Estimator.hpp"
 #include "Utility.hpp"
 #include <thread>
@@ -246,6 +245,7 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     
     std::vector<double> p; //probability to select a vertex u
     std::vector<Graphlet> q; //the corresponding vector of vertex picket with a distro specified in p; when you pick from here, you pick a graphlet to jump on.
+    //std::unordered_map<Graphlet, float> w; //given a graphlet, this containts the sum of the weights of the neighbors graphlets
     std::discrete_distribution<> d; //distrbution of the nodes in which i pick the including one.
     
     std::unordered_map<std::string, float> motif_distro; //result
@@ -253,8 +253,9 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     
     /* Weights*/
     float c_g = weightOf(gk, G); //this is the cost of the graphlet I'm on.
-    
-    
+    float c_h = 0.0f; //temporary variable that holds the weight of a neightbor of gk 
+    //w[gk] = 0; //Initialise the weight of the first graphlet
+
     Occurrence *o;
     OccurrenceCanonicizer *oc;
     signal(SIGINT, handler);
@@ -262,10 +263,10 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     //* This chunk creates the output file *//
     std::ofstream of;
     std::stringstream ss;
+    srand(time(NULL));
     ss <<std::this_thread::get_id();
     ss << "_";
     ss << rand();
-    std::cout << ss.str();
     of.open(ss.str()+".txt");
     if(!of) {
         std::cerr << "Output file not created.\n";
@@ -273,9 +274,10 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
     }
     
     float acc = 0; //useful for statistics
-    std::cout << "Starting algorithm\n";
+    std::cout << "Starting algorithm with "<< gk <<"\n";
     
     std::set<int>* pointer_to_neighbors; //workaround to save the set of neighbors for a given vertex
+
     do{
         
         auto start = high_resolution_clock::now();
@@ -284,22 +286,20 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
         
         //get the nodes of gk, useful for removing one of them in the next section.
         for(const std::pair<int, std::unordered_set<int>> &kv : gk) keys.insert(kv.first);
-        
         //for-each vertex in the graphlet O(k)
         for(const std::pair<int, std::unordered_set<int>> &u : gk){
-            
             uk = gk;
             if(uk.exclude_vertex(u.first)) //if gk - vk.first is not connected i avoid useless stuff to do
             {
                 //L(u)= \cup{N(v) for v in g-u}
-                for(const std::pair<int, std::unordered_set<int>> &v : uk){
-                    
+                for(const std::pair<int, std::unordered_set<int>> &v : uk){;
                     pointer_to_neighbors = G.get(v.first);
                     
                     std::set_union(L[u.first].begin(), L[u.first].end(),
                                    pointer_to_neighbors->begin(), pointer_to_neighbors->end(),
                                    std::inserter(L[u.first],
                                                  L[u.first].end()));
+
                     
                 }
                 //I remove the verteces that already belongs to the motif
@@ -308,45 +308,52 @@ void Estimator::sampler_weighted(Graph &G, int start, int k, int max_iter, int l
                 }
             }//end if(uk.exclude_vertex(fast_G, vk.first))
         }//end for(const std::pair<int, std::unordered_set<int>> &vk : gk)
-        
         //this outer for loop is the bottleneck for the computaiton
         for(const std::pair<int, std::unordered_set<int>> &excl : gk){ // Itero su tutti i nodi del graphlet (che possono essere esclusi)
-            
             for(const int &incl : L[excl.first]){ // Itero su tutti i nodi che possono essere inclusi nel graphlet escludendo il nodo excl
                 tmp_graphlet = gk;
                 tmp_graphlet.exclude_include_vertex(G, excl.first, incl); //calcolo il graphlet adiacente
-                p.push_back(c_g+weightOf(tmp_graphlet, G)); //inserisco nella distribuzione di probabilità il peso associato all’arco dal graphlet corrente (gk) al graphlet adiacente (tmp_graphlet)
+                c_h = weightOf(tmp_graphlet, G);
+                p.push_back(c_g+c_h); //inserisco nella distribuzione di probabilità il peso associato all’arco dal graphlet corrente (gk) al graphlet adiacente (tmp_graphlet)
                 q.push_back(tmp_graphlet); // vector di supporto, contiene tutti i Graphlet adiacenti a gk; il numero estratto dalla distribuzione di probabilità ‘p’ verrà usato come indice di questo array per estrarre il graphlet su cui ci si sposta.
-                
+                //w[gk] += c_h;
             }
         }
         
-        
         d = *(new std::discrete_distribution<>(p.begin(), p.end())); //costruisce una distribuzione di probabilità (si preoccupa da se di normalizzare gli elementi) con gli elementi di p
-        gk = q[d(gen)]; ////scegli un graphlet da q con probabilità pari al peso dell’arco tra gk ed i suoi adiacenti
+        gk = q[d(gen)]; ////scegli un graphlet da q con probabilità pari al peso dell’arco tra gk ed i suoi adiacenti -- segfault here
         mix_time++;
         c_g = weightOf(gk, G);
-        //update the distribution every lock steps
-        if(mix_time % lock == 0){
+
+        if(mix_time % lock == 0 and c_g != 0.0){
             o= new Occurrence(gk.get_size(), &gk);
             oc = (new OccurrenceCanonicizer(gk.get_size()));
             oc->canonicize(o);
+
+            //std::cout << "Wgk " <<  motif_distro[o->text_footprint()]  << "  :: " << 1.0/w[gk];
             motif_distro[o->text_footprint()] += 1.0/c_g; //salvare i pesi in una variabile temporanea, probabilmente si risparmia molto tempo
+            //std::cout << "after " <<  motif_distro[o->text_footprint()]  << "\n";
             iter_to_distro[mix_time] = motif_distro;
             
         }
         
         //clear all the temporary variables
+        //w.clear();
         keys.clear();
-        L.clear();
-        p.clear(); // = std::vector<double>(realloc_dim); //
-        q.clear(); // std::vector<Graphlet>(realloc_dim);
+        std::unordered_map<int, std::set<int>>().swap(L); //.clear();
+        std::vector<double>().swap(p);
+        std::vector<Graphlet>().swap(q);
+        //p.clear(); // = std::vector<double>(realloc_dim); //
+        //q.clear(); // std::vector<Graphlet>(realloc_dim);
        
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
         
         acc += diff.count();
-        
+        if (mix_time % 10000 == 0)
+        {
+        	std::cout << mix_time << "\n";
+        }
     }while((mix_time < max_iter) and (!stop));
     //normalize_distribution(motif_distro);
     of << "Start: " << start << " k: " << k << " iter: " << max_iter << " freq: " << lock << "\n";

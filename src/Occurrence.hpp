@@ -11,7 +11,7 @@
 #include <climits>
 #include "Graph.hpp"
 
-#include "/Users/ince/Downloads/nauty26r11/nauty.h"
+#include "/home/ince/Desktop/nauty26r11/nauty.h"
 
 
 class OccurrenceCanonicizer;

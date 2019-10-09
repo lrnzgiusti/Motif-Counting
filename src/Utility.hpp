@@ -135,18 +135,17 @@ float l1_diff(std::vector<float> v1, std::vector<float> v2, int t){
 double weightOf(Graphlet &gk, Graph &G){
     
     double prod = 1.0f; //the final cost of the graphlet
-    std::vector<int> X,U; //copy of the set of verteces of gk
+    std::set<int> X,Xtmp;
     for(const std::pair<int, std::unordered_set<int>> &vertex : gk) {
-        X.push_back(vertex.first);
+        X.insert(vertex.first);
     }
     
-    U = X;
-    
+    std::vector<int> U(X.begin(), X.end());
     std::sort(U.begin(), U.end(), [&G](const int &a, const int &b) -> bool
     {
         return G[a].size() > G[b].size();
     });
-    
+
     std::vector<int> N;
     std::set<int>* pointer_to_neighbors;
     for(int i = 0; i < U.size(); ++i){
@@ -158,12 +157,18 @@ double weightOf(Graphlet &gk, Graph &G){
         
         prod = prod / (std::pow(G[U[i]].size(), N.size()));
         std::set_difference(X.begin(), X.end(),
-                            N.begin(), N.end(), X.begin()); //compute X = X \ N
-        if(X.empty()) break;
-        else N.clear();
+                            N.begin(), N.end(), 
+                            std::inserter(Xtmp,
+                                          Xtmp.end())); //compute X = X \ N
         
+        if(Xtmp.empty()) return prod;
+        else {
+            N.clear();
+            X = Xtmp;
+            Xtmp.clear();
+        }
+       
     }
-
     return prod;
 }
 
